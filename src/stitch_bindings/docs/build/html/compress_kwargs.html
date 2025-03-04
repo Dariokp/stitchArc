@@ -1,0 +1,313 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>compress() Keyword Arguments Listing &mdash; stitch_core 0.1.11 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=f9d3eb12" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=f9d3eb12" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=1e825a29"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Output JSON format" href="out_json.html" />
+    <link rel="prev" title="stitch_core" href="generated/stitch_core.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            stitch_core
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">compress() Keyword Arguments Listing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="out_json.html">Output JSON format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cost_metrics.html">Cost Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compression_objectives.html">Compression Objectives</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">stitch_core</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">compress() Keyword Arguments Listing</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/compress_kwargs.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="compress-keyword-arguments-listing">
+<span id="compress-kwargs"></span><h1>compress() Keyword Arguments Listing<a class="headerlink" href="#compress-keyword-arguments-listing" title="Link to this heading"></a></h1>
+<p>See also the documentation for <a class="reference internal" href="intro/tutorial.html#stitch_core.compress" title="stitch_core.compress"><code class="xref py py-func docutils literal notranslate"><span class="pre">stitch_core.compress()</span></code></a>.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Argument</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">programs</span> <span class="pre">&lt;val&gt;</span></code></p></td>
+<td><p>The <code class="docutils literal notranslate"><span class="pre">List[str]</span></code> of programs to learn abstractions from.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">tasks</span> <span class="pre">&lt;val&gt;</span></code></p></td>
+<td><p>A <code class="docutils literal notranslate"><span class="pre">List[str]</span></code> equal in length to <code class="docutils literal notranslate"><span class="pre">programs</span></code> that gives names for the task each program is solving. If not provided, defaults to each program solving a unique task. This is only relevant for a DreamCoder-style compression metric that takes a <em>min</em> over programs within each task. See <a class="reference internal" href="compression_objectives.html#compression-objectives"><span class="std std-ref">Compression Objectives</span></a> for more details.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">max_arity</span> <span class="pre">&lt;val&gt;</span></code></p></td>
+<td><p>Max arity of abstractions to find (will find arities from 0 to this number inclusive).
+Note that scaling with arity can be very expensive [default: 2]</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">abstraction_prefix</span> <span class="pre">&lt;val&gt;</span></code></p></td>
+<td><p>Prefix used to generate names of new abstractions, by default we will name our
+abstractions fn_0, fn_1, fn_2, etc [default: fn_]</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">allow_single_task</span></code></p></td>
+<td><p>Allow for abstractions that are only useful in a single task (defaults to False like
+DreamCoder)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">batch</span> <span class="pre">&lt;val&gt;</span></code></p></td>
+<td><p>How many worklist items a thread will take at once [default: 1]</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cost_app</span> <span class="pre">&lt;val&gt;</span></code></p></td>
+<td><p>Sets cost for applications in the lambda calculus [default: 1]</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">cost_ivar</span> <span class="pre">&lt;val&gt;</span></code></p></td>
+<td><p>Sets cost for <code class="docutils literal notranslate"><span class="pre">#i</span></code> abstraction variables [default: 100]</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cost_lam</span> <span class="pre">&lt;val&gt;</span></code></p></td>
+<td><p>Sets cost for lambdas [default: 1]</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">cost_prim_default</span> <span class="pre">&lt;val&gt;</span></code></p></td>
+<td><p>Sets cost for primitives like <code class="docutils literal notranslate"><span class="pre">+</span></code> and <code class="docutils literal notranslate"><span class="pre">*</span></code> [default: 100]</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cost_var</span> <span class="pre">&lt;val&gt;</span></code></p></td>
+<td><p>Sets cost for <code class="docutils literal notranslate"><span class="pre">$i</span></code> variables [default: 100]</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">dreamcoder_comparison</span></code></p></td>
+<td><p>Extra printouts related to running a dreamcoder comparison. Section 6.1 of Stitch paper
+<a class="reference external" href="https://arxiv.org/abs/2211.16605">https://arxiv.org/abs/2211.16605</a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">dynamic_batch</span></code></p></td>
+<td><p>Threads will autoadjust how large their batches are based on the worklist size</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">eta_long</span></code></p></td>
+<td><p>Puts result into eta-long form when rewriting (also requires beta-normal form). This can
+be useful for programs that will be used to train top down synthesizers, but it also
+restricts what abstractions can be found a bit (i.e. only those that can be put in
+beta-normal eta-long form are allowed)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">follow</span> <span class="pre">&lt;val&gt;</span></code></p></td>
+<td><p>Pattern or abstraction to follow and give prinouts about. If <code class="docutils literal notranslate"><span class="pre">follow_prune=True</span></code> we will
+aggressively prune to only follow this pattern, otherwise we will just verbosely print
+when ancestors of this pattern are encountered</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">follow_prune</span></code></p></td>
+<td><p>For use with <code class="docutils literal notranslate"><span class="pre">follow</span></code>, enables aggressive pruning. Useful for ensuring that it is
+<em>possible</em> to find a particular abstraction by guiding the search directly towards it</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fused_lambda_tags</span> <span class="pre">&lt;val&gt;</span></code></p></td>
+<td><p>[default: ]</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">hole_choice</span> <span class="pre">&lt;val&gt;</span></code></p></td>
+<td><p>Method for choosing hole to expand at each step. Doesn’t have a huge effect [default:
+depth-first] [possible values: random, breadth-first, depth-first, max-largest-subset,
+high-entropy, low-entropy, max-cost, min-cost, many-groups, few-groups, few-apps]</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">iterations</span> <span class="pre">&lt;val&gt;</span></code></p></td>
+<td><p>Maximum number of iterations to run compression for (number of inventions to find,
+though stitch will stop early if no compressive abstraction exists) [default: 3]</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">inv_arg_cap</span></code></p></td>
+<td><p>Enables edge case handling where inverting the argument capture subsumption pruning is
+needed for optimality. Generally not relevant just included for completeness, see the
+footnoted section of Section 4.3 of the Stitch paper <a class="reference external" href="https://arxiv.org/abs/2211.16605">https://arxiv.org/abs/2211.16605</a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">inv_candidates</span> <span class="pre">&lt;val&gt;</span></code></p></td>
+<td><p>[currently not used] Number of invention candidates compression_step should return in a
+<em>single</em> step. Note that these will be the top n optimal candidates modulo subsumption
+pruning (and the top-1 is guaranteed to be globally optimal) [default: 1]</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">no_curried_bodies</span></code></p></td>
+<td><p>Forbid abstraction bodies rooted to the left of an app (see also no_curried_metavars and
+eta_long)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">no_curried_metavars</span></code></p></td>
+<td><p>Forbid metavariables to the left of an app</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">no_mismatch_check</span></code></p></td>
+<td><p>Disables the safety check for the utility being correct; you only want to do this if you
+truly dont mind unsoundness for a minute</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">no_opt</span></code></p></td>
+<td><p>Disable all optimizations</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">no_opt_arity_zero</span></code></p></td>
+<td><p>Disable the arity zero optimization, which searches first for the most compressive
+arity-zero abstraction since this is extremely fast to find and provides a good starting
+point for our upper bound pruning. In practice this isn’t a very important optimization</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">no_opt_force_multiuse</span></code></p></td>
+<td><p>Disable <em>redundant argument elimination</em> pruning (aka “force multiuse”). Section 4.3 of
+Stitch paper <a class="reference external" href="https://arxiv.org/abs/2211.16605">https://arxiv.org/abs/2211.16605</a> This is a fairly important optimization
+(ablation study in Section 6.4 of Stitch paper)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">no_opt_single_use</span></code></p></td>
+<td><p>Disable the single structurally hashed subtree match pruning. This is a very minor
+optimization that allows discarding certain abstractions that only match at a single
+unique subtree as long as that subtree lacks free variables, because arity zero
+abstractions are always superior in this case</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">no_opt_upper_bound</span></code></p></td>
+<td><p>Disable <em>upper bound</em> based pruning. Section 4.2 of Stitch paper
+<a class="reference external" href="https://arxiv.org/abs/2211.16605">https://arxiv.org/abs/2211.16605</a> This is an extremely important optimization (ablation
+study in Section 6.4 of Stitch paper)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">no_opt_useless_abstract</span></code></p></td>
+<td><p>Disable <em>argument capture</em> pruning (aka “useless abstraction pruning”). Section 4.3 of
+Stitch paper <a class="reference external" href="https://arxiv.org/abs/2211.16605">https://arxiv.org/abs/2211.16605</a> This is an extremely important
+optimization (ablation study in Section 6.4 of Stitch paper)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">no_other_util</span></code></p></td>
+<td><p>Switch to utility based purely on program size without adding in the abstraction size
+(aka the “structure penalty” in DreamCoder)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">no_stats</span></code></p></td>
+<td><p>Disable stat logging - note that stat logging in multithreading requires taking a mutex
+so it can be a source of slowdown in the massively multithreaded case, hence this flag
+to disable it</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">previous_abstractions</span> <span class="pre">&lt;val&gt;</span></code></p></td>
+<td><p>Number of previous abstractions that have been found before this round of compression -
+this is used to calculate what the next abstraction name should be - for example if 2
+abstractions have been found previously then the next abstraction will be fn_2 [default:
+0]</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">print_stats</span> <span class="pre">&lt;val&gt;</span></code></p></td>
+<td><p>Print stats this often (0 means never) [default: 0]</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">quiet</span></code></p></td>
+<td><p>Silence all printing within a compression step. See <code class="docutils literal notranslate"><span class="pre">silent</span></code> to silence all outputs
+between compression steps as well</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">show_rewritten</span></code></p></td>
+<td><p>Print out programs rewritten under abstraction</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">rewrite_check</span></code></p></td>
+<td><p>Used for soundness testing. Whenever you finish an invention do a full rewrite to check
+that rewriting doesnt raise a cost mismatch exception</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rewritten_dreamcoder</span></code></p></td>
+<td><p>Include the dreamcoder-format rewritten programs in the output</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">rewritten_intermediates</span></code></p></td>
+<td><p>For each abstraction learned, includes the rewritten programs right after learning that
+abstraction in the output. If <code class="docutils literal notranslate"><span class="pre">rewritten_dreamcoder</span></code> is also specified, then the
+rewritten programs in dreamcoder format will also be included</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">silent</span></code></p></td>
+<td><p>Disables all prinouts except in the case of a panic. See also <code class="docutils literal notranslate"><span class="pre">quiet</span></code> to just silence
+internal printouts during each compression step In Python this defaults to True</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">structure_penalty</span> <span class="pre">&lt;val&gt;</span></code></p></td>
+<td><p>DreamCoder style structure penalty - must be positive. Overall utility is this
+difference in corpus size minus structure_penalty * abstraction_size [default: 1.0]</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">threads</span> <span class="pre">&lt;val&gt;</span></code></p></td>
+<td><p>Number of threads to use for compression (no parallelism if set to 1) [default: 1]</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">utility_by_rewrite</span></code></p></td>
+<td><p>Calculate utility exhaustively by performing a full rewrite. Used for debugging when
+cost mismatch exceptions are happening and we need something slow but accurate as a
+temporary solution</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">verbose_best</span></code></p></td>
+<td><p>Prints whenever a new best abstraction is found</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">verbose_rewrite</span></code></p></td>
+<td><p>Very verbose when rewriting happens - turns off –silent and –quiet which are usually
+forced on in rewriting</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">verbose_worklist</span></code></p></td>
+<td><p>Prints every worklist item as it is processed (will slow things down a ton due to
+rendering out expressions)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="generated/stitch_core.html" class="btn btn-neutral float-left" title="stitch_core" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="out_json.html" class="btn btn-neutral float-right" title="Output JSON format" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Matt Bowers.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

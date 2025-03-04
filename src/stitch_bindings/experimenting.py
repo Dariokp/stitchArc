@@ -1,0 +1,71 @@
+from stitch_core import compress
+
+import ast
+
+# example from Overview section of the Stitch paper (https://arxiv.org/abs/2211.16605)
+programs = [
+    "(lam (+ $0 1))",
+    "((lam (+ $0 1)) (5))",
+    # "(lam (lam (+ 3 (* (+ $0 $1) 2))))",
+    # "(lam (map (lam (+ 3 (* 4 (+ 3 $0)))) $0))",
+    # "(lam (* 2 (+ 3 (* $0 (+ 2 1)))))",
+    # "(lam (lam (lam (dict (__list__ (__tuple__ input $1) (__tuple__ output $0))))))"
+    "(lam ((lam (+ $0 $1)) (6)))",
+    "(lam ((lam (dict (__list__ (__tuple__ input $1) (__tuple__ output $0)))) (x18 6)))",
+    # Non-functional version: "(lam (lam (dict (__list__ (__tuple__ input $1) (__tuple__ output $0))) (x18 6)))"
+]
+                                                                       
+# (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (ifElse (fand (eq $1 $0) (eq $0 1)) (getItem (__listComp__ (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (dict (__list__ (__tuple__ input $1) (__tuple__ output $0))) (x18 $0)) (x18 $0)) (choice (__tuple__ identity rot90 rot180 rot270))) (fill $36 2 (product $5 $6))) (fill (canvas $2 (__tuple__ $11 $10)) $1 $3)) (choice (remove $1 $11))) (choice $10)) (combine (apply (lbind astuple 0) $2) (apply (rbind astuple (sub $7 1)) $1))) (sample (interval 1 $7 1) $2)) (sample (interval 0 (sub $5 1) 1) $2)) (__tuple__ $1 $0) (__list__ (sample (__list__ 1 2) 2))) 0) (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (dict (__list__ (__tuple__ input $1) (__tuple__ output $0))) (x28 $0)) (x28 $0)) (choice (__tuple__ identity rot90 rot180 rot270))) (fill $46 2 (product $5 $6))) (fill (canvas $2 (__tuple__ $11 $10)) $1 $3)) (choice (remove $1 $11))) (choice $10)) (combine (apply (lbind astuple 0) $2) (apply (rbind astuple (sub $7 1)) $1))) (sample (interval 1 $7 1) $2)) (sample (interval 0 (sub $5 1) 1) $2))) (unifint $9 $8 $3)) (unifint $8 $7 $1)) (__tuple__ 1 (add (floordiv $2 2) 1))) (__tuple__ 1 (add (floordiv $2 2) 1))) (unifint $5 $4 $3)) (unifint $4 $3 $2)) (remove 2 (interval 0 10 1))) (__tuple__ 3 30))))
+
+# (lam (lam (lam (dict (__list__ (__tuple__ input $1) (__tuple__ output $0))) (x18 $2))))
+# The problem here is that the last lam:
+    # lam (dict (...)) (x18 $2)
+    # so it's technically being applied to two arugments, not one!
+
+# (lam (lam (dict (__list__ (__tuple__ input $1) (__tuple__ output $0))) (x18 6)))
+
+# (lambda x19: (lambda x20: dict(__list__(__tuple__('input')(x19))(__tuple__('output')(x20)))) (x18(x20)))
+
+# (lambda rotf: 
+#     (lambda gi:
+#         (lambda go: dict([('input', gi), ('output', go)])) (rotf(go))
+#     ) (rotf(gi))
+# )
+
+
+# programs = [
+#     "(lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (ifElse (fand (eq $1 $0) (eq $0 1)) (getItem (__listComp__ (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (dict (__list__ (__tuple__ input $1) (__tuple__ output $0))) (x18 $0)) (x18 $0)) (choice (__tuple__ identity rot90 rot180 rot270))) (fill $36 2 (product $5 $6))) (fill (canvas $2 (__tuple__ $11 $10)) $1 $3)) (choice (remove $1 $11))) (choice $10)) (combine (apply (lbind astuple 0) $2) (apply (rbind astuple (sub $7 1)) $1))) (sample (interval 1 $7 1) $2)) (sample (interval 0 (sub $5 1) 1) $2)) (__tuple__ $1 $0) (__list__ (sample (__list__ 1 2) 2))) 0) (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (dict (__list__ (__tuple__ input $1) (__tuple__ output $0))) (x28 $0)) (x28 $0)) (choice (__tuple__ identity rot90 rot180 rot270))) (fill $46 2 (product $5 $6))) (fill (canvas $2 (__tuple__ $11 $10)) $1 $3)) (choice (remove $1 $11))) (choice $10)) (combine (apply (lbind astuple 0) $2) (apply (rbind astuple (sub $7 1)) $1))) (sample (interval 1 $7 1) $2)) (sample (interval 0 (sub $5 1) 1) $2))) (unifint $9 $8 $3)) (unifint $8 $7 $1)) (__tuple__ 1 (add (floordiv $2 2) 1))) (__tuple__ 1 (add (floordiv $2 2) 1))) (unifint $5 $4 $3)) (unifint $4 $3 $2)) (remove 2 (interval 0 10 1))) (__tuple__ 3 30))))",
+#     "(lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (x23 $4 $3 $2 $1) (x1 (lam (lam (lam (lam (lam (ifElse (isnot $3 $12) (lam (ifElse (eq (len $1) 0) (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (x41 $4 $3 $2 $1) (x1 (lam (lam (lam (lam (lam (ifElse (isnot $3 $12) (getItem (__listComp__ (lam (lam (x42 $0 $4 $1 $2) (next $13 $14)) (fill $0 $3 (connect (__tuple__ 0 $1) (__tuple__ (sub $42 1) $1)))) (__tuple__ $0 $2) (__list__ $94)) 0) (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (x65 $9 $8 $7 $6 $5 $4 $3 $2 $1) (x1 (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (ifElse (isnot $8 $22) (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (x90 $7 $6 $5 $4 $3 $2 $1) (x1 (lam (lam (lam (lam (lam (lam (lam (lam (ifElse (isnot $6 $18) (getItem (__listComp__ (lam (ifElse (elem $6 $65) (lam (lam (ifElse (gt $7 $0) (lam (lam (x91 $0 $10 $9 $4 $1 $3 $2) (next $22 $23)) (fill $0 $9 (__set__ (__tuple__ $26 (add $1 1))))) (lam (lam (x91 $0 $10 $9 $4 $1 $3 $2) (next $22 $23)) (fill $0 $9 (__set__ (__tuple__ $26 (sub $1 1)))))) (getItem $69 $1)) (index_M $66 $7)) (lam (x91 $0 $7 $6 $1 $202 $198 $199) (next $19 $20))) (fill $0 $6 (__set__ (__tuple__ $23 $5)))) (__tuple__ $4 $5) (__list__ $202)) 0) (lam (x66 $0 $20 $21 $196 $201 $197 $23 $198 $22) (next $45 $46))))))))))))))))))) (ifElse (elem (__str__ $187) (dir )) $187 None) (ifElse (elem (__str__ $174) (dir )) $174 None) (ifElse (elem (__str__ $175) (dir )) $175 None) (ifElse (elem (__str__ $180) (dir )) $180 None) (ifElse (elem (__str__ $185) (dir )) $185 None) (ifElse (elem (__str__ $181) (dir )) $181 None) (ifElse (elem (__str__ $182) (dir )) $182 None)) (next $1 $2))) (__list__ ) (iter (zip $2 $1))) (sample (totuple (bitOr (set $45) (set $64))) $2)) (sample $26 $1)) (unifint $73 $72 (__tuple__ 1 (min (add $44 $63) (sub (floordiv (sub $69 $44) 2) 1))))) $181) (ifElse (choice (__tuple__ True False)) (lam (lam (__dict__ (__tuple__ (__str__ input) $1) (__tuple__ (__str__ output) $0)) (dmirror $0)) (dmirror $0)) (__dict__ (__tuple__ (__str__ input) $181) (__tuple__ (__str__ output) $182)))))))))))))))))))))))) (ifElse (elem (__str__ $161) (dir )) $161 None) (ifElse (elem (__str__ $133) (dir )) $133 None) (ifElse (elem (__str__ $132) (dir )) $132 None) (ifElse (elem (__str__ $162) (dir )) $162 None) (ifElse (elem (__str__ $163) (dir )) $163 None) (ifElse (elem (__str__ $154) (dir )) $154 None) (ifElse (elem (__str__ $130) (dir )) $130 None) (ifElse (elem (__str__ $155) (dir )) $155 None) (ifElse (elem (__str__ $131) (dir )) $131 None)) (next $1 $2))) (__list__ ) (iter $2)) (difference (interval 0 $44 1) $20)) (sample (interval 0 $44 1) $1)) (unifint $46 $45 (__tuple__ 1 $43))) (tuple (__genExpr__ e e $155)))))))))))))) (ifElse (elem (__str__ $85) (dir )) $85 None) (ifElse (elem (__str__ $130) (dir )) $130 None) (ifElse (elem (__str__ $145) (dir )) $145 None) (ifElse (elem (__str__ $83) (dir )) $83 None)) (next $1 $2))) (__list__ ) (iter (zip $4 $2))) (canvas $26 (__tuple__ $28 $27))) (getItemUpTo $0 $1)) (len $1)) (sorted $0)) (lam (lam (getItem (__list__ (append_M $61 $1) (lam (x24 $0 $3 $2 $1) (next $15 $16))) -1) (difference $0 (interval (sub $1 2) (add $1 3) 1))) (choice $141))) $141) (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (x124 $4 $3 $2 $1) (x1 (lam (lam (lam (lam (lam (ifElse (isnot $3 $12) (getItem (__listComp__ (lam (lam (x125 $0 $4 $1 $2) (next $13 $14)) (fill $0 $3 (connect (__tuple__ 0 $1) (__tuple__ (sub $41 1) $1)))) (__tuple__ $0 $2) (__list__ $176)) 0) (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (x148 $9 $8 $7 $6 $5 $4 $3 $2 $1) (x1 (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (ifElse (isnot $8 $22) (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (x173 $7 $6 $5 $4 $3 $2 $1) (x1 (lam (lam (lam (lam (lam (lam (lam (lam (ifElse (isnot $6 $18) (getItem (__listComp__ (lam (ifElse (elem $6 $65) (lam (lam (ifElse (gt $7 $0) (lam (lam (x174 $0 $10 $9 $4 $1 $3 $2) (next $22 $23)) (fill $0 $9 (__set__ (__tuple__ $26 (add $1 1))))) (lam (lam (x174 $0 $10 $9 $4 $1 $3 $2) (next $22 $23)) (fill $0 $9 (__set__ (__tuple__ $26 (sub $1 1)))))) (getItem $69 $1)) (index_M $66 $7)) (lam (x174 $0 $7 $6 $1 $284 $280 $281) (next $19 $20))) (fill $0 $6 (__set__ (__tuple__ $23 $5)))) (__tuple__ $4 $5) (__list__ $284)) 0) (lam (x149 $0 $20 $21 $278 $283 $279 $23 $280 $22) (next $45 $46))))))))))))))))))) (ifElse (elem (__str__ $269) (dir )) $269 None) (ifElse (elem (__str__ $256) (dir )) $256 None) (ifElse (elem (__str__ $257) (dir )) $257 None) (ifElse (elem (__str__ $262) (dir )) $262 None) (ifElse (elem (__str__ $267) (dir )) $267 None) (ifElse (elem (__str__ $263) (dir )) $263 None) (ifElse (elem (__str__ $264) (dir )) $264 None)) (next $1 $2))) (__list__ ) (iter (zip $2 $1))) (sample (totuple (bitOr (set $45) (set $63))) $2)) (sample $26 $1)) (unifint $72 $71 (__tuple__ 1 (min (add $44 $62) (sub (floordiv (sub $68 $44) 2) 1))))) $263) (ifElse (choice (__tuple__ True False)) (lam (lam (__dict__ (__tuple__ (__str__ input) $1) (__tuple__ (__str__ output) $0)) (dmirror $0)) (dmirror $0)) (__dict__ (__tuple__ (__str__ input) $263) (__tuple__ (__str__ output) $264)))))))))))))))))))))))) (ifElse (elem (__str__ $243) (dir )) $243 None) (ifElse (elem (__str__ $215) (dir )) $215 None) (ifElse (elem (__str__ $214) (dir )) $214 None) (ifElse (elem (__str__ $244) (dir )) $244 None) (ifElse (elem (__str__ $245) (dir )) $245 None) (ifElse (elem (__str__ $236) (dir )) $236 None) (ifElse (elem (__str__ $212) (dir )) $212 None) (ifElse (elem (__str__ $237) (dir )) $237 None) (ifElse (elem (__str__ $213) (dir )) $213 None)) (next $1 $2))) (__list__ ) (iter $2)) (difference (interval 0 $43 1) $20)) (sample (interval 0 $43 1) $1)) (unifint $45 $44 (__tuple__ 1 $42))) (tuple (__genExpr__ e e $237)))))))))))))) (ifElse (elem (__str__ $167) (dir )) $167 None) (ifElse (elem (__str__ $212) (dir )) $212 None) (ifElse (elem (__str__ $227) (dir )) $227 None) (ifElse (elem (__str__ $165) (dir )) $165 None)) (next $1 $2))) (__list__ ) (iter (zip $4 $2))) (canvas $25 (__tuple__ $27 $26))) (getItemUpTo $0 $1)) (len $1)) (sorted $0))))))))))))) (ifElse (elem (__str__ $131) (dir )) $131 None) (ifElse (elem (__str__ $48) (dir )) $48 None) (ifElse (elem (__str__ $148) (dir )) $148 None) (ifElse (elem (__str__ $130) (dir )) $130 None)) (next $1 $2))) (__list__ ) (iter (range $130))) (__list__ )) (interval 0 $8 1)) (sample $2 $1)) (unifint $10 $9 (__tuple__ 0 (len $1)))) (difference $0 $126)) (sample $21 $124)) (unifint $7 $6 (__tuple__ 1 (floordiv $3 5)))) (remove $1 $4)) (choice $3)) (unifint $4 $3 (__tuple__ 8 30))) (unifint $3 $2 (__tuple__ 8 30))) (interval 0 10 1)))) (lam (lam (x194 $0) (lam (x193 (lam (x195 $1 (__star__ $0))))))))",
+#     "(lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (x32 $16 $15 $14 $13 $12 $11 $10 $9 $8 $7 $6 $5 $4 $3 $2 $1) (x1 (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (ifElse (andOp (lt $1 $39) (lte $0 $37)) (ifElse (orOp (eq (len $3) 0) (eq (len $10) 0)) (lam (__dict__ (__tuple__ (__str__ input) $12) (__tuple__ (__str__ output) $0)) (canvas $6 (__tuple__ 1 1))) (lam (lam (lam (ifElse (eq (len $0) 0) (lam (x33 $19 $18 $17 $16 $15 $14 $13 $12 $11 $3 $9 $2 $7 $1 $5 $0) (add $0 1)) (getItem (__listComp__ (lam (lam (lam (ifElse (issubset_M $1 $16) (lam (lam (lam (lam (ifElse (isComp $15 None) (lam (lam (lam (lam (lam (x33 $10 $2 $3 $9 $1 $5 $24 $23 $11 $14 $4 $13 $8 $12 $6 $0) (add $0 1)) (fill $0 $56 $1)) (backdrop (ifElse (gt (len $1) 2) (frozenset (sample $1 2)) (frozenset $1)))) (totuple (backdrop (inbox $7)))) $5) (lam (x33 $6 $124 $123 $5 $125 $1 $20 $19 $7 $10 $122 $9 $4 $8 $2 $0) (add $0 1))) (sub $0 $5)) (add $0 1)) (fill $122 $2 $3)) (remove $1 $0)) (lam (x33 $2 $120 $119 $1 $121 $117 $16 $15 $3 $6 $118 $5 $114 $4 $116 $0) (add $0 1))) (choice $113)) (backdrop $1)) (frozenset (__set__ (__tuple__ $13 $12) (__tuple__ (sub (add $13 $3) 1) (sub (add $12 $2) 1))))) (__tuple__ $12 $11) (__list__ (choice $0))) 0)) (totuple (sfilter $113 (lam (andOp (lt (getItem $0 0) (sub $48 $3)) (lt (getItem $0 1) (sub $47 $2))))))) (randint 3 7)) (randint 3 7))) (lam (__dict__ (__tuple__ (__str__ input) $115) (__tuple__ (__str__ output) $0)) (canvas $112 (__tuple__ 1 1)))))))))))))))))))))))))))))))))))))) (ifElse (elem (__str__ $72) (dir )) $72 None) (ifElse (elem (__str__ $80) (dir )) $80 None) (ifElse (elem (__str__ $79) (dir )) $79 None) (ifElse (elem (__str__ $73) (dir )) $73 None) (ifElse (elem (__str__ $81) (dir )) $81 None) (ifElse (elem (__str__ $77) (dir )) $77 None) (ifElse (elem (__str__ $56) (dir )) $56 None) (ifElse (elem (__str__ $57) (dir )) $57 None) (ifElse (elem (__str__ $71) (dir )) $71 None) (ifElse (elem (__str__ $67) (dir )) $67 None) (ifElse (elem (__str__ $78) (dir )) $78 None) (ifElse (elem (__str__ $68) (dir )) $68 None) (ifElse (elem (__str__ $74) (dir )) $74 None) (ifElse (elem (__str__ $69) (dir )) $69 None) (ifElse (elem (__str__ $76) (dir )) $76 None) (ifElse (elem (__str__ $84) (dir )) $84 None)) None) 0) 0) (mul 4 $2)) (asindices $76)) (unifint $8 $7 (__tuple__ 1 9))) (canvas $2 (__tuple__ $4 $3))) (remove $1 $4)) (choice $3)) (unifint $4 $3 (__tuple__ 10 30))) (unifint $3 $2 (__tuple__ 10 30))) (interval 0 10 1)))) (lam (lam (x72 $0) (lam (x71 (lam (x73 $1 (__star__ $0))))))))",
+# ]
+
+res = compress(programs, iterations=1, max_arity=3)
+
+print(res.abstractions[0])
+
+print(res.abstractions[0].name)
+
+print(res.abstractions[0].body)
+
+print(res.abstractions[0].arity)
+
+# prgm = "(lam (interval 0 10 1))"
+
+# # Detect primitive function and collect their arguments
+# def detect_primitive(p):
+#     prgm = prgm[5:-1]
+#     prgm = prgm.split(" ")
+#     prgm = [x for x in prgm if x != ""]
+#     return prgm
+
+
+# def get_function_names(file_path):
+#     with open(file_path, "r") as file:
+#         tree = ast.parse(file.read(), filename=file_path)
+    
+#     function_names = [node.name for node in ast.walk(tree) if isinstance(node, ast.FunctionDef)]
+#     return function_names
+
+# file_path = 'dsl.py'
+# function_names = get_function_names(file_path)
+# print(function_names)

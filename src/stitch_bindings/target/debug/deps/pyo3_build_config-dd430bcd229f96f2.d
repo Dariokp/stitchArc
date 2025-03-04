@@ -1,0 +1,13 @@
+/home/dt-lindberg/arcProject/stitch_bindings/target/debug/deps/libpyo3_build_config-dd430bcd229f96f2.rmeta: /home/dt-lindberg/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pyo3-build-config-0.17.3/src/lib.rs /home/dt-lindberg/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pyo3-build-config-0.17.3/src/errors.rs /home/dt-lindberg/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pyo3-build-config-0.17.3/src/impl_.rs /home/dt-lindberg/arcProject/stitch_bindings/target/debug/build/pyo3-build-config-fb6c0483bce05ea6/out/pyo3-build-config-file.txt /home/dt-lindberg/arcProject/stitch_bindings/target/debug/build/pyo3-build-config-fb6c0483bce05ea6/out/pyo3-build-config.txt
+
+/home/dt-lindberg/arcProject/stitch_bindings/target/debug/deps/libpyo3_build_config-dd430bcd229f96f2.rlib: /home/dt-lindberg/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pyo3-build-config-0.17.3/src/lib.rs /home/dt-lindberg/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pyo3-build-config-0.17.3/src/errors.rs /home/dt-lindberg/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pyo3-build-config-0.17.3/src/impl_.rs /home/dt-lindberg/arcProject/stitch_bindings/target/debug/build/pyo3-build-config-fb6c0483bce05ea6/out/pyo3-build-config-file.txt /home/dt-lindberg/arcProject/stitch_bindings/target/debug/build/pyo3-build-config-fb6c0483bce05ea6/out/pyo3-build-config.txt
+
+/home/dt-lindberg/arcProject/stitch_bindings/target/debug/deps/pyo3_build_config-dd430bcd229f96f2.d: /home/dt-lindberg/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pyo3-build-config-0.17.3/src/lib.rs /home/dt-lindberg/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pyo3-build-config-0.17.3/src/errors.rs /home/dt-lindberg/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pyo3-build-config-0.17.3/src/impl_.rs /home/dt-lindberg/arcProject/stitch_bindings/target/debug/build/pyo3-build-config-fb6c0483bce05ea6/out/pyo3-build-config-file.txt /home/dt-lindberg/arcProject/stitch_bindings/target/debug/build/pyo3-build-config-fb6c0483bce05ea6/out/pyo3-build-config.txt
+
+/home/dt-lindberg/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pyo3-build-config-0.17.3/src/lib.rs:
+/home/dt-lindberg/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pyo3-build-config-0.17.3/src/errors.rs:
+/home/dt-lindberg/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pyo3-build-config-0.17.3/src/impl_.rs:
+/home/dt-lindberg/arcProject/stitch_bindings/target/debug/build/pyo3-build-config-fb6c0483bce05ea6/out/pyo3-build-config-file.txt:
+/home/dt-lindberg/arcProject/stitch_bindings/target/debug/build/pyo3-build-config-fb6c0483bce05ea6/out/pyo3-build-config.txt:
+
+# env-dep:OUT_DIR=/home/dt-lindberg/arcProject/stitch_bindings/target/debug/build/pyo3-build-config-fb6c0483bce05ea6/out

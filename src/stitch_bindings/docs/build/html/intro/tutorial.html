@@ -1,0 +1,399 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tutorial &mdash; stitch_core 0.1.11 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=f9d3eb12" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=f9d3eb12" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=1e825a29"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="API Reference" href="../api.html" />
+    <link rel="prev" title="Installation" href="install.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            stitch_core
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#basic-example">Basic Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#functions-classes">Functions &amp; Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#stitch_core.compress"><code class="docutils literal notranslate"><span class="pre">compress()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stitch_core.CompressionResult"><code class="docutils literal notranslate"><span class="pre">CompressionResult</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stitch_core.Abstraction"><code class="docutils literal notranslate"><span class="pre">Abstraction</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stitch_core.rewrite"><code class="docutils literal notranslate"><span class="pre">rewrite()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stitch_core.from_dreamcoder"><code class="docutils literal notranslate"><span class="pre">from_dreamcoder()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stitch_core.StitchException"><code class="docutils literal notranslate"><span class="pre">StitchException</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#loading-from-a-file">Loading from a file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#working-with-dreamcoder-format-compression-inputs">Working with DreamCoder-format compression inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#catching-a-stitchexception">Catching a StitchException</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#verbose-compression">Verbose Compression</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compress_kwargs.html">compress() Keyword Arguments Listing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../out_json.html">Output JSON format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cost_metrics.html">Cost Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compression_objectives.html">Compression Objectives</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">stitch_core</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Tutorial</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/intro/tutorial.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tutorial">
+<span id="intro-tutorial"></span><h1>Tutorial<a class="headerlink" href="#tutorial" title="Link to this heading"></a></h1>
+<p>If you have not already installed <code class="docutils literal notranslate"><span class="pre">stitch_core</span></code>, see <a class="reference internal" href="install.html#intro-install"><span class="std std-ref">Installation</span></a>.</p>
+<section id="basic-example">
+<h2>Basic Example<a class="headerlink" href="#basic-example" title="Link to this heading"></a></h2>
+<p>The programs from the example in the Overview section of the <a class="reference external" href="https://arxiv.org/abs/2211.16605">Stitch paper</a> could be written as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">programs</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;(lam (+ 3 (* (+ 2 4) 2)))&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;(lam (map (lam (+ 3 (* 4 (+ 3 $0)))) $0))&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;(lam (* 2 (+ 3 (* $0 (+ 2 1)))))&quot;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Each program is a string written in a lisp-like lambda calculus syntax:</dt><dd><ul class="simple">
+<li><p>Variables should be written as <em>de Bruijn</em> indices (i.e. <code class="docutils literal notranslate"><span class="pre">$i</span></code> refers to the variable bound by the <code class="docutils literal notranslate"><span class="pre">i</span></code> th lambda above it) so <code class="docutils literal notranslate"><span class="pre">λx.</span> <span class="pre">λy.</span> <span class="pre">x</span> <span class="pre">y</span></code> is written <code class="docutils literal notranslate"><span class="pre">(lam</span> <span class="pre">(lam</span> <span class="pre">($1</span> <span class="pre">$0)))</span></code></p></li>
+<li><p>Lambdas need explicit parentheses around their body so <code class="docutils literal notranslate"><span class="pre">(lam</span> <span class="pre">+</span> <span class="pre">3</span> <span class="pre">2)</span></code> should instead be written <code class="docutils literal notranslate"><span class="pre">(lam</span> <span class="pre">(+</span> <span class="pre">3</span> <span class="pre">2))</span></code>. The
+parser outputs an error message explaining this if you make this mistake. Lambdas can also be written with <code class="docutils literal notranslate"><span class="pre">lambda</span></code> instead
+of <code class="docutils literal notranslate"><span class="pre">lam</span></code> but the output of stitch will always be normalized to use <code class="docutils literal notranslate"><span class="pre">lam</span></code>.</p></li>
+<li><p>Be sure to balance your parentheses or you will get an error.</p></li>
+<li><p>You don’t need to pre-define the language you are using. Any series of tokens with no whitespace that isn’t reserved for something else is treated as a language primitive, like <code class="docutils literal notranslate"><span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">foo</span></code>, <code class="docutils literal notranslate"><span class="pre">-0.5</span></code> etc. Only <code class="docutils literal notranslate"><span class="pre">app</span></code> and <code class="docutils literal notranslate"><span class="pre">lam</span></code> are reserved. Primitives may not begin with <code class="docutils literal notranslate"><span class="pre">#</span></code> or <code class="docutils literal notranslate"><span class="pre">$</span></code> and may not contain parentheses or whitespace.</p></li>
+<li><p>Check out other example programs <a class="reference external" href="https://github.com/mlb2251/stitch_bindings/blob/main/data">here</a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p>The largest common structure in these examples is that they all contain a subterm of the form <code class="docutils literal notranslate"><span class="pre">(+</span> <span class="pre">3</span> <span class="pre">(*</span> <span class="pre">_</span> <span class="pre">_))</span></code>.
+This structure can be represented with the lambda abstraction <code class="docutils literal notranslate"><span class="pre">λx.</span> <span class="pre">λy.</span> <span class="pre">(+</span> <span class="pre">3</span> <span class="pre">(*</span> <span class="pre">y</span> <span class="pre">x))</span></code>. We can find this with stitch:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">stitch_core</span><span class="w"> </span><span class="kn">import</span> <span class="n">compress</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span> <span class="o">=</span> <span class="n">compress</span><span class="p">(</span><span class="n">programs</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_arity</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span><span class="o">.</span><span class="n">abstractions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">fn_0(#0,#1) := (+ 3 (* #1 #0))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span><span class="o">.</span><span class="n">abstractions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span>
+<span class="go">&#39;fn_0&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span><span class="o">.</span><span class="n">abstractions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">body</span>
+<span class="go">&#39;(+ 3 (* #1 #0))&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span><span class="o">.</span><span class="n">abstractions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">arity</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span><span class="o">.</span><span class="n">rewritten</span>
+<span class="go">[</span>
+<span class="go">    &#39;(lam (fn_0 2 (+ 2 4)))&#39;,</span>
+<span class="go">    &#39;(lam (map (lam (fn_0 (+ 3 $0) 4)) $0))&#39;,</span>
+<span class="go">    &#39;(lam (* 2 (fn_0 (+ 2 1) $0)))&#39;</span>
+<span class="go">]</span>
+</pre></div>
+</div>
+<p>Here <code class="docutils literal notranslate"><span class="pre">iterations=1</span></code> controls the number of abstractions that are learned.
+Abstractions are named like <code class="docutils literal notranslate"><span class="pre">fn_0</span></code>, <code class="docutils literal notranslate"><span class="pre">fn_1</span></code>, etc., while arguments to these abstractions are
+named like <code class="docutils literal notranslate"><span class="pre">#0</span></code>, <code class="docutils literal notranslate"><span class="pre">#1</span></code>, etc.</p>
+<p>We could rewrite a new set of programs using this learned abstraction like so:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">stitch_core</span><span class="w"> </span><span class="kn">import</span> <span class="n">rewrite</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rewrite</span><span class="p">([</span><span class="s2">&quot;(lam (+ 3 (* (+ 1 1) 1)))&quot;</span><span class="p">,</span> <span class="s2">&quot;(lam (- 5 (+ 3 (* $0 (+ 2 1)))))&quot;</span><span class="p">],</span> <span class="n">res</span><span class="o">.</span><span class="n">abstractions</span><span class="p">)</span>
+<span class="go">[</span>
+<span class="go">    &#39;(lam (fn_0 1 (+ 1 1)))&#39;,</span>
+<span class="go">    &#39;(lam (- 5 (fn_0 (+ 2 1) $0)))&#39;</span>
+<span class="go">]</span>
+</pre></div>
+</div>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">res.json</span></code> contains a huge amount of extra outputs and information, see <a class="reference internal" href="../out_json.html#out-json"><span class="std std-ref">Output JSON format</span></a> for details. This includes statistics
+on how much compression is achieved, how many times each abstraction is used, what arguments are passed to
+the abstraction each time it is used, etc. Additional kwargs can control the inclusion
+of extra information as well, for example if <code class="docutils literal notranslate"><span class="pre">compress(rewritten_intermediates=True)</span></code> is passed
+then the intermediate programs after each iteration of compression are included in the output.</p>
+<p>There is a lot of customizability in <a class="reference internal" href="#stitch_core.compress" title="stitch_core.compress"><code class="xref py py-func docutils literal notranslate"><span class="pre">stitch_core.compress()</span></code></a> (see <a class="reference internal" href="../compress_kwargs.html#compress-kwargs"><span class="std std-ref">compress() Keyword Arguments Listing</span></a> for a full list of options), anything supported by
+the Rust library is also supported in these Python bindings.</p>
+</section>
+<section id="functions-classes">
+<h2>Functions &amp; Classes<a class="headerlink" href="#functions-classes" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="stitch_core.compress">
+<span class="sig-prename descclassname"><span class="pre">stitch_core.</span></span><span class="sig-name descname"><span class="pre">compress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">programs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.13)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_arity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threads</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">silent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#stitch_core.CompressionResult" title="stitch_core.CompressionResult"><span class="pre">CompressionResult</span></a></span></span><a class="headerlink" href="#stitch_core.compress" title="Link to this definition"></a></dt>
+<dd><p>Runs abstraction learning on a list of programs, optimizing for a compression objective (see <a class="reference internal" href="../compression_objectives.html#compression-objectives"><span class="std std-ref">Compression Objectives</span></a>).
+This will run for at most <code class="docutils literal notranslate"><span class="pre">iterations</span></code> steps, on each step finding the most compressive abstraction, and rewriting the programs
+to use it, then passing the rewritten programs onto the next iteration of compression. If no compressive abstraction exists on an
+iteration, compress() will stop early before its <code class="docutils literal notranslate"><span class="pre">iterations</span></code> limit is reached.</p>
+<p>Learned abstractions can call earlier abstractions that were learned, thus building up a hierarchy of increasingly complex abstractions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>programs</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>]</em>) – A list of programs to learn abstractions from in stitch format. See dreamcoder_to_stitch() or from_dreamcoder() for translating to this format from dreamcoder.</p></li>
+<li><p><strong>iterations</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – The maximum number of iterations to run abstraction learning for.</p></li>
+<li><p><strong>max_arity</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – The maximum arity of abstractions to learn.</p></li>
+<li><p><strong>threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – The number of threads to use.</p></li>
+<li><p><strong>silent</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – Whether to print progress to stdout.</p></li>
+<li><p><strong>**kwargs</strong> – Additional arguments to pass to the Rust backend. See <a class="reference internal" href="../compress_kwargs.html#compress-kwargs"><span class="std std-ref">compress() Keyword Arguments Listing</span></a> for a full listing.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="#stitch_core.StitchException" title="stitch_core.StitchException"><strong>StitchException</strong></a> – If the Rust backend panics.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.13)"><strong>TypeError</strong></a> – If the wrong types are provided for arguments.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A CompressionResult object containing the learned abstractions, rewritten programs, and other details from the run.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#stitch_core.CompressionResult" title="stitch_core.CompressionResult">CompressionResult</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="stitch_core.CompressionResult">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">stitch_core.</span></span><span class="sig-name descname"><span class="pre">CompressionResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#stitch_core.CompressionResult" title="Link to this definition"></a></dt>
+<dd><p>The result of calling compress().</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>abstractions</strong> (<em>List</em><em>[</em><a class="reference internal" href="#stitch_core.Abstraction" title="stitch_core.Abstraction"><em>Abstraction</em></a><em>]</em>) – a list of Abstraction objects</p></li>
+<li><p><strong>rewritten</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>]</em>) – a list of programs, where each program has been rewritten using the abstractions</p></li>
+<li><p><strong>json</strong> (<em>Dict</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>,</em><em>Any</em><em>]</em>) – the raw JSON output from the Rust backend, containing lots of additional information</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="stitch_core.Abstraction">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">stitch_core.</span></span><span class="sig-name descname"><span class="pre">Abstraction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">arity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#stitch_core.Abstraction" title="Link to this definition"></a></dt>
+<dd><p>A functional abstraction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – the name of the abstraction, like “fn_0”</p></li>
+<li><p><strong>body</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – the body of the abstraction, like “(+ 3 (* #1 #0))”. Variables are represented as “#0”, “#1”, etc.</p></li>
+<li><p><strong>arity</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the arity of the abstraction, like 2</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="stitch_core.rewrite">
+<span class="sig-prename descclassname"><span class="pre">stitch_core.</span></span><span class="sig-name descname"><span class="pre">rewrite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">programs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.13)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">abstractions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.13)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#stitch_core.Abstraction" title="stitch_core.Abstraction"><span class="pre">Abstraction</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">RewriteResult</span></span></span><a class="headerlink" href="#stitch_core.rewrite" title="Link to this definition"></a></dt>
+<dd><p>Rewrites a set of programs with a list of abstractions. Rewrites first with abstractions[0],
+then abstractions[1], etc. Will not perform a rewrite if it is not compressive.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>programs</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>]</em>) – A list of programs to rewrite in stitch format. See dreamcoder_to_stitch() or from_dreamcoder() for translating to this format from dreamcoder.</p></li>
+<li><p><strong>abstractions</strong> (<em>List</em><em>[</em><a class="reference internal" href="#stitch_core.Abstraction" title="stitch_core.Abstraction"><em>Abstraction</em></a><em>]</em>) – A list of Abstraction objects to rewrite with.</p></li>
+<li><p><strong>**kwargs</strong> – Additional arguments to pass to the Rust backend. Only the following cost-related arguments from <a class="reference internal" href="../compress_kwargs.html#compress-kwargs"><span class="std std-ref">compress() Keyword Arguments Listing</span></a> can be used: <code class="docutils literal notranslate"><span class="pre">cost_app</span></code>, <code class="docutils literal notranslate"><span class="pre">cost_ivar</span></code>, <code class="docutils literal notranslate"><span class="pre">cost_lam</span></code>, <code class="docutils literal notranslate"><span class="pre">cost_prim_default</span></code>, and <code class="docutils literal notranslate"><span class="pre">cost_var</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="#stitch_core.StitchException" title="stitch_core.StitchException"><strong>StitchException</strong></a> – If the Rust backend panics.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.13)"><strong>TypeError</strong></a> – If the wrong types are provided for arguments.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A RewriteResult containing the list of rewritten programs and other relevant information</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>RewriteResult</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="stitch_core.from_dreamcoder">
+<span class="sig-prename descclassname"><span class="pre">stitch_core.</span></span><span class="sig-name descname"><span class="pre">from_dreamcoder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#stitch_core.from_dreamcoder" title="Link to this definition"></a></dt>
+<dd><p>Takes a dreamcoder-style json dictionary and returns a dictionary of arguments to pass as kwargs to compress() or rewrite().</p>
+<dl class="simple">
+<dt>The following keys will be in the returned dictionary:</dt><dd><ul class="simple">
+<li><p><cite>name_mapping</cite>: see name_mapping_dreamcoder()</p></li>
+<li><p><cite>programs</cite>: These are the programs translated from dreamcoder format to stitch format, see dreamcoder_to_stitch()</p></li>
+<li><p><cite>tasks</cite>: These are the tasks associated with each program, since DreamCoder has a concept of tasks. See also <a class="reference internal" href="../compression_objectives.html#compression-objectives"><span class="std std-ref">Compression Objectives</span></a>.</p></li>
+<li><p><cite>rewritten_dreamcoder=True</cite>: This is a flag that tells compress() to return the dreamcoder-formatted programs in the <cite>.json[“rewritten_dreamcoder]</cite> fied of its output.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>json</strong> (<em>Dict</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>,</em><em>Any</em><em>]</em>) – A dreamcoder-style json dictionary.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary of arguments to pass as kwargs to compress() or rewrite()</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>,Any]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="stitch_core.StitchException">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">stitch_core.</span></span><span class="sig-name descname"><span class="pre">StitchException</span></span><a class="headerlink" href="#stitch_core.StitchException" title="Link to this definition"></a></dt>
+<dd><p>Raised when the Stitch’s Rust backend panics</p>
+</dd></dl>
+
+</section>
+<section id="loading-from-a-file">
+<h2>Loading from a file<a class="headerlink" href="#loading-from-a-file" title="Link to this heading"></a></h2>
+<p>Loading from <a class="reference external" href="https://github.com/mlb2251/stitch_bindings/blob/main/data/cogsci/nuts-bolts.json">this file</a> from the data set of <a class="reference external" href="https://arxiv.org/abs/2205.05666">Wong et al. 2022</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../data/cogsci/nuts-bolts.json&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">programs</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">compress</span><span class="p">(</span><span class="n">programs</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">max_arity</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">res</span><span class="o">.</span><span class="n">abstractions</span>
+<span class="go">[</span>
+<span class="go">    fn_0(#0,#1) := (T (repeat (T l (M 1 0 -0.5 (/ 0.5 (tan (/ pi #1))))) #1 (M 1 (/ (* 2 pi) #1) 0 0)) (M #0 0 0 0)),</span>
+<span class="go">    fn_1(#0,#1,#2) := (repeat (T (T #2 (M 0.5 0 0 0)) (M 1 0 (* #1 (cos (/ pi 4))) (* #1 (sin (/ pi 4))))) #0 (M 1 (/ (* 2 pi) #0) 0 0)),</span>
+<span class="go">    fn_2(#0) := (T (T c (M 2 0 0 0)) (M #0 0 0 0))</span>
+<span class="go">]</span>
+</pre></div>
+</div>
+</section>
+<section id="working-with-dreamcoder-format-compression-inputs">
+<h2>Working with DreamCoder-format compression inputs<a class="headerlink" href="#working-with-dreamcoder-format-compression-inputs" title="Link to this heading"></a></h2>
+<p>Loading from <a class="reference external" href="https://github.com/mlb2251/stitch_bindings/blob/main/data/dc/origami/iteration_0_3.json">this file</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">stitch_core</span><span class="w"> </span><span class="kn">import</span> <span class="n">from_dreamcoder</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../data/dc/origami/iteration_0_3.json&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">dreamcoder_json</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="n">kwargs</span> <span class="o">=</span> <span class="n">from_dreamcoder</span><span class="p">(</span><span class="n">dreamcoder_json</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">compress</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">max_arity</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">res</span><span class="o">.</span><span class="n">abstractions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">fn_0(#0,#1,#2) := (if (empty? (cdr #0)) #2 (#1 (cdr #0)))</span>
+</pre></div>
+</div>
+<p>Note that the rewritten results in <code class="docutils literal notranslate"><span class="pre">res.rewritten</span></code> are in Stitch format, but DreamCoder format can
+be found in <code class="docutils literal notranslate"><span class="pre">res.json[&quot;rewritten_dreamcoder&quot;]</span></code> as long as <code class="docutils literal notranslate"><span class="pre">rewritten_dreamcoder=True</span></code> is passed
+as an argument to compress() or rewrite(). Additionally, <code class="docutils literal notranslate"><span class="pre">res.json[&quot;abstractions&quot;][i][&quot;dreamcoder&quot;]</span></code> contains the
+body of the i-th abstraction in DreamCoder format.</p>
+</section>
+<section id="catching-a-stitchexception">
+<h2>Catching a StitchException<a class="headerlink" href="#catching-a-stitchexception" title="Link to this heading"></a></h2>
+<p>For example, catching the StitchException raised by compressing a malformed program (unbalanced parentheses):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">stitch_core</span><span class="w"> </span><span class="kn">import</span> <span class="n">StitchException</span>
+<span class="n">bad_programs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;(a a a&quot;</span><span class="p">]</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">out_json</span> <span class="o">=</span> <span class="n">compress</span><span class="p">(</span><span class="n">bad_programs</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;Should have thrown an exception&quot;</span>
+<span class="k">except</span> <span class="n">StitchException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;caught exception: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="verbose-compression">
+<h2>Verbose Compression<a class="headerlink" href="#verbose-compression" title="Link to this heading"></a></h2>
+<p>To run stitch in verbose mode, pass <code class="docutils literal notranslate"><span class="pre">silent=False</span></code> to <a class="reference internal" href="#stitch_core.compress" title="stitch_core.compress"><code class="xref py py-func docutils literal notranslate"><span class="pre">stitch_core.compress()</span></code></a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">compress</span><span class="p">(</span><span class="n">programs</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_arity</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This will produce a lot of output, ending in some lines like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">=======</span><span class="n">Compression</span> <span class="n">Summary</span><span class="o">=======</span>
+<span class="n">Found</span> <span class="mi">1</span> <span class="n">inventions</span>
+<span class="n">Cost</span> <span class="n">Improvement</span><span class="p">:</span> <span class="p">(</span><span class="mf">1.33</span><span class="n">x</span> <span class="n">better</span><span class="p">)</span> <span class="mi">806</span> <span class="o">-&gt;</span> <span class="mi">604</span>
+<span class="n">fn_0</span> <span class="p">(</span><span class="mf">1.33</span><span class="n">x</span> <span class="n">wrt</span> <span class="n">orig</span><span class="p">):</span> <span class="n">utility</span><span class="p">:</span> <span class="mi">200</span> <span class="o">|</span> <span class="n">final_cost</span><span class="p">:</span> <span class="mi">604</span> <span class="o">|</span> <span class="mf">1.33</span><span class="n">x</span> <span class="o">|</span> <span class="n">uses</span><span class="p">:</span> <span class="mi">2</span> <span class="o">|</span> <span class="n">body</span><span class="p">:</span> <span class="p">[</span><span class="n">fn_0</span> <span class="n">arity</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span> <span class="p">(</span><span class="c1">#0 #0 #0)]</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">0</span><span class="n">ms</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Primer on the this output:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Cost</span> <span class="pre">Improvement:</span> <span class="pre">(1.33x</span> <span class="pre">better)</span> <span class="pre">806</span> <span class="pre">-&gt;</span> <span class="pre">604</span></code>: here we see that by the cost metric (which by default values terminals like <code class="docutils literal notranslate"><span class="pre">foo</span></code> and <code class="docutils literal notranslate"><span class="pre">a</span></code> as <code class="docutils literal notranslate"><span class="pre">100</span></code> and nonterminals like applications and lambdas as <code class="docutils literal notranslate"><span class="pre">1</span></code>) our programs were rewritten to be 1.33x smaller.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fn_0</span></code>: this is the name the new primitive was assigned</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(1.33x</span> <span class="pre">wrt</span> <span class="pre">orig)</span></code>: this is a <em>cumulative</em> measure of compression (ie “with respect to original”), so if we were learning more than one abstraction it would represent the accumulated compression over all previous abstractions</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">utility:</span> <span class="pre">200</span></code>: This is the utility, which corresponds to the difference in program cost before and after rewriting.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">final_cost:</span> <span class="pre">604</span></code>: final cost of programs after rewriting</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1.33x</span></code>: compression gained from this abstraction - again, only relevant when learning more than one abstraction</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uses:</span> <span class="pre">2</span></code>: the abstraction is used twice in the set of programs</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">body:</span> <span class="pre">[fn_0</span> <span class="pre">arity=1:</span> <span class="pre">(#0</span> <span class="pre">#0</span> <span class="pre">#0)]</span></code>: this is the abstraction itself! <code class="docutils literal notranslate"><span class="pre">(#0</span> <span class="pre">#0</span> <span class="pre">#0)</span></code> is equivalent to <code class="docutils literal notranslate"><span class="pre">λx.</span> <span class="pre">(x</span> <span class="pre">x</span> <span class="pre">x)</span></code> - the first abstraction variable is always <code class="docutils literal notranslate"><span class="pre">#0</span></code>, the second is <code class="docutils literal notranslate"><span class="pre">#1</span></code>, etc.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Also note that <code class="docutils literal notranslate"><span class="pre">res.json</span></code> contains even more detail about the compression process.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="install.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../api.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Matt Bowers.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,288 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Output JSON format &mdash; stitch_core 0.1.11 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=f9d3eb12" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=f9d3eb12" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=1e825a29"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Cost Metrics" href="cost_metrics.html" />
+    <link rel="prev" title="compress() Keyword Arguments Listing" href="compress_kwargs.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            stitch_core
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compress_kwargs.html">compress() Keyword Arguments Listing</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Output JSON format</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#example-json">Example json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#description-of-json-fields">Description of JSON Fields</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cost_metrics.html">Cost Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compression_objectives.html">Compression Objectives</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">stitch_core</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Output JSON format</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/out_json.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="output-json-format">
+<span id="out-json"></span><h1>Output JSON format<a class="headerlink" href="#output-json-format" title="Link to this heading"></a></h1>
+<p>Here we detail the <code class="docutils literal notranslate"><span class="pre">.json</span></code> field of the <a class="reference internal" href="intro/tutorial.html#stitch_core.CompressionResult" title="stitch_core.CompressionResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">stitch_core.CompressionResult</span></code></a> object, which contains lots of additional
+outputs and information on the compression process.</p>
+<section id="example-json">
+<h2>Example json<a class="headerlink" href="#example-json" title="Link to this heading"></a></h2>
+<p>Lets run 2 steps of compression (<code class="docutils literal notranslate"><span class="pre">iterations=2</span></code>) on the following 4 examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">programs</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;f a a&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;f b b&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;foo bar (f c c) (f c c)&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;foo bar x x&quot;</span>
+<span class="p">]</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">stitch_core</span><span class="o">.</span><span class="n">compress</span><span class="p">(</span><span class="n">programs</span><span class="p">,</span><span class="n">iterations</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">rewritten_dreamcoder</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">rewritten_intermediates</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Here we passed a few extra flags to compression to include extra information in the output json (see <a class="reference internal" href="compress_kwargs.html#compress-kwargs"><span class="std std-ref">compress() Keyword Arguments Listing</span></a> or the output json description below for details).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">.abstractions</span></code> and <code class="docutils literal notranslate"><span class="pre">.rewritten</span></code> fields show the two abstractions that are found as expected:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">res</span><span class="o">.</span><span class="n">abstractions</span>
+<span class="go">[</span>
+<span class="go">    fn_0(#0) := (foo bar #0 #0),</span>
+<span class="go">    fn_1(#0) := (f #0 #0)</span>
+<span class="go">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span><span class="o">.</span><span class="n">rewritten</span>
+<span class="go">[</span>
+<span class="go">    &#39;(fn_1 a)&#39;,</span>
+<span class="go">    &#39;(fn_1 b)&#39;,</span>
+<span class="go">    &#39;(fn_0 (fn_1 c))&#39;,</span>
+<span class="go">    &#39;(fn_0 x)&#39;</span>
+<span class="go">]</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">.json</span></code> field is the our main interest here. Here’s the output for this example, for reference:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pprint</span><span class="p">;</span> <span class="n">pprint</span><span class="o">.</span><span class="n">pp</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">json</span><span class="p">)</span>
+<span class="go">{&#39;cmd&#39;: &#39;/opt/homebrew/Cellar/python@3.10/3.10.8/Frameworks/Python.framework/Versions/3.10/Resources/Python.app/Contents/MacOS/Python&#39;,</span>
+<span class="go"> &#39;args&#39;: {&#39;iterations&#39;: 2,</span>
+<span class="go">          &#39;abstraction_prefix&#39;: &#39;fn_&#39;,</span>
+<span class="go">          &#39;previous_abstractions&#39;: 0,</span>
+<span class="go">          &#39;shuffle&#39;: False,</span>
+<span class="go">          &#39;truncate&#39;: None,</span>
+<span class="go">          &#39;no_opt&#39;: False,</span>
+<span class="go">          &#39;silent&#39;: True,</span>
+<span class="go">          &#39;step&#39;: {&#39;max_arity&#39;: 2,</span>
+<span class="go">                   &#39;threads&#39;: 1,</span>
+<span class="go">                   &#39;no_stats&#39;: False,</span>
+<span class="go">                   &#39;batch&#39;: 1,</span>
+<span class="go">                   &#39;dynamic_batch&#39;: False,</span>
+<span class="go">                   &#39;inv_candidates&#39;: 1,</span>
+<span class="go">                   &#39;hole_choice&#39;: &#39;DepthFirst&#39;,</span>
+<span class="go">                   &#39;cost&#39;: &#39;Dreamcoder&#39;,</span>
+<span class="go">                   &#39;cost_lam&#39;: None,</span>
+<span class="go">                   &#39;cost_app&#39;: None,</span>
+<span class="go">                   &#39;cost_var&#39;: None,</span>
+<span class="go">                   &#39;cost_ivar&#39;: None,</span>
+<span class="go">                   &#39;cost_prim_default&#39;: None,</span>
+<span class="go">                   &#39;no_mismatch_check&#39;: False,</span>
+<span class="go">                   &#39;no_top_lambda&#39;: False,</span>
+<span class="go">                   &#39;follow&#39;: None,</span>
+<span class="go">                   &#39;follow_prune&#39;: False,</span>
+<span class="go">                   &#39;verbose_worklist&#39;: False,</span>
+<span class="go">                   &#39;verbose_best&#39;: False,</span>
+<span class="go">                   &#39;print_stats&#39;: 0,</span>
+<span class="go">                   &#39;show_rewritten&#39;: False,</span>
+<span class="go">                   &#39;rewritten_dreamcoder&#39;: True,</span>
+<span class="go">                   &#39;rewritten_intermediates&#39;: True,</span>
+<span class="go">                   &#39;inv_arg_cap&#39;: False,</span>
+<span class="go">                   &#39;no_opt_single_use&#39;: False,</span>
+<span class="go">                   &#39;allow_single_task&#39;: False,</span>
+<span class="go">                   &#39;no_opt_upper_bound&#39;: False,</span>
+<span class="go">                   &#39;no_opt_force_multiuse&#39;: False,</span>
+<span class="go">                   &#39;no_opt_useless_abstract&#39;: False,</span>
+<span class="go">                   &#39;no_opt_arity_zero&#39;: False,</span>
+<span class="go">                   &#39;no_other_util&#39;: False,</span>
+<span class="go">                   &#39;rewrite_check&#39;: False,</span>
+<span class="go">                   &#39;utility_by_rewrite&#39;: False,</span>
+<span class="go">                   &#39;dreamcoder_comparison&#39;: False,</span>
+<span class="go">                   &#39;quiet&#39;: True}},</span>
+<span class="go"> &#39;original_cost&#39;: 1814,</span>
+<span class="go"> &#39;final_cost&#39;: 905,</span>
+<span class="go"> &#39;compression_ratio&#39;: 2.0044198895027625,</span>
+<span class="go"> &#39;num_abstractions&#39;: 2,</span>
+<span class="go"> &#39;original&#39;: [&#39;(f a a)&#39;,</span>
+<span class="go">              &#39;(f b b)&#39;,</span>
+<span class="go">              &#39;(foo bar (f c c) (f c c))&#39;,</span>
+<span class="go">              &#39;(foo bar x x)&#39;],</span>
+<span class="go"> &#39;rewritten&#39;: [&#39;(fn_1 a)&#39;, &#39;(fn_1 b)&#39;, &#39;(fn_0 (fn_1 c))&#39;, &#39;(fn_0 x)&#39;],</span>
+<span class="go"> &#39;rewritten_dreamcoder&#39;: [&#39;(#(lambda (f $0 $0)) a)&#39;,</span>
+<span class="go">                          &#39;(#(lambda (f $0 $0)) b)&#39;,</span>
+<span class="go">                          &#39;(#(lambda (foo bar $0 $0)) (#(lambda (f $0 $0)) c))&#39;,</span>
+<span class="go">                          &#39;(#(lambda (foo bar $0 $0)) x)&#39;],</span>
+<span class="go"> &#39;abstractions&#39;: [{&#39;body&#39;: &#39;(foo bar #0 #0)&#39;,</span>
+<span class="go">                   &#39;dreamcoder&#39;: &#39;#(lambda (foo bar $0 $0))&#39;,</span>
+<span class="go">                   &#39;arity&#39;: 1,</span>
+<span class="go">                   &#39;name&#39;: &#39;fn_0&#39;,</span>
+<span class="go">                   &#39;utility&#39;: 403,</span>
+<span class="go">                   &#39;final_cost&#39;: 1208,</span>
+<span class="go">                   &#39;compression_ratio&#39;: 1.5016556291390728,</span>
+<span class="go">                   &#39;cumulative_compression_ratio&#39;: 1.5016556291390728,</span>
+<span class="go">                   &#39;num_uses&#39;: 2,</span>
+<span class="go">                   &#39;rewritten&#39;: [&#39;(f a a)&#39;,</span>
+<span class="go">                                 &#39;(f b b)&#39;,</span>
+<span class="go">                                 &#39;(fn_0 (f c c))&#39;,</span>
+<span class="go">                                 &#39;(fn_0 x)&#39;],</span>
+<span class="go">                   &#39;rewritten_dreamcoder&#39;: [&#39;(f a a)&#39;,</span>
+<span class="go">                                            &#39;(f b b)&#39;,</span>
+<span class="go">                                            &#39;(#(lambda (foo bar $0 $0)) (f c &#39;</span>
+<span class="go">                                            &#39;c))&#39;,</span>
+<span class="go">                                            &#39;(#(lambda (foo bar $0 $0)) x)&#39;],</span>
+<span class="go">                   &#39;uses&#39;: [{&#39;fn_0 (f c c)&#39;: &#39;(foo bar (f c c) (f c c))&#39;},</span>
+<span class="go">                            {&#39;fn_0 x&#39;: &#39;(foo bar x x)&#39;}]},</span>
+<span class="go">                  {&#39;body&#39;: &#39;(f #0 #0)&#39;,</span>
+<span class="go">                   &#39;dreamcoder&#39;: &#39;#(lambda (f $0 $0))&#39;,</span>
+<span class="go">                   &#39;arity&#39;: 1,</span>
+<span class="go">                   &#39;name&#39;: &#39;fn_1&#39;,</span>
+<span class="go">                   &#39;utility&#39;: 201,</span>
+<span class="go">                   &#39;final_cost&#39;: 905,</span>
+<span class="go">                   &#39;compression_ratio&#39;: 1.3348066298342542,</span>
+<span class="go">                   &#39;cumulative_compression_ratio&#39;: 2.0044198895027625,</span>
+<span class="go">                   &#39;num_uses&#39;: 3,</span>
+<span class="go">                   &#39;rewritten&#39;: [&#39;(fn_1 a)&#39;,</span>
+<span class="go">                                 &#39;(fn_1 b)&#39;,</span>
+<span class="go">                                 &#39;(fn_0 (fn_1 c))&#39;,</span>
+<span class="go">                                 &#39;(fn_0 x)&#39;],</span>
+<span class="go">                   &#39;rewritten_dreamcoder&#39;: [&#39;(#(lambda (f $0 $0)) a)&#39;,</span>
+<span class="go">                                            &#39;(#(lambda (f $0 $0)) b)&#39;,</span>
+<span class="go">                                            &#39;(#(lambda (foo bar $0 $0)) &#39;</span>
+<span class="go">                                            &#39;(#(lambda (f $0 $0)) c))&#39;,</span>
+<span class="go">                                            &#39;(#(lambda (foo bar $0 $0)) x)&#39;],</span>
+<span class="go">                   &#39;uses&#39;: [{&#39;fn_1 a&#39;: &#39;(f a a)&#39;},</span>
+<span class="go">                            {&#39;fn_1 b&#39;: &#39;(f b b)&#39;},</span>
+<span class="go">                            {&#39;fn_1 c&#39;: &#39;(f c c)&#39;}]}]}</span>
+</pre></div>
+</div>
+</section>
+<section id="description-of-json-fields">
+<h2>Description of JSON Fields<a class="headerlink" href="#description-of-json-fields" title="Link to this heading"></a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cmd</span></code>: This field can be ignored in the Python bindings, it is the command of the process running compression</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">args</span></code>: These are all the arguments that were passed to compression, see also <a class="reference internal" href="compress_kwargs.html#compress-kwargs"><span class="std std-ref">compress() Keyword Arguments Listing</span></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">original_cost</span></code>: This is the cost of the original set of programs, see also <a class="reference internal" href="cost_metrics.html#cost-metrics"><span class="std std-ref">Cost Metrics</span></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">final_cost</span></code>: This is the cost of the final set of programs, see also <a class="reference internal" href="cost_metrics.html#cost-metrics"><span class="std std-ref">Cost Metrics</span></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">compression_ratio</span></code>: This is the ratio of the original cost to the final cost.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_abstractions</span></code>: This is the number of abstractions that were found. Note that if there are <em>no</em> compressive abstractions
+to find on an iteration, then this can be less than the number of <code class="docutils literal notranslate"><span class="pre">iterations</span></code> passed to <code class="docutils literal notranslate"><span class="pre">compress()</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">original</span></code>: This is the original set of programs.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rewritten</span></code>: This is the set of programs after rewriting with the found abstractions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rewritten_dreamcoder</span></code>: This is the set of programs after rewriting with the found abstractions, but in the format
+that Dreamcoder uses where lambdas are written as <code class="docutils literal notranslate"><span class="pre">lambda</span></code> instead of <code class="docutils literal notranslate"><span class="pre">lam</span></code> and abstractions are written anonymously
+with the <code class="docutils literal notranslate"><span class="pre">#()</span></code> syntax instead of giving them names like <code class="docutils literal notranslate"><span class="pre">fn_0</span></code>. This is set to <code class="docutils literal notranslate"><span class="pre">None</span></code> unless <code class="docutils literal notranslate"><span class="pre">rewritten_dreamcoder=True</span></code>.</p></li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">abstractions</span></code>: This is a list of all abstractions that were found. Each abstraction has the following fields:</dt><dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">body</span></code>: This is the body of the abstraction, just like the <code class="docutils literal notranslate"><span class="pre">.body</span></code> field of <code class="docutils literal notranslate"><span class="pre">stitch_core.Abstraction</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dreamcoder</span></code>: This is the body of the abstraction, but in the format that Dreamcoder uses where lambdas are written as <code class="docutils literal notranslate"><span class="pre">lambda</span></code> instead of <code class="docutils literal notranslate"><span class="pre">lam</span></code> and abstractions are written anonymously with the <code class="docutils literal notranslate"><span class="pre">#()</span></code> syntax instead of giving them names like <code class="docutils literal notranslate"><span class="pre">fn_0</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">arity</span></code>: This is the arity of the abstraction, just like the <code class="docutils literal notranslate"><span class="pre">.arity</span></code> field of <code class="docutils literal notranslate"><span class="pre">stitch_core.Abstraction</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: This is the name of the abstraction, just like the <code class="docutils literal notranslate"><span class="pre">.name</span></code> field of <code class="docutils literal notranslate"><span class="pre">stitch_core.Abstraction</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">utility</span></code>: This is the utility of the abstraction defined as the difference between the initial and final cost of the set of programs when introducing this abstraction.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">final_cost</span></code>: This is the cost of the set of programs after introducing this abstraction.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">compression_ratio</span></code>: This is the ratio of the original cost to the final cost after introducing this abstraction.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cumulative_compression_ratio</span></code>: This is the ratio of the original cost to the final cost after introducing this abstraction and all abstractions that were found before it.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_uses</span></code>: This is the number of times this abstraction was used in the final set of programs.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rewritten</span></code>: This is the set of programs after rewriting with this abstraction (and any abstractions that came before it). This field is only present if <code class="docutils literal notranslate"><span class="pre">rewritten_intermediates=True</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rewritten_dreamcoder</span></code>: This is the set of programs after rewriting with this abstraction (and any abstractions that came before it), but in the format that Dreamcoder uses where lambdas are written as <code class="docutils literal notranslate"><span class="pre">lambda</span></code> instead of <code class="docutils literal notranslate"><span class="pre">lam</span></code> and abstractions are written anonymously with the <code class="docutils literal notranslate"><span class="pre">#()</span></code> syntax instead of giving them names like <code class="docutils literal notranslate"><span class="pre">fn_0</span></code>. This field is only present if <code class="docutils literal notranslate"><span class="pre">rewritten_intermediates=True</span></code> and <code class="docutils literal notranslate"><span class="pre">rewritten_dreamcoder=True</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uses</span></code>: This is a list of all the unique uses of this abstraction in the final set of programs. Each use is a dictionary mapping from the abstraction applied to its arguments to the original subtree before this rewrite happened. If the abstraction is used with the same arguments in multiple places, only one copy appears here - these are the <em>unique</em> uses.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="compress_kwargs.html" class="btn btn-neutral float-left" title="compress() Keyword Arguments Listing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cost_metrics.html" class="btn btn-neutral float-right" title="Cost Metrics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Matt Bowers.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
