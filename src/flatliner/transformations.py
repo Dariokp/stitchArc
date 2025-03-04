@@ -1,3 +1,14 @@
+"""
+    This file transforms one-lined lambda expressions into a form compatible with the Python-to-Stitch translator. 
+    It applies a series of AST transformations to curry and clean the expressions.
+
+    Example transformation
+
+        Input:  lambda x, y: x + y if x > 0 else x * y
+        
+        Output: lambda x1: lambda x2: ifElse(gt(x1)(0))(add(x1)(x2))(mul(x1)(x2))
+"""
+
 import ast
 import os
 
@@ -468,29 +479,6 @@ class TaggerTransformer(ast.NodeTransformer):
             keywords=[]
         )
     
-    # def visit_Call(self, node):
-    #     # First process nested elements
-    #     node = self.generic_visit(node)
-        
-    #     # Special handling for dict() with list argument containing tuples
-    #     if (isinstance(node.func, ast.Name) and node.func.id == 'dict' and 
-    #             len(node.args) == 1 and isinstance(node.args[0], ast.List)):
-            
-    #         # Extract the list argument
-    #         list_arg = node.args[0]
-            
-    #         # Transform each tuple in the list into a __tuple__ call if not already transformed
-    #         for i, elt in enumerate(list_arg.elts):
-    #             if isinstance(elt, ast.Tuple):
-    #                 list_arg.elts[i] = ast.Call(
-    #                     func=ast.Name(id="__tuple__", ctx=ast.Load()),
-    #                     args=elt.elts,
-    #                     keywords=[]
-    #                 )
-    #                 ast.copy_location(list_arg.elts[i], elt)
-        
-    #     return node
-
 class GeneratorExpTransformer(ast.NodeTransformer):
     def visit_GeneratorExp(self, node):
         # First process any nested elements
@@ -537,7 +525,7 @@ class GeneratorExpTransformer(ast.NodeTransformer):
 class MethodCallTransformer(ast.NodeTransformer):
     """
     Transform method calls like obj.method(args) into method(obj, args)
-    Example: x32.index(x93) becomes index(x32, x93)
+    Example: x32.index(x93) becomes index_M(x32, x93)
     """
     
     def visit_Call(self, node):
@@ -682,31 +670,38 @@ def transform_lambda_string(s):
     result.append(s[last_end:])
     return "".join(result)
 
-def curry_code(expr_str):
+def transform_lambda(expr_str):
     """
-    Parse the given lambda expression string, transform it so that all lambdas and function calls are curried,
-    and return the new source code.
+    Applies the transformations to the input lambda expression.
     """
     # Parse the expression. We use mode='eval' because the input is a single expression.
-    tree = ast.parse(expr_str, mode='eval')
-    tree = OperatorTransformer().visit(tree)
-    tree = BoolOpTransformer().visit(tree)
-    tree = BitOpTransformer().visit(tree)
-    tree = IfExpTransformer().visit(tree)
-    tree = GeneratorExpTransformer().visit(tree)
-    tree = TaggerTransformer().visit(tree)
-    tree = MethodCallTransformer().visit(tree)
+    tree = ast.parse(expr_str, mode='eval')         
+                                                    # ------------ Examples ------------
+    tree = OperatorTransformer().visit(tree)        # 13+2                  -> add(13, 2)
+    tree = BoolOpTransformer().visit(tree)          # x and y               -> andOp(x, y)
+    tree = BitOpTransformer().visit(tree)           # x | y                 -> bitOr(x, y)
+    tree = IfExpTransformer().visit(tree)           # if z then x else y    -> ifElse(z, x, y)
+    tree = GeneratorExpTransformer().visit(tree)    # x for x in y if z     -> __genExpr__(x, x, y, z)
+    tree = TaggerTransformer().visit(tree)          # [x, y]                -> __list__(x, y)
+    tree = MethodCallTransformer().visit(tree)      # x.index(3)            -> index_M(x, 3)
     
     # Transform all nested structures
-    tree = NestedStructureTransformer().visit(tree)
+    tree = NestedStructureTransformer().visit(tree) # TODO: still misses elements e.g. strings nested in a tuple nested in a dictionary
+                                                    # dict(__list__(__tuple__('input')(x19)) ... )
 
-    tree = CurryTransformer().visit(tree)
+    tree = CurryTransformer().visit(tree)           # __genExpr__(z, x, y)  -> __genExpr__(z)(x)(y) 
     ast.fix_missing_locations(tree)
-    # Convert the AST back into source code
-    new_expr = ast.unparse(tree)
     
-    new_expr = transform_lambda_string(new_expr)
+    # Convert the AST back into code
+    new_expr = ast.unparse(tree)
+
+    # Rename all variables bound by lambdas to x_i
+    new_expr = transform_lambda_string(new_expr)    # lambda y: ... y ...   -> lambda x1: ... x1 ...
+
     return new_expr
+
+
+# Example usage
 
 # Path to file that should be flattened
 file_to_flatten_path = os.path.join("src", "reArc", "re-arc_generator.py")
@@ -715,24 +710,9 @@ file_to_flatten_path = os.path.join("src", "reArc", "re-arc_generator.py")
 test = Flatliner()
 test.set_ast(file_to_flatten_path)
 result = test.unparse()
-# result = "{'key1':value1, 'key2':value2, 'key3':value3}"
-# result = "lambda tp: (lambda rp: (lambda res: (lambda bgc: (lambda dc: (lambda gi: (lambda go: (lambda rotf: (lambda gi: (lambda go: dict(__list__(__tuple__(__str__(input))(gi))(__tuple__(__str__(output))(go))))(rotf(go)))(rotf(gi)))(choice(__tuple__(identity)(rot90)(rot180)(rot270))))(fill(gi)(2)(product(rp)(tp))))))))"
 
-# Display massive lambda expression
+# Display original lambda expression
 print(f"Original result: {result}")
 
-result_curried = curry_code(result)
-print(f"\nCurried result: {result_curried}")
-
-"""
-Original result: 
-    lambda x, y: (lambda z: (lambda h: (lambda k: (h, k))((x + y)))(unifint(x, z, y)))(choice([(x + 10), (x + 20), (x + 30)]))
-Curried result: 
-    lambda x: lambda y: (lambda z: (lambda h: (lambda k: (h, k))(x + y))(unifint(x)(z)(y)))(choice([x + 10, x + 20, x + 30]))
-"""
-
-# ((lambda f: (lambda x: x(x))(lambda y: f(lambda *args: y(y)(*args)))))
-
-# Should the _Y really be transformed into a variable x?
-
-# lambda x69: andOp(lt(getItem(x69)(0))(x5 - x51))(lt(getItem(x69)(1))(x6 - x52))
+result_transformed = transform_lambda(result)
+print(f"\nTransformed result: {result_transformed}")
