@@ -14,7 +14,3 @@ The translator follows these steps:
 ## Library Learning
 
 Once translated to [Stitch](https://github.com/mlb2251/stitch.git), the code applies Stitch, a library learning algorithm that discovers higher-level abstracted functions by identifying commonalities across all functions.
-
-## Purpose
-
-This project aims to bridge Python and Stitch implementations of ARC solutions, enabling better pattern recognition and abstraction capabilities through Stitch's specialized language features.

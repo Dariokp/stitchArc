@@ -1,6 +1,8 @@
 import ast
 import os
 
+from flatliner import Flatliner
+
 class CurryTransformer(ast.NodeTransformer):
     def visit_Lambda(self, node):
         # First, process child nodes.
@@ -707,7 +709,7 @@ def curry_code(expr_str):
     return new_expr
 
 # Path to file that should be flattened
-file_to_flatten_path = os.path.join("reArc", "re-arc_generator.py")
+file_to_flatten_path = os.path.join("src", "reArc", "re-arc_generator.py")
 
 # Flatten
 test = Flatliner()
