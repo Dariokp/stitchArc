@@ -30,13 +30,13 @@ if __name__ == "__main__":
     # Run the Stitch algorithm on all functions
     res = compress(stitch_functions[:10], iterations=1, max_arity=3, threads=6)
 
-    print(res.abstractions)
+    # print(res.abstractions)
     # print(res.rewritten)
     
     # Save the json file
     with open(os.path.join(".", "stitch_output.json"), 'w') as f:
         json.dump(res.json, f, indent=4)
 
-    pprint.pp(res.json)
+    # pprint.pp(res.json)
 
     print(f"Finished compressing in {time.time() - t0:.2f} seconds")

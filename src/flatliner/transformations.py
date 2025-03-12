@@ -752,4 +752,3 @@ if __name__ == "__main__":
     # Transform the lambda expression
     result_transformed = transform_lambda(result)
     print(f"Transformed result:\n{result_transformed}")
-
