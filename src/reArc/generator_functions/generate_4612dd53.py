@@ -1,0 +1,37 @@
+def generate_4612dd53(diff_lb: float, diff_ub: float) -> dict:
+    cols = remove(2, interval(0, 10, 1))
+    h = unifint(diff_lb, diff_ub, (8, 30))
+    w = unifint(diff_lb, diff_ub, (8, 30))
+    ih = unifint(diff_lb, diff_ub, (5, h-1))
+    iw = unifint(diff_lb, diff_ub, (5, w-1))
+    bgc, col = sample(cols, 2)
+    loci = randint(0, h - ih)
+    locj = randint(0, w - iw)
+    bx = box(frozenset({(loci, locj), (loci + ih - 1, locj + iw - 1)}))
+    if choice((True, False)):
+        locc = randint(loci + 2, loci + ih - 3)
+        br = connect((locc, locj+1), (locc, locj + iw - 2))
+    else:
+        locc = randint(locj + 2, locj + iw - 3)
+        br = connect((loci+1, locc), (loci + ih - 2, locc))
+    c = canvas(bgc, (h, w))
+    crns = sample(totuple(corners(bx)), 3)
+    onbx = totuple(crns)
+    rembx = difference(bx, crns)
+    onbr = sample(totuple(br), 2)
+    rembr = difference(br, onbr)
+    noccbx = unifint(diff_lb, diff_ub, (0, len(rembx)))
+    noccbr = unifint(diff_lb, diff_ub, (0, len(rembr)))
+    occbx = sample(totuple(rembx), noccbx)
+    occbr = sample(totuple(rembr), noccbr)
+    c = fill(c, col, bx)
+    c = fill(c, col, br)
+    gi = fill(c, bgc, occbx)
+    gi = fill(gi, bgc, occbr)
+    go = fill(c, 2, occbx)
+    go = fill(go, 2, occbr)
+    if choice((True, False)):
+        gi = fill(gi, bgc, br)
+        go = fill(go, bgc, br)
+    return {'input': gi, 'output': go}
+

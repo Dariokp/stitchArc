@@ -11,8 +11,10 @@
 
 import ast
 import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))) # add src to path
 
-from flatliner import Flatliner
+from src.flatliner.flatliner import Flatliner
 
 class CurryTransformer(ast.NodeTransformer):
     def visit_Lambda(self, node):
@@ -700,19 +702,54 @@ def transform_lambda(expr_str):
 
     return new_expr
 
+def fix_lambda_tuple_params_ast(code_str):
+    """
+    Fix lambda expressions with tuple parameters using the AST module for more reliable parsing.
+    """
+    import ast
+    import re
+    
+    # Use regex to find potential lambda expressions with tuple parameters
+    lambda_pattern = r'lambda\s+[^:]*\([^)]+\)[^:]*:'
+    lambda_matches = list(re.finditer(lambda_pattern, code_str))
+    
+    # If no potential matches, return the original string
+    if not lambda_matches:
+        return code_str
+    
+    # Process each match from end to beginning to avoid position shifts
+    result = code_str
+    for match in reversed(lambda_matches):
+        start, end = match.span()
+        lambda_expr = code_str[start:end]
+        
+        # Replace tuple parameters with flattened parameters
+        fixed_lambda = re.sub(r'\(([^()]+)\)', r'\1', lambda_expr)
+        result = result[:start] + fixed_lambda + result[end:]
+    
+    return result
 
 # Example usage
+if __name__ == "__main__":
+    # Path to file that should be flattened
+    # file_to_flatten_path = os.path.join("test_inputs", "ifs_test.py")
 
-# Path to file that should be flattened
-file_to_flatten_path = os.path.join("src", "reArc", "re-arc_generator.py")
+    generator_functions_dir = os.listdir(os.path.join("..", "reArc", "generator_functions"))
+    # print(generator_functions_dir[0])
+    # >> generate_b782dc8a.py
+    file_to_flatten_path = os.path.join("..", "reArc", "generator_functions", f"{generator_functions_dir[0]}")
 
-# Flatten
-test = Flatliner()
-test.set_ast(file_to_flatten_path)
-result = test.unparse()
+    # Flatten and display the python program
+    test = Flatliner()
+    test.set_ast(file_to_flatten_path)
+    result = test.unparse()
 
-# Display original lambda expression
-print(f"Original result: {result}")
+    # result = "(lambda _Y: lambda diff_lb, diff_ub: (lambda cols: (lambda wall_pairs: (lambda dlt: (lambda walls: (lambda fullsucc: (lambda cc, cell, direc, dotcol, gi, go, grid, h, idx, kk, maze, nbhs, ncol, neighbour, next_cell, nobjs, nv, obj, obj1, obj2, objs, pathcol, row, stck, w, wallcol, x2, y2: (lambda _loop1: _loop1(cc, cell, direc, dotcol, gi, go, grid, h, idx, kk, maze, nbhs, ncol, neighbour, next_cell, nobjs, nv, obj, obj1, obj2, objs, pathcol, row, stck, w, wallcol, x2, y2))(_Y(lambda _loop1: (lambda cc, cell, direc, dotcol, gi, go, grid, h, idx, kk, maze, nbhs, ncol, neighbour, next_cell, nobjs, nv, obj, obj1, obj2, objs, pathcol, row, stck, w, wallcol, x2, y2: ((lambda h: (lambda w: (lambda maze: (lambda kk: (lambda stck: (lambda cc: (lambda nv: (lambda cc, direc, nbhs, neighbour, next_cell, nv, x2, y2: (lambda _loop5: _loop5(cc, direc, nbhs, neighbour, next_cell, nv, x2, y2))(_Y(lambda _loop5: (lambda cc, direc, nbhs, neighbour, next_cell, nv, x2, y2: ((lambda nbhs: (lambda _term6, _items6: (lambda _targ6: (lambda dx, dy, _targ6, direc, neighbour, x2, y2: (lambda _loop6: _loop6(dx, dy, _targ6, direc, neighbour, x2, y2))(_Y(lambda _loop6: (lambda dx, dy, _targ6, direc, neighbour, x2, y2: ([[((lambda neighbour: ([nbhs.append((direc, neighbour)), (lambda _targ6: _loop6(dx, dy, _targ6, direc, neighbour, x2, y2))(next(_items6, _term6))][-1] if all(neighbour['walls'].values()) else (lambda _targ6: _loop6(dx, dy, _targ6, direc, neighbour, x2, y2))(next(_items6, _term6))))(maze[x2][y2]) if (0 <= x2 < w) and (0 <= y2 < h) else (lambda _targ6: _loop6(dx, dy, _targ6, direc, neighbour, x2, y2))(next(_items6, _term6))) for (x2, y2) in [((cc['x'] + dx), (cc['y'] + dy))]][0] for (direc, dx, dy) in [_targ6]][0]) if (_targ6 is not _term6) else ((lambda cc: _loop5(cc, direc, nbhs, neighbour, next_cell, nv, x2, y2))(stck.pop()) if not nbhs else [[[[stck.append(cc), (lambda cc: (lambda nv: _loop5(cc, direc, nbhs, neighbour, next_cell, nv, x2, y2))((nv + 1)))(next_cell)][-1] for next_cell['walls'][wall_pairs[direc]] in [False]][0] for cc['walls'][direc] in [False]][0] for (direc, next_cell) in [choice(nbhs)]][0])))))(dx, dy if 'dx, dy' in dir() else None, _targ6 if '_targ6' in dir() else None, direc if 'direc' in dir() else None, neighbour if 'neighbour' in dir() else None, x2 if 'x2' in dir() else None, y2 if 'y2' in dir() else None))(next(_items6, _term6)))([], iter(dlt)))([])) if (nv < kk) else [(lambda grid: (lambda _term2, _items2: (lambda _targ2: (lambda _targ2, row, y: (lambda _loop2: _loop2(_targ2, row, y))(_Y(lambda _loop2: (lambda _targ2, row, y: ((lambda y: (lambda row: (lambda _term4, _items4: (lambda _targ4: (lambda _targ4, x: (lambda _loop4: _loop4(_targ4, x))(_Y(lambda _loop4: (lambda _targ4, x: ((lambda x: [row.append(wallcol), [row.append((pathcol if maze[x][y]['walls']['E'] else wallcol)), (lambda _targ4: _loop4(_targ4, x))(next(_items4, _term4))][-1]][-1])(_targ4)) if (_targ4 is not _term4) else [grid.append(row), (lambda row: (lambda _term3, _items3: (lambda _targ3: (lambda _targ3, x: (lambda _loop3: _loop3(_targ3, x))(_Y(lambda _loop3: (lambda _targ3, x: ((lambda x: [row.append((pathcol if maze[x][y]['walls']['S'] else wallcol)), [row.append(pathcol), (lambda _targ3: _loop3(_targ3, x))(next(_items3, _term3))][-1]][-1])(_targ3)) if (_targ3 is not _term3) else [grid.append(row), (lambda _targ2: _loop2(_targ2, row, y))(next(_items2, _term2))][-1]))))(_targ3 if '_targ3' in dir() else None, x if 'x' in dir() else None))(next(_items3, _term3)))([], iter(range(w))))([pathcol])][-1]))))(_targ4 if '_targ4' in dir() else None, x if 'x' in dir() else None))(next(_items4, _term4)))([], iter(range(w))))([pathcol]))(_targ2)) if (_targ2 is not _term2) else (lambda gi: (lambda objs: (lambda objs: (lambda objs: (_loop1(cc, cell, direc, dotcol, gi, go, grid, h, idx, kk, maze, nbhs, ncol, neighbour, next_cell, nobjs, nv, obj, obj1, obj2, objs, pathcol, row, stck, w, wallcol, x2, y2) if (len(objs) == 0) else (lambda objs: (lambda nobjs: (lambda idx: (lambda obj: (lambda cell: (lambda gi: (lambda nbhs: (lambda gi: (lambda obj1: (lambda obj2: (lambda go: (lambda go: (lambda rotf: (lambda gi: (lambda go: {'input': gi, 'output': go})(rotf(go)))(rotf(gi)))(choice((identity, rot90, rot180, rot270))))(fill(go, ncol, obj2)))(fill(gi, dotcol, obj1)))((obj - obj1)))(sfilter(obj, lambda ij: even(manhattan({ij}, {cell})))))(fill(gi, ncol, nbhs)))((dneighbors(cell) & ofcolor(gi, pathcol))))(fill(gi, dotcol, {cell})))(choice(totuple(obj))))(toindices(objs[idx])))(unifint(diff_lb, diff_ub, (0, (nobjs - 1)))))(len(objs)))(order(objs, size))))(sfilter(objs, lambda obj: size(obj) > 4)))(colorfilter(objs, pathcol)))(objects(gi, T, F, F)))(tuple((tuple(r[1:-1]) for r in grid[1:-1])))))))(_targ2 if '_targ2' in dir() else None, row if 'row' in dir() else None, y if 'y' in dir() else None))(next(_items2, _term2)))([], iter(range(h))))([[pathcol for x in range(w * 2)]]) for (pathcol, wallcol, dotcol, ncol) in [sample(cols, 4)]][0]))))(cc if 'cc' in dir() else None, direc if 'direc' in dir() else None, nbhs if 'nbhs' in dir() else None, neighbour if 'neighbour' in dir() else None, next_cell if 'next_cell' in dir() else None, nv if 'nv' in dir() else None, x2 if 'x2' in dir() else None, y2 if 'y2' in dir() else None))(1))(maze[0][0]))([]))((h * w)))([[{'x': x, 'y': y, 'walls': {**walls}} for y in range(h)] for x in range(w)]))(unifint(diff_lb, diff_ub, (3, 15))))(unifint(diff_lb, diff_ub, (3, 15)))) if True else (lambda rotf: (lambda gi: (lambda go: {'input': gi, 'output': go})(rotf(go)))(rotf(gi)))(choice((identity, rot90, rot180, rot270)))))))(cc if 'cc' in dir() else None, cell if 'cell' in dir() else None, direc if 'direc' in dir() else None, dotcol if 'dotcol' in dir() else None, gi if 'gi' in dir() else None, go if 'go' in dir() else None, grid if 'grid' in dir() else None, h if 'h' in dir() else None, idx if 'idx' in dir() else None, kk if 'kk' in dir() else None, maze if 'maze' in dir() else None, nbhs if 'nbhs' in dir() else None, ncol if 'ncol' in dir() else None, neighbour if 'neighbour' in dir() else None, next_cell if 'next_cell' in dir() else None, nobjs if 'nobjs' in dir() else None, nv if 'nv' in dir() else None, obj if 'obj' in dir() else None, obj1 if 'obj1' in dir() else None, obj2 if 'obj2' in dir() else None, objs if 'objs' in dir() else None, pathcol if 'pathcol' in dir() else None, row if 'row' in dir() else None, stck if 'stck' in dir() else None, w if 'w' in dir() else None, wallcol if 'wallcol' in dir() else None, x2 if 'x2' in dir() else None, y2 if 'y2' in dir() else None))(False))({'N': True, 'S': True, 'E': True, 'W': True}))([('W', (-1, 0)), ('E', (1, 0)), ('S', (0, 1)), ('N', (0, -1))]))({'N': 'S', 'S': 'N', 'E': 'W', 'W': 'E'}))(interval(0, 10, 1)))((lambda f: (lambda x: x(x))(lambda y: f(lambda *args: y(y)(*args)))))"
 
-result_transformed = transform_lambda(result)
-print(f"\nTransformed result: {result_transformed}")
+    # result = fix_lambda_tuple_params_ast(result)
+    print(f"Original result:\n{result}")
+
+    # Transform the lambda expression
+    result_transformed = transform_lambda(result)
+    print(f"Transformed result:\n{result_transformed}")
+

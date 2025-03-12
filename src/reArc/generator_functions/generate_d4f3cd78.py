@@ -1,0 +1,28 @@
+def generate_d4f3cd78(diff_lb: float, diff_ub: float) -> dict:
+    cols = remove(8, interval(0, 10, 1))    
+    h = unifint(diff_lb, diff_ub, (10, 30))
+    w = unifint(diff_lb, diff_ub, (10, 30))
+    ih = unifint(diff_lb, diff_ub, (3, h//3*2))
+    iw = unifint(diff_lb, diff_ub, (3, w//3*2))
+    loci = randint(1, h - ih - 1)
+    locj = randint(1, w - iw - 1)
+    crns = frozenset({(loci, locj), (loci + ih - 1, locj + iw - 1)})
+    fullcrns = corners(crns)
+    bx = box(crns)
+    opts = bx - fullcrns
+    bgc, fgc = sample(cols, 2)
+    c = canvas(bgc, (h, w))
+    nholes = unifint(diff_lb, diff_ub, (1, len(opts)))
+    holes = sample(totuple(opts), nholes)
+    gi = fill(c, fgc, bx - set(holes))
+    bib = backdrop(inbox(bx))
+    go = fill(gi, 8, bib)
+    A, B = ulcorner(bib)
+    C, D = lrcorner(bib)
+    f1 = lambda idx: 1 if idx > C else (-1 if idx < A else 0)
+    f2 = lambda idx: 1 if idx > D else (-1 if idx < B else 0)
+    f = lambda d: shoot(d, (f1(d[0]), f2(d[1])))
+    res = mapply(f, set(holes))
+    go = fill(go, 8, res)
+    return {'input': gi, 'output': go}
+

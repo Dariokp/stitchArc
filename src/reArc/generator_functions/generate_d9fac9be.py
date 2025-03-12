@@ -1,0 +1,32 @@
+def generate_d9fac9be(diff_lb: float, diff_ub: float) -> dict:
+    cols = interval(0, 10, 1)
+    h = unifint(diff_lb, diff_ub, (6, 30))
+    w = unifint(diff_lb, diff_ub, (6, 30))
+    bgc, noisec, ringc = sample(cols, 3)
+    gi = canvas(bgc, (h, w))
+    nnoise1 = unifint(diff_lb, diff_ub, (1, (h * w) // 3 - 1))
+    nnoise2 = unifint(diff_lb, diff_ub, (1, max(1, (h * w) // 3 - 9)))
+    inds = asindices(gi)
+    noise1 = sample(totuple(inds), nnoise1)
+    noise2 = sample(difference(totuple(inds), noise1), nnoise2)
+    gi = fill(gi, noisec, noise1)
+    gi = fill(gi, ringc, noise2)
+    rng = neighbors((1, 1))
+    fp1 = recolor(noisec, rng)
+    fp2 = recolor(ringc, rng)
+    fp1occ = occurrences(gi, fp1)
+    fp2occ = occurrences(gi, fp2)
+    for occ1 in fp1occ:
+        loc = choice(totuple(shift(rng, occ1)))
+        gi = fill(gi, choice((bgc, ringc)), {loc})
+    for occ2 in fp2occ:
+        loc = choice(totuple(shift(rng, occ2)))
+        gi = fill(gi, choice((bgc, noisec)), {loc})
+    loci = randint(0, h - 3)
+    locj = randint(0, w - 3)
+    ringp = shift(rng, (loci, locj))
+    gi = fill(gi, ringc, ringp)
+    gi = fill(gi, noisec, {(loci + 1, locj + 1)})
+    go = canvas(noisec, (1, 1))
+    return {'input': gi, 'output': go}
+

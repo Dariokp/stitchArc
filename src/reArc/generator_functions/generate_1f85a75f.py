@@ -1,0 +1,32 @@
+def generate_1f85a75f(diff_lb: float, diff_ub: float) -> dict:
+    cols = interval(0, 10, 1)
+    h = unifint(diff_lb, diff_ub, (10, 30))
+    w = unifint(diff_lb, diff_ub, (10, 30))
+    oh = randint(3, min(8, h // 2))
+    ow = randint(3, min(8, w // 2))
+    bounds = asindices(canvas(-1, (oh, ow)))
+    ncells = randint(max(oh, ow), oh * ow)
+    sp = choice(totuple(bounds))
+    obj = {sp}
+    cands = remove(sp, bounds)
+    for k in range(ncells - 1):
+        obj.add(choice(totuple((bounds - obj) & mapply(dneighbors, obj))))
+    obj = normalize(obj)
+    oh, ow = shape(obj)
+    loci = randint(0, h - oh)
+    locj = randint(0, w - ow)
+    bgc, objc = sample(cols, 2)
+    remcols = remove(bgc, remove(objc, cols))
+    numc = unifint(diff_lb, diff_ub, (1, 8))
+    ccols = sample(remcols, numc)
+    nnoise = unifint(diff_lb, diff_ub, (0, max(0, ((h * w) - len(backdrop(obj))) // 4)))
+    gi = canvas(bgc, (h, w))
+    obj = shift(obj, (loci, locj))
+    gi = fill(gi, objc, obj)
+    inds = asindices(gi)
+    noisecells = sample(totuple(inds - backdrop(obj)), nnoise)
+    noiseobj = frozenset({(choice(ccols), ij) for ij in noisecells})
+    gi = paint(gi, noiseobj)
+    go = fill(canvas(bgc, (oh, ow)), objc, normalize(obj))
+    return {'input': gi, 'output': go}
+

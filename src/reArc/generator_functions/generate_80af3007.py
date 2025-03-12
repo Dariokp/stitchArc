@@ -1,0 +1,27 @@
+def generate_80af3007(diff_lb: float, diff_ub: float) -> dict:
+    fullcols = interval(0, 10, 1)
+    h = unifint(diff_lb, diff_ub, (2, 5))
+    w = unifint(diff_lb, diff_ub, (2, 5))
+    bgc = choice(fullcols)
+    cols = remove(bgc, fullcols)
+    c = canvas(bgc, (h, w))
+    numcd = unifint(diff_lb, diff_ub, (0, (h * w) // 2))
+    numc = choice((numcd, h * w - numcd))
+    numc = min(max(0, numc), h * w)
+    inds = totuple(asindices(c))
+    locs = tuple(set(sample(inds, numc)) | set(sample(totuple(corners(inds)), 3)))
+    fgc = choice(cols)
+    gi = fill(c, fgc, locs)
+    go = canvas(bgc, (h**2, w**2))
+    for loc in locs:
+        go = fill(go, fgc, shift(locs, multiply(loc, (h, w))))
+    fullh = unifint(diff_lb, diff_ub, (h**2+2, 30))
+    fullw = unifint(diff_lb, diff_ub, (w**2+2, 30))
+    fullg = canvas(bgc, (fullh, fullw))
+    loci = randint(1, fullh - h**2 - 1)
+    locj = randint(1, fullw - w**2 - 1)
+    loc = (loci, locj)
+    giups = hupscale(vupscale(gi, h), w)
+    gi = paint(fullg, shift(asobject(giups), loc))
+    return {'input': gi, 'output': go}
+

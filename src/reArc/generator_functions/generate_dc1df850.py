@@ -1,0 +1,22 @@
+def generate_dc1df850(diff_lb: float, diff_ub: float) -> dict:
+    cols = difference(interval(0, 10, 1), (1, 2))
+    h = unifint(diff_lb, diff_ub, (4, 30))
+    w = unifint(diff_lb, diff_ub, (4, 30))
+    bgc = choice(cols)
+    remcols = remove(bgc, cols)
+    c = canvas(bgc, (h, w))
+    nc = unifint(diff_lb, diff_ub, (0, (h * w) // 2 - 1))
+    nreddev = unifint(diff_lb, diff_ub, (0, nc // 2))
+    nred = choice((nreddev, nc - nreddev))
+    nred = min(max(0, nred), nc)
+    inds = totuple(asindices(c))
+    occ = sample(inds, nc)
+    reds = sample(occ, nred)
+    others = difference(occ, reds)
+    c = fill(c, 2, reds)
+    obj = frozenset({(choice(remcols), ij) for ij in others})
+    c = paint(c, obj)
+    gi = tuple(r for r in c)
+    go = underfill(c, 1, mapply(neighbors, frozenset(reds)))
+    return {'input': gi, 'output': go}
+

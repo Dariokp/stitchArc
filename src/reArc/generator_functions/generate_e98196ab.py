@@ -1,0 +1,28 @@
+def generate_e98196ab(diff_lb: float, diff_ub: float) -> dict:
+    cols = interval(0, 10, 1)    
+    h = unifint(diff_lb, diff_ub, (3, 14))
+    w = unifint(diff_lb, diff_ub, (3, 30))
+    bgc = choice(cols)
+    remcols = remove(bgc, cols)
+    linc = choice(remcols)
+    remcols = remove(linc, remcols)
+    topc = choice(remcols)
+    remcols = remove(topc, remcols)
+    botc = choice(remcols)
+    c = canvas(bgc, (h, w))
+    inds = totuple(asindices(c))
+    nocc = unifint(diff_lb, diff_ub, (2, (h * w) // 2))
+    subs = sample(inds, nocc)
+    numa = randint(1, nocc - 1)
+    A = sample(subs, numa)
+    B = difference(subs, A)
+    topg = fill(c, topc, A)
+    botg = fill(c, botc, B)
+    go = fill(topg, botc, B)
+    br = canvas(linc, (1, w))
+    gi = vconcat(vconcat(topg, br), botg)
+    if choice((True, False)):
+        gi = dmirror(gi)
+        go = dmirror(go)
+    return {'input': gi, 'output': go}
+

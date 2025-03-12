@@ -1,0 +1,26 @@
+def generate_3de23699(diff_lb: float, diff_ub: float) -> dict:
+    cols = interval(0, 10, 1)
+    h = unifint(diff_lb, diff_ub, (5, 30))
+    w = unifint(diff_lb, diff_ub, (5, 30))
+    bgc = choice(cols)
+    c = canvas(bgc, (h, w))
+    hi = unifint(diff_lb, diff_ub, (4, h))
+    wi = unifint(diff_lb, diff_ub, (4, w))
+    loci = randint(0, h - hi)
+    locj = randint(0, w - wi)
+    remcols = remove(bgc, cols)
+    ccol = choice(remcols)
+    remcols = remove(ccol, remcols)
+    ncol = choice(remcols)
+    tmpo = frozenset({(loci, locj), (loci + hi - 1, locj + wi - 1)})
+    cnds = totuple(backdrop(inbox(tmpo)))
+    mp = len(cnds) // 2
+    dev = unifint(diff_lb, diff_ub, (0, mp))
+    ncnds = choice((dev, len(cnds) - dev))
+    ncnds = min(max(0, ncnds), len(cnds))
+    ss = sample(cnds, ncnds)
+    gi = fill(c, ccol, corners(tmpo))
+    gi = fill(gi, ncol, ss)
+    go = trim(crop(switch(gi, ccol, ncol), (loci, locj), (hi, wi)))
+    return {'input': gi, 'output': go}
+

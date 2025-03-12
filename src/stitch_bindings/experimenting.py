@@ -5,16 +5,23 @@ import ast
 # example from Overview section of the Stitch paper (https://arxiv.org/abs/2211.16605)
 programs = [
     "(lam (+ $0 1))",
-    "((lam (+ $0 1)) (5))",
+    "((lam (+ $0 1)) 5)",
+    "((lam (+ $0 1)) (lam (+ $0 1)))",
+    "(lam (lam ((lam ((lam (dict (__list__ (__tuple__ (__str__ input) $1) (__tuple__ (__str__ output) $0)))) (x9 $1))) (x7 $2))))",
+    "(lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (__ifExp__ (__and__ (eq $1 $0) (eq $0 1)))))))))))))",
+    "(lam (lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (ifElse (fand (eq $1 $0) (eq $0 1)) (getItem (__listComp__ ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (dict (__list__ (__tuple__ input $1) (__tuple__ output $0)))) (x18 $0))) (x18 $0))) (choice (__tuple__ identity rot90 rot180 rot270)))) (fill $36 2 (product $5 $6)))) (fill (canvas $2 (__tuple__ $11 $10)) $1 $3))) (choice (remove $1 $11)))) (choice $10))) (combine (apply (lbind astuple 0) $2) (apply (rbind astuple (sub $7 1)) $1)))) (sample (interval 1 $7 1) $2))) (sample (interval 0 (sub $5 1) 1) $2)) (__tuple__ $1 $0) (__list__ (sample (__list__ 1 2) 2))) 0) ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (dict (__list__ (__tuple__ input $1) (__tuple__ output $0)))) (x28 $0))) (x28 $0))) (choice (__tuple__ identity rot90 rot180 rot270)))) (fill $46 2 (product $5 $6)))) (fill (canvas $2 (__tuple__ $11 $10)) $1 $3))) (choice (remove $1 $11)))) (choice $10))) (combine (apply (lbind astuple 0) $2) (apply (rbind astuple (sub $7 1)) $1)))) (sample (interval 1 $7 1) $2))) (sample (interval 0 (sub $5 1) 1) $2)))) (unifint $9 $8 $3))) (unifint $8 $7 $1))) (__tuple__ 1 (add (floordiv $2 2) 1)))) (__tuple__ 1 (add (floordiv $2 2) 1)))) (unifint $5 $4 $3))) (unifint $4 $3 $2))) (remove 2 (interval 0 10 1)))) (__tuple__ 3 30))))"
     # "(lam (lam (+ 3 (* (+ $0 $1) 2))))",
     # "(lam (map (lam (+ 3 (* 4 (+ 3 $0)))) $0))",
     # "(lam (* 2 (+ 3 (* $0 (+ 2 1)))))",
     # "(lam (lam (lam (dict (__list__ (__tuple__ input $1) (__tuple__ output $0))))))"
-    "(lam ((lam (+ $0 $1)) (6)))",
-    "(lam ((lam (dict (__list__ (__tuple__ input $1) (__tuple__ output $0)))) (x18 6)))",
-    # Non-functional version: "(lam (lam (dict (__list__ (__tuple__ input $1) (__tuple__ output $0))) (x18 6)))"
+    # "(lam ((lam (+ $0 $1)) (6)))",
+    # Corrected version:        "(lam (dict (__list__ (__tuple__ input $1) (__tuple__ output $0))) (x18 6))"
+    # Non-functional version:   "((lam (dict (__list__ (__tuple__ input $1) (__tuple__ output $0)))) (x18 6))"
+    # Expressions with the structure: (lam (...) (input)) requires an additional wrap around lam (...) so the result becomes: ((lam (...)) (input)) 
 ]
-                                                                       
+
+
+
 # (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (ifElse (fand (eq $1 $0) (eq $0 1)) (getItem (__listComp__ (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (dict (__list__ (__tuple__ input $1) (__tuple__ output $0))) (x18 $0)) (x18 $0)) (choice (__tuple__ identity rot90 rot180 rot270))) (fill $36 2 (product $5 $6))) (fill (canvas $2 (__tuple__ $11 $10)) $1 $3)) (choice (remove $1 $11))) (choice $10)) (combine (apply (lbind astuple 0) $2) (apply (rbind astuple (sub $7 1)) $1))) (sample (interval 1 $7 1) $2)) (sample (interval 0 (sub $5 1) 1) $2)) (__tuple__ $1 $0) (__list__ (sample (__list__ 1 2) 2))) 0) (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (dict (__list__ (__tuple__ input $1) (__tuple__ output $0))) (x28 $0)) (x28 $0)) (choice (__tuple__ identity rot90 rot180 rot270))) (fill $46 2 (product $5 $6))) (fill (canvas $2 (__tuple__ $11 $10)) $1 $3)) (choice (remove $1 $11))) (choice $10)) (combine (apply (lbind astuple 0) $2) (apply (rbind astuple (sub $7 1)) $1))) (sample (interval 1 $7 1) $2)) (sample (interval 0 (sub $5 1) 1) $2))) (unifint $9 $8 $3)) (unifint $8 $7 $1)) (__tuple__ 1 (add (floordiv $2 2) 1))) (__tuple__ 1 (add (floordiv $2 2) 1))) (unifint $5 $4 $3)) (unifint $4 $3 $2)) (remove 2 (interval 0 10 1))) (__tuple__ 3 30))))
 
 # (lam (lam (lam (dict (__list__ (__tuple__ input $1) (__tuple__ output $0))) (x18 $2))))

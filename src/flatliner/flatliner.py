@@ -252,20 +252,55 @@ class Flatliner:
                               for op, val in zip(node.ops, node.comparators))
         return f'({self.apply_handler(node.left)}{comparisons})'
 
+    # def handle_methoddef(self, node, cont) -> str:
+    #     all_args = [arg.arg for arg in node.args.args]
+    #     defaults = [f'={self.apply_handler(val)}' for val in node.args.defaults]
+    #     padding = [''] * (len(all_args) - len(defaults))
+    #     args = ', '.join(arg + val for arg, val in zip(all_args, padding + defaults))
+    #     for n in ast.walk(node):
+    #         if cont and isinstance(n, ast.Call) and self.apply_handler(n.func) == cont.split('.')[0]:
+    #             n.func.id = 'self.__class__'
+    #     if cont.endswith('__init__'):
+    #         return f'lambda{" " if args else ""}{args}: [{self.apply_handler(node.body)}, None][-1]'
+    #     if any(isinstance(n, ast.Call) and self.apply_handler(n.func) == node.name for n in ast.walk(node)):
+    #         self.needs_y = True
+    #         return f'_Y(lambda {node.name}: (lambda {args}: {self.apply_handler(node.body)}))'
+    #     return f'lambda{" " if args else ""}{args}: {self.apply_handler(node.body)}'
+    
     def handle_methoddef(self, node, cont) -> str:
+        # Extract all argument names
         all_args = [arg.arg for arg in node.args.args]
+        
+        # Handle defaults
         defaults = [f'={self.apply_handler(val)}' for val in node.args.defaults]
         padding = [''] * (len(all_args) - len(defaults))
-        args = ', '.join(arg + val for arg, val in zip(all_args, padding + defaults))
+        
+        # Create argument string - ensure no tuples in parameter position
+        args_str = ", ".join(all_args)  # Join as individual parameters
+        
+        # Add default values correctly 
+        if defaults:
+            args_with_defaults = []
+            for i, arg in enumerate(all_args):
+                if i >= len(all_args) - len(defaults):
+                    default_idx = i - (len(all_args) - len(defaults))
+                    args_with_defaults.append(f"{arg}{defaults[default_idx]}")
+                else:
+                    args_with_defaults.append(arg)
+            args_str = ", ".join(args_with_defaults)
+        
+        # Handle recursive function calls
         for n in ast.walk(node):
             if cont and isinstance(n, ast.Call) and self.apply_handler(n.func) == cont.split('.')[0]:
                 n.func.id = 'self.__class__'
+                
+        # Create appropriate lambda
         if cont.endswith('__init__'):
-            return f'lambda{" " if args else ""}{args}: [{self.apply_handler(node.body)}, None][-1]'
+            return f'lambda{" " if args_str else ""}{args_str}: [{self.apply_handler(node.body)}, None][-1]'
         if any(isinstance(n, ast.Call) and self.apply_handler(n.func) == node.name for n in ast.walk(node)):
             self.needs_y = True
-            return f'_Y(lambda {node.name}: (lambda {args}: {self.apply_handler(node.body)}))'
-        return f'lambda{" " if args else ""}{args}: {self.apply_handler(node.body)}'
+            return f'_Y(lambda {node.name}: (lambda {args_str}: {self.apply_handler(node.body)}))'
+        return f'lambda{" " if args_str else ""}{args_str}: {self.apply_handler(node.body)}'
 
     def handle_functiondef(self, node, cont) -> str:
         curr = self.handle_methoddef(node, '')

@@ -1,0 +1,21 @@
+def generate_f5b8619d(diff_lb: float, diff_ub: float) -> dict:
+    cols = remove(8, interval(0, 10, 1))
+    h = unifint(diff_lb, diff_ub, (2, 15))
+    w = unifint(diff_lb, diff_ub, (2, 15))
+    ncells = unifint(diff_lb, diff_ub, (1, (h * w) // 2 - 1))
+    bgc = choice(cols)
+    remcols = remove(bgc, cols)
+    gi = canvas(bgc, (h, w))
+    inds = asindices(gi)
+    locs = sample(totuple(inds), ncells)
+    blockcol = randint(0, w - 1)
+    locs = sfilter(locs, lambda ij: ij[1] != blockcol)
+    numcols = unifint(diff_lb, diff_ub, (1, 8))
+    ccols = sample(remcols, numcols)
+    obj = frozenset({(choice(ccols), ij) for ij in locs})
+    gi = paint(gi, obj)
+    go = fill(gi, 8, mapply(vfrontier, set(locs)) & (inds - set(locs)))
+    go = hconcat(go, go)
+    go = vconcat(go, go)
+    return {'input': gi, 'output': go}
+

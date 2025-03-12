@@ -1,0 +1,21 @@
+def generate_623ea044(diff_lb: float, diff_ub: float) -> dict:
+    dim_bounds = (3, 30)
+    colopts = interval(0, 10, 1)
+    h = unifint(diff_lb, diff_ub, dim_bounds)
+    w = unifint(diff_lb, diff_ub, dim_bounds)
+    bgc = choice(colopts)
+    g = canvas(bgc, (h, w))
+    fullinds = asindices(g)
+    inds = totuple(asindices(g))
+    card_bounds = (0, max(int(h * w * 0.1), 1))
+    numdots = unifint(diff_lb, diff_ub, card_bounds)
+    dots = sample(inds, numdots)
+    gi = canvas(bgc, (h, w))
+    fgc = choice(remove(bgc, colopts))
+    gi = fill(gi, fgc, dots)
+    go = fill(gi, fgc, mapply(rbind(shoot, UP_RIGHT), dots))
+    go = fill(go, fgc, mapply(rbind(shoot, DOWN_LEFT), dots))
+    go = fill(go, fgc, mapply(rbind(shoot, UNITY), dots))
+    go = fill(go, fgc, mapply(rbind(shoot, NEG_UNITY), dots))
+    return {'input': gi, 'output': go}
+

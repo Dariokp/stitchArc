@@ -1,0 +1,37 @@
+def generate_469497ad(diff_lb: float, diff_ub: float) -> dict:
+    cols = remove(2, interval(0, 10, 1))
+    h = unifint(diff_lb, diff_ub, (3, 6))
+    w = unifint(diff_lb, diff_ub, (3, 6))
+    bgc, sqc = sample(cols, 2)
+    gi = canvas(bgc, (h, w))
+    sqh = randint(1, h - 2)
+    sqw = randint(1, w - 2)
+    sqloci = randint(0, h - sqh - 2)
+    sqlocj = randint(0, w - sqw - 2)
+    sq = backdrop(frozenset({(sqloci, sqlocj), (sqloci + sqh - 1, sqlocj + sqw - 1)}))
+    gi = fill(gi, sqc, sq)
+    numcub = min(min(min(h, w)+1, 30//(max(h, w))), 7)
+    numc = unifint(diff_lb, diff_ub, (2, numcub))
+    numaccc = numc - 1
+    remcols = remove(bgc, remove(sqc, cols))
+    ccols = sample(remcols, numaccc)
+    gi = rot180(gi)
+    locs = sample(interval(1, min(h, w), 1), numaccc - 1)
+    locs = [0] + sorted(locs)
+    for c, l in zip(ccols, locs):
+        gi = fill(gi, c, shoot((0, l), (0, 1)))
+        gi = fill(gi, c, shoot((l, 0), (1, 0)))
+    gi = rot180(gi)
+    go = upscale(gi, numc)
+    rect = ofcolor(go, sqc)
+    l1 = shoot(lrcorner(rect), (1, 1))
+    l2 = shoot(ulcorner(rect), (-1, -1))
+    l3 = shoot(urcorner(rect), (-1, 1))
+    l4 = shoot(llcorner(rect), (1, -1))
+    ll = l1 | l2 | l3 | l4
+    go = fill(go, 2, ll & ofcolor(go, bgc))
+    rotf = choice((identity, rot90, rot180, rot270))
+    gi = rotf(gi)
+    go = rotf(go)
+    return {'input': gi, 'output': go}
+

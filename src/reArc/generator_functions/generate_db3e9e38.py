@@ -1,0 +1,28 @@
+def generate_db3e9e38(diff_lb: float, diff_ub: float) -> dict:
+    cols = remove(8, interval(0, 10, 1))
+    h = unifint(diff_lb, diff_ub, (3, 30))
+    w = unifint(diff_lb, diff_ub, (3, 30))
+    bgc = choice(cols)
+    remcols = remove(bgc, cols)
+    fgc = choice(remcols)
+    barth = unifint(diff_lb, diff_ub, (1, max(1, w // 5)))
+    loci = unifint(diff_lb, diff_ub, (1, h - 2))
+    locj = randint(1, w - barth - 1)
+    bar = backdrop(frozenset({(loci, locj), (0, locj + barth - 1)}))
+    gi = canvas(bgc, (h, w))
+    gi = fill(gi, fgc, bar)
+    go = canvas(bgc, (h, w))
+    for k in range(16):
+        rsh = multiply(2 * k, (-1, barth))
+        go = fill(go, fgc, shift(bar, rsh))
+        lsh = multiply(2 * k, (-1, -barth))
+        go = fill(go, fgc, shift(bar, lsh))
+        rsh = multiply(2 * k + 1, (-1, barth))
+        go = fill(go, 8, shift(bar, rsh))
+        lsh = multiply(2 * k + 1, (-1, -barth))
+        go = fill(go, 8, shift(bar, lsh))
+    rotf = choice((identity, rot90, rot180, rot270))
+    gi = rotf(gi)
+    go = rotf(go)
+    return {'input': gi, 'output': go}
+

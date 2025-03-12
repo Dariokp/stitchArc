@@ -1,0 +1,45 @@
+def generate_846bdb03(diff_lb: float, diff_ub: float) -> dict:
+    cols = interval(0, 10, 1)
+    h = unifint(diff_lb, diff_ub, (12, 30))
+    w = unifint(diff_lb, diff_ub, (12, 30))
+    oh = unifint(diff_lb, diff_ub, (4, h//2-2))
+    ow = unifint(diff_lb, diff_ub, (4, w//2-2))
+    bgc, dotc, c1, c2 = sample(cols, 4)
+    gi = canvas(bgc, (h, w))
+    go = canvas(bgc, (oh, ow))
+    ln1 = connect((1, 0), (oh - 2, 0))
+    ln2 = connect((1, ow - 1), (oh - 2, ow - 1))
+    go = fill(go, c1, ln1)
+    go = fill(go, c2, ln2)
+    go = fill(go, dotc, corners(asindices(go)))
+    objB = asobject(go)
+    bounds = asindices(canvas(-1, (oh - 2, ow - 2)))
+    objA = {choice(totuple(bounds))}
+    ncells = unifint(diff_lb, diff_ub, (1, ((oh - 2) * (ow - 2)) // 2))
+    for k in range(ncells - 1):
+        objA.add(choice(totuple((bounds - objA) & mapply(neighbors, objA))))
+    while shape(objA) != (oh - 2, ow - 2):
+        objA.add(choice(totuple((bounds - objA) & mapply(neighbors, objA))))
+    fullinds = asindices(gi)
+    loci = randint(0, h - 2 * oh + 2)
+    locj = randint(0, w - ow)
+    plcdB = shift(objB, (loci, locj))
+    plcdi = toindices(plcdB)
+    rems = sfilter(fullinds - plcdi, lambda ij: loci + oh <= ij[0] <= h - oh + 2 and ij[1] <= w - ow + 2)
+    loc = choice(totuple(rems))
+    plcdA = shift(objA, loc)
+    mp = center(plcdA)[1]
+    plcdAL = sfilter(plcdA, lambda ij: ij[1] < mp)
+    plcdAR = plcdA - plcdAL
+    plcdA = recolor(c1, plcdAL) | recolor(c2, plcdAR)
+    gi = paint(gi, plcdB)
+    ism = choice((True, False))
+    gi = paint(gi, vmirror(plcdA) if ism else plcdA)
+    objA = shift(normalize(plcdA), (1, 1))
+    objs = objects(go, T, F, T)
+    go = paint(go, objA)
+    rotf = choice((identity, rot90, rot180, rot270))
+    gi = rotf(gi)
+    go = rotf(go)
+    return {'input': gi, 'output': go}
+

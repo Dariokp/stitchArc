@@ -1,0 +1,27 @@
+def generate_aba27056(diff_lb: float, diff_ub: float) -> dict:
+    cols = remove(4, interval(0, 10, 1))
+    h = unifint(diff_lb, diff_ub, (6, 30))
+    w = unifint(diff_lb, diff_ub, (6, 30))
+    bgc, sqc = sample(cols, 2)
+    canv = canvas(bgc, (h, w))
+    oh = randint(3, h)
+    ow = unifint(diff_lb, diff_ub, (5, w - 1))
+    loci = unifint(diff_lb, diff_ub, (0, h - oh))
+    locj = randint(0, w - ow)
+    bx = box(frozenset({(loci, locj), (loci + oh - 1, locj + ow - 1)}))
+    maxk = (ow - 4) // 2
+    k = randint(0, maxk)
+    hole = connect((loci, locj + 2 + k), (loci, locj + ow - 3 - k))
+    gi = fill(canv, sqc, bx)
+    gi = fill(gi, bgc, hole)
+    go = fill(canv, 4, backdrop(bx))
+    go = fill(go, sqc, bx)
+    bar = mapply(rbind(shoot, (-1, 0)), hole)
+    go = fill(go, 4, bar)
+    go = fill(go, 4, shoot(add((-1, 1), urcorner(hole)), (-1, 1)))
+    go = fill(go, 4, shoot(add((-1, -1), ulcorner(hole)), (-1, -1)))
+    rotf = choice((identity, rot90, rot180, rot270))
+    gi = rotf(gi)
+    go = rotf(go)
+    return {'input': gi, 'output': go}
+

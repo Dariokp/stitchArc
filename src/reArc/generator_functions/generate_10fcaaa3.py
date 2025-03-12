@@ -1,0 +1,22 @@
+def generate_10fcaaa3(diff_lb: float, diff_ub: float) -> dict:
+    cols = remove(8, interval(0, 10, 1))
+    h = unifint(diff_lb, diff_ub, (2, 15))
+    w = unifint(diff_lb, diff_ub, (2, 15))
+    ncells = unifint(diff_lb, diff_ub, (1, max(1, (h * w) // 6)))
+    ncols = unifint(diff_lb, diff_ub, (1, 8))
+    bgc = choice(cols)
+    remcols = remove(bgc, cols)
+    ccols = sample(remcols, ncols)
+    c = canvas(bgc, (h, w))
+    inds = asindices(c)
+    locs = frozenset(sample(totuple(inds), ncells))
+    obj = frozenset({(choice(ccols), ij) for ij in locs})
+    gi = paint(c, obj)
+    go = hconcat(gi, gi)
+    go = vconcat(go, go)
+    fullocs = locs | shift(locs, (0, w)) | shift(locs, (h, 0)) | shift(locs, (h, w))
+    nbhs = mapply(ineighbors, fullocs)
+    topaint = nbhs & ofcolor(go, bgc)
+    go = fill(go, 8, topaint)
+    return {'input': gi, 'output': go}
+

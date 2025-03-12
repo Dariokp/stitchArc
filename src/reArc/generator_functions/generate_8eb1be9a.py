@@ -1,0 +1,26 @@
+def generate_8eb1be9a(diff_lb: float, diff_ub: float) -> dict:
+    cols = interval(0, 10, 1)
+    h = unifint(diff_lb, diff_ub, (8, 30))
+    w = unifint(diff_lb, diff_ub, (4, 30))
+    oh = unifint(diff_lb, diff_ub, (2, h // 3))
+    ow = unifint(diff_lb, diff_ub, (2, w))
+    bounds = asindices(canvas(-1, (oh, ow)))
+    ncells = unifint(diff_lb, diff_ub, (2, (oh * ow) // 3 * 2))
+    obj = normalize(frozenset(sample(totuple(bounds), ncells)))
+    oh, ow = shape(obj)
+    bgc = choice(cols)
+    remcols = remove(bgc, cols)
+    ncols = unifint(diff_lb, diff_ub, (1, 9))
+    ccols = sample(remcols, ncols)
+    obj = frozenset({(choice(ccols), ij) for ij in obj})
+    loci = randint(0, h - oh)
+    locj = randint(0, w - ow)
+    obj = shift(obj, (loci, locj))
+    c = canvas(bgc, (h, w))
+    gi = paint(c, obj)
+    go = paint(c, obj)
+    for k in range(h // oh + 1):
+        go = paint(go, shift(obj, (-oh*k, 0)))
+        go = paint(go, shift(obj, (oh*k, 0)))
+    return {'input': gi, 'output': go}
+

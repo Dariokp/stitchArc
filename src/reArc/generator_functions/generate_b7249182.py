@@ -1,0 +1,27 @@
+def generate_b7249182(diff_lb: float, diff_ub: float) -> dict:
+    cols = interval(0, 10, 1)
+    h = unifint(diff_lb, diff_ub, (7, 30))
+    w = unifint(diff_lb, diff_ub, (5, 30))
+    ih = unifint(diff_lb, diff_ub, (3, (h-1)//2))
+    bgc, ca, cb = sample(cols, 3)
+    subg = canvas(bgc, (ih, 5))
+    gi = canvas(bgc, (h, w))
+    go = canvas(bgc, (h, w))
+    subg = fill(subg, ca, connect((0, 2), (ih-2, 2)))
+    subg = fill(subg, ca, connect((ih-2, 0), (ih-2, 4)))
+    subg = fill(subg, ca, {(ih-1, 0)})
+    subga = fill(subg, ca, {(ih-1, 4)})
+    subgb = replace(subga, ca, cb)
+    subg = vconcat(subga, hmirror(subgb))
+    loci = randint(0, h-2*ih)
+    locj = randint(0, w-5)
+    obj = asobject(subg)
+    obj = shift(obj, (loci, locj))
+    gi = fill(gi, ca, {(loci, locj+2)})
+    gi = fill(gi, cb, {(loci+2*ih-1, locj+2)})
+    go = paint(go, obj)
+    if choice((True, False)):
+        gi = dmirror(gi)
+        go = dmirror(go)
+    return {'input': gi, 'output': go}
+

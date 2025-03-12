@@ -1,0 +1,27 @@
+def generate_d4a91cb9(diff_lb: float, diff_ub: float) -> dict:
+    cols = difference(interval(0, 10, 1), (2, 4, 8))    
+    h = unifint(diff_lb, diff_ub, (4, 30))
+    w = unifint(diff_lb, diff_ub, (4, 30))
+    gloci = unifint(diff_lb, diff_ub, (1, h - 1))
+    glocj = unifint(diff_lb, diff_ub, (1, w - 1))
+    gloc = (gloci, glocj)
+    bgc = choice(cols)
+    g = canvas(bgc, (h, w))
+    g = fill(g, 8, {gloc})
+    g = rot180(g)
+    glocinv = center(ofcolor(g, 8))
+    glocinvi, glocinvj = glocinv
+    rloci = unifint(diff_lb, diff_ub, (glocinvi+1, h - 1))
+    rlocj = unifint(diff_lb, diff_ub, (glocinvj+1, w - 1))
+    rlocinv = (rloci, rlocj)
+    g = fill(g, 2, {rlocinv})
+    rotf = choice((identity, rot90, rot180, rot270))
+    gi = rotf(g)
+    a, b = center(ofcolor(gi, 2))
+    c, d = center(ofcolor(gi, 8))
+    go = fill(gi, 4, connect((a, b), (a, d)))
+    go = fill(go, 4, connect((a, d), (c, d)))
+    go = fill(go, 2, {(a, b)})
+    go = fill(go, 8, {(c, d)})
+    return {'input': gi, 'output': go}
+

@@ -1,0 +1,30 @@
+def generate_3f7978a0(diff_lb: float, diff_ub: float) -> dict:
+    cols = interval(0, 10, 1)
+    h = unifint(diff_lb, diff_ub, (5, 30))
+    w = unifint(diff_lb, diff_ub, (5, 30))
+    bgc, noisec, linec = sample(cols, 3)
+    c = canvas(bgc, (h, w))
+    oh = unifint(diff_lb, diff_ub, (4, max(4, int((2/3) * h))))
+    oh = min(oh, h)
+    ow = unifint(diff_lb, diff_ub, (4, max(4, int((2/3) * w))))
+    ow = min(ow, w)
+    loci = randint(0, h - oh)
+    locj = randint(0, w - ow)
+    nnoise = unifint(diff_lb, diff_ub, (0, (h * w) // 4))
+    inds = totuple(asindices(c))
+    noise = sample(inds, nnoise)
+    gi = fill(c, noisec, noise)
+    ulc = (loci, locj)
+    lrc = (loci + oh - 1, locj + ow - 1)
+    llc = (loci + oh - 1, locj)
+    urc = (loci, locj + ow - 1)
+    gi = fill(gi, linec, connect(ulc, llc))
+    gi = fill(gi, linec, connect(urc, lrc))
+    crns = {ulc, lrc, llc, urc}
+    gi = fill(gi, noisec, crns)
+    go = subgrid(crns, gi)
+    if choice((True, False)):
+        gi = dmirror(gi)
+        go = dmirror(go)
+    return {'input': gi, 'output': go}
+

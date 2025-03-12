@@ -1,0 +1,21 @@
+def generate_e48d4e1a(diff_lb: float, diff_ub: float) -> dict:
+    cols = interval(0, 10, 1)
+    h = unifint(diff_lb, diff_ub, (3, 30))
+    w = unifint(diff_lb, diff_ub, (3, 30))
+    loci = randint(1, h - 2)
+    locj = randint(1, w - 2)
+    inds = asindices(canvas(-1, (loci, locj)))
+    maxn = min(min(h - loci - 1, w - locj - 1), len(inds))
+    nn = unifint(diff_lb, diff_ub, (1, maxn))
+    ss = sample(totuple(inds), nn)
+    bgc, fgc, dotc = sample(cols, 3)
+    gi = canvas(bgc, (h, w))
+    go = canvas(bgc, (h, w))
+    gi = fill(gi, fgc, hfrontier((loci, 0)) | vfrontier((0, locj)))
+    gi = fill(gi, dotc, ss)
+    go = fill(go, fgc, hfrontier((loci + nn, 0)) | vfrontier((0, locj + nn)))
+    rotf = choice((identity, rot90, rot180, rot270))
+    gi = rotf(gi)
+    go = rotf(go)
+    return {'input': gi, 'output': go}
+
