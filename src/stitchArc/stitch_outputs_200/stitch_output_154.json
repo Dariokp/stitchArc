@@ -1,0 +1,83 @@
+{
+    "cmd": "/home/dlindberg/.conda/envs/arcProjectEnv/bin/python run_stitch.py",
+    "args": {
+        "iterations": 1,
+        "abstraction_prefix": "fn_",
+        "previous_abstractions": 153,
+        "shuffle": false,
+        "truncate": null,
+        "no_opt": false,
+        "silent": true,
+        "verbose_rewrite": false,
+        "step": {
+            "max_arity": 4,
+            "threads": 18,
+            "no_stats": false,
+            "batch": 1,
+            "dynamic_batch": false,
+            "eta_long": false,
+            "no_curried_metavars": false,
+            "no_curried_bodies": false,
+            "inv_candidates": 1,
+            "hole_choice": "DepthFirst",
+            "cost": {
+                "cost_lam": 1,
+                "cost_app": 1,
+                "cost_var": 100,
+                "cost_ivar": 100,
+                "cost_prim_default": 100
+            },
+            "no_mismatch_check": false,
+            "follow": null,
+            "follow_prune": false,
+            "verbose_worklist": false,
+            "verbose_best": false,
+            "print_stats": 0,
+            "show_rewritten": false,
+            "rewritten_dreamcoder": false,
+            "rewritten_intermediates": false,
+            "inv_arg_cap": false,
+            "allow_single_task": false,
+            "no_opt_single_use": false,
+            "no_opt_upper_bound": false,
+            "no_opt_force_multiuse": false,
+            "no_opt_useless_abstract": false,
+            "no_opt_arity_zero": false,
+            "no_other_util": false,
+            "structure_penalty": 1.0,
+            "rewrite_check": false,
+            "utility_by_rewrite": false,
+            "dreamcoder_comparison": false,
+            "quiet": true,
+            "fused_lambda_tags": {
+                "tags": null
+            }
+        }
+    },
+    "original_cost": 4294051,
+    "final_cost": 4290819,
+    "compression_ratio": 1.0007532361537506,
+    "num_abstractions": 1,
+    "original": "(lam (lam ((lam ((lam ((lam ((lam ((lam (fn_26 $4 c2 c1 ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (fn_18 $65 $66 $0)) (fn_66 $5 $1 8 $65))) (backdrop (fn_80 (fn_6 (min $15 $13)) (fn_6 $21) (__tuple__ (fn_12 $18) (fn_12 (max $16 $14))))))) (paint $63 $2))) (fn_60 $25 $24))) (shift $0 $1))) (__tuple__ $2 $1))) (fn_37 $19 $21))) (fn_37 $19 $21))) (asobject $1))) (fill $0 c2 $3))) (fill $45 c1 $3))) (fn_60 $15 $14))) (backdrop (fn_80 $2 (fn_6 $14) (__tuple__ $10 $3))))) (backdrop (fn_80 $3 $6 (fn_50 $4))))) (randint (fn_12 $4) (fn_6 $11)))) (fn_151 $3 randint))) (randint (fn_12 $2) (fn_6 $9)))) (fn_151 $1 randint))) (fn_61 (fn_48 $7)))) (getItem $2 $1))) (fn_57 (fn_6 (len $1)) $10 $11))) (getItemWithStep (getItemUpTo $0 (fn_6 $2)) 0 -1 -1))) (getItem $21 $1))) (fn_56 (fn_6 $3) $7 $8))) (fn_63 $2)))) (fn_109 $2 $5 $6))) (fn_109 $2 $4 $5))) (fn_107 $3 $4))) (fn_107 $2 $3))) (fn_81 8))))",
+    "rewritten": "(lam (lam ((lam ((lam ((lam ((lam ((lam (fn_26 $4 c2 c1 ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (fn_18 $65 $66 $0)) (fn_66 $5 $1 8 $65))) (backdrop (fn_80 (fn_6 (min $15 $13)) (fn_6 $21) (__tuple__ (fn_12 $18) (fn_12 (max $16 $14))))))) (paint $63 $2))) (fn_60 $25 $24))) (shift $0 $1))) (__tuple__ $2 $1))) (fn_37 $19 $21))) (fn_37 $19 $21))) (asobject $1))) (fill $0 c2 $3))) (fill $45 c1 $3))) (fn_60 $15 $14))) (backdrop (fn_80 $2 (fn_6 $14) (__tuple__ $10 $3))))) (backdrop (fn_80 $3 $6 (fn_50 $4))))) (randint (fn_12 $4) (fn_6 $11)))) (fn_151 $3 randint))) (randint (fn_12 $2) (fn_6 $9)))) (fn_151 $1 randint))) (fn_61 (fn_48 $7)))) (getItem $2 $1))) (fn_57 (fn_6 (len $1)) $10 $11))) (getItemWithStep (getItemUpTo $0 (fn_6 $2)) 0 -1 -1))) (getItem $21 $1))) (fn_56 (fn_6 $3) $7 $8))) (fn_63 $2)))) (fn_109 $2 $5 $6))) (fn_109 $2 $4 $5))) (fn_107 $3 $4))) (fn_107 $2 $3))) (fn_81 8))))",
+    "rewritten_dreamcoder": null,
+    "abstractions": [
+        {
+            "body": "(fn_89 (__listComp__ #2 #1 (__list__ #0)))",
+            "dreamcoder": "#(lambda (lambda (lambda (fn_89 (__listComp__ $0 $1 (__list__ $2))))))",
+            "arity": 3,
+            "name": "fn_153",
+            "utility": 2927,
+            "final_cost": 4290819,
+            "compression_ratio": 1.0007532361537506,
+            "cumulative_compression_ratio": 1.0007532361537506,
+            "num_uses": 16,
+            "rewritten": null,
+            "rewritten_dreamcoder": null,
+            "uses": {
+                "fn_153 (sample $2 7) (__tuple__ c1 c2 c3 c4 barc bgc inc) ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (fn_95 (fn_55 1 0 $10) (fill $49 barc) (fn_55 (fn_48 $11) 0 $10) (lam (fn_95 (fn_90 $12 1) (fill $50 barc) (fn_90 $12 (fn_48 $11)) (lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (fn_42 $4 (fn_66 (__tuple__ $29 $28) $16 c4 $0))) (fn_66 (fn_121 $28) $16 c3 $67))) (fn_66 (fn_50 $26) $16 c2 $66))) (fn_66 fn_124 $16 c1 $65))) (fn_32 $25 fn_108 $24 fn_13 bgc))) (fn_66 (fn_32 $23 (add 2) $24 __tuple__) $11 inc $0))) (fn_66 (__tuple__ (add 2 $23) 2) $11 inc $57))) (fn_66 (__tuple__ 2 (add 2 $21)) $11 inc $56))) (fn_66 (__tuple__ 2 2) $11 inc $55))) (fn_103 (fn_6 $15) (fn_6 $16) c4 $54))) (fn_151 $15 fn_103 c3 $53))) (fn_41 (fn_50 (fn_6 $13)) c2 $52))) (fn_41 fn_124 c1 $51))))))) (fn_60 (add (fn_108 $14) 4) (add (fn_108 $13) 4)))) (sample $10 $4))) (sample $9 $4))) (sample $8 $4))) (sample $7 $4))) (fn_19 (mul $9 $8) $11 $12))) (fn_19 (mul $8 $7) $10 $11))) (fn_19 (mul $7 $6) $9 $10))) (fn_19 (mul $6 $5) $8 $9))) (add (fn_108 $4) 4))) (add (fn_108 $4) 4))) (fn_71 $1))) (fn_60 $2 $1))": "(fn_89 (__listComp__ ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (fn_95 (fn_55 1 0 $10) (fill $49 barc) (fn_55 (fn_48 $11) 0 $10) (lam (fn_95 (fn_90 $12 1) (fill $50 barc) (fn_90 $12 (fn_48 $11)) (lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (fn_42 $4 (fn_66 (__tuple__ $29 $28) $16 c4 $0))) (fn_66 (fn_121 $28) $16 c3 $67))) (fn_66 (fn_50 $26) $16 c2 $66))) (fn_66 fn_124 $16 c1 $65))) (fn_32 $25 fn_108 $24 fn_13 bgc))) (fn_66 (fn_32 $23 (add 2) $24 __tuple__) $11 inc $0))) (fn_66 (__tuple__ (add 2 $23) 2) $11 inc $57))) (fn_66 (__tuple__ 2 (add 2 $21)) $11 inc $56))) (fn_66 (__tuple__ 2 2) $11 inc $55))) (fn_103 (fn_6 $15) (fn_6 $16) c4 $54))) (fn_151 $15 fn_103 c3 $53))) (fn_41 (fn_50 (fn_6 $13)) c2 $52))) (fn_41 fn_124 c1 $51))))))) (fn_60 (add (fn_108 $14) 4) (add (fn_108 $13) 4)))) (sample $10 $4))) (sample $9 $4))) (sample $8 $4))) (sample $7 $4))) (fn_19 (mul $9 $8) $11 $12))) (fn_19 (mul $8 $7) $10 $11))) (fn_19 (mul $7 $6) $9 $10))) (fn_19 (mul $6 $5) $8 $9))) (add (fn_108 $4) 4))) (add (fn_108 $4) 4))) (fn_71 $1))) (fn_60 $2 $1)) (__tuple__ c1 c2 c3 c4 barc bgc inc) (__list__ (sample $2 7))))"
+            },
+            "dc_comparison_millis": null
+        }
+    ]
+}

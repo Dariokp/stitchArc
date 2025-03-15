@@ -10,8 +10,8 @@
         "silent": true,
         "verbose_rewrite": false,
         "step": {
-            "max_arity": 3,
-            "threads": 6,
+            "max_arity": 2,
+            "threads": 7,
             "no_stats": false,
             "batch": 1,
             "dynamic_batch": false,
@@ -54,296 +54,29 @@
             }
         }
     },
-    "original_cost": 353663,
-    "final_cost": 291043,
-    "compression_ratio": 1.2151572104465662,
+    "original_cost": 119234,
+    "final_cost": 117618,
+    "compression_ratio": 1.0137393936302266,
     "num_abstractions": 1,
-    "original": [
-        "((lam (lam (lam ((lam ((lam ((lam ((lam (getItem (__listComp__ ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (lam (lam (lam (lam (lam (lam (lam ((lam (x24 $8 $7 $6 $5 $4 $3 $2 $1)) (x1 (lam (lam (lam (lam (lam (lam (lam (lam (lam (ifElse (andOp (lt $1 $26) (lt $0 $20)) ((lam ((lam (ifElse (issubset_M $0 (set $5)) ((lam ((lam ((lam ((lam ((lam ((lam ((lam (x25 $7 $6 $5 $3 $2 $8 $1 $0)) (add $0 1))) (add $0 1))) (difference $0 (shift $28 $6)))) (fill $0 1 (dneighbors $3)))) (fill $77 fgc (ineighbors $2)))) (fill $0 fgc (__set__ $1)))) (center $1)) ((lam (x25 $1 $72 $73 $75 $76 $2 $77 $0)) (add $0 1)))) (shift $24 $1))) (choice (totuple $74))) (__dict__ (__tuple__ (__str__ input) $70) (__tuple__ (__str__ output) $72)))))))))))))))))))))) (ifElse (elem (__str__ $51) dir) $51 None) (ifElse (elem (__str__ $52) dir) $52 None) (ifElse (elem (__str__ $53) dir) $53 None) (ifElse (elem (__str__ $55) dir) $55 None) (ifElse (elem (__str__ $56) dir) $56 None) (ifElse (elem (__str__ $50) dir) $50 None) (ifElse (elem (__str__ $57) dir) $57 None) (ifElse (elem (__str__ $59) dir) $59 None))) 0)) 0)) (mul 4 $6))) (backdrop $1))) (box (frozenset (__set__ (__tuple__ 0 0) (__tuple__ 2 2)))))) (asindices $47))) (canvas bgc (__tuple__ $4 $3)))) (canvas bgc (__tuple__ $3 $2))) (__tuple__ bgc fgc) (__list__ (sample $3 2))) 0)) (unifint $5 $4 (__tuple__ 1 (floordiv (mul $2 $1) 9))))) (unifint $4 $3 (__tuple__ 6 30)))) (unifint $3 $2 (__tuple__ 6 30)))) (remove 1 (interval 0 10 1)))))) (lam ((lam (x45 $0)) (lam (x44 (lam (x46 $1 (__star__ $0))))))))",
-        "((lam (lam (lam ((lam ((lam ((lam (getItem (__listComp__ ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (lam ((lam ((lam (lam (lam (lam (lam (lam (lam (lam (lam ((lam (x28 $9 $8 $7 $6 $5 $4 $3 $2 $1)) (x1 (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (ifElse (isNot $8 $22) ((lam ((lam ((lam ((lam ((lam ((lam (ifElse (choice (__tuple__ True False)) (getItem (__listComp__ ((lam ((lam ((lam (x29 $0 $5 $8 $7 $1 $6 $3 $2 $4)) (next $30 $31))) (paint $0 $2))) (paint $0 $4)) (__tuple__ $3 $0) (__list__ (__tuple__ $0 $3))) 0) ((lam ((lam ((lam (x29 $0 $5 $8 $7 $1 $6 $3 $2 $4)) (next $30 $31))) (paint $0 $2))) (paint $0 $4)))) (getItemUpTo $3 $1))) (randint 1 $3))) (paint $0 $1))) (__listComp__ (__tuple__ (choice $32) (__tuple__ $2 jj)) jj (range $1)))) (unifint $38 $37 (__tuple__ 1 (sub $34 1))))) $89) ((lam ((lam (__dict__ (__tuple__ (__str__ input) $1) (__tuple__ (__str__ output) $0))) (vmirror $0))) (hconcat (hconcat (vmirror $88) (canvas barc (__tuple__ $34 1))) $87)))))))))))))))))))))))) (ifElse (elem (__str__ $69) dir) $69 None) (ifElse (elem (__str__ $71) dir) $71 None) (ifElse (elem (__str__ $58) dir) $58 None) (ifElse (elem (__str__ $59) dir) $59 None) (ifElse (elem (__str__ $68) dir) $68 None) (ifElse (elem (__str__ $60) dir) $60 None) (ifElse (elem (__str__ $63) dir) $63 None) (ifElse (elem (__str__ $67) dir) $67 None) (ifElse (elem (__str__ $62) dir) $62 None))) (next $1 $2)))) __list__ (iter $4))) (canvas bgc (__tuple__ $10 $9)))) (canvas bgc (__tuple__ $9 $8)))) (canvas bgc (__tuple__ $8 $7)))) (sample $1 $2))) (interval 0 $6 1))) (unifint $8 $7 (__tuple__ 1 $5)))) (sample $2 $1))) (unifint $6 $5 (__tuple__ 1 8)))) (remove barc (remove bgc $3))) (__tuple__ bgc barc) (__list__ (sample $2 2))) 0)) (unifint $4 $3 (__tuple__ 3 14)))) (unifint $3 $2 (__tuple__ 4 30)))) (interval 0 10 1))))) (lam ((lam (x54 $0)) (lam (x53 (lam (x55 $1 (__star__ $0))))))))",
-        "((lam (lam (lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam ((lam (x35 $17 $16 $15 $14 $13 $12 $11 $10 $9 $8 $7 $6 $5 $4 $3 $2 $1)) (x1 (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (ifElse (andOp (lt $1 $40) (lte $0 $38)) (ifElse (eq (len $11) 0) (__dict__ (__tuple__ (__str__ input) $13) (__tuple__ (__str__ output) $12)) ((lam ((lam ((lam (ifElse (eq (len $0) 0) ((lam (x36 $20 $19 $18 $17 $16 $15 $14 $13 $12 $11 $10 $9 $3 $2 $1 $5 $0)) (add $0 1)) (getItem (__listComp__ ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (lam ((lam ((lam (lam (lam ((lam (x71 $3 $2 $1)) (x1 (lam (lam (lam (lam (ifElse (isNot $2 $10) ((lam (getItem (__list__ (add_M $16 (choice (totuple (bitAnd $2 (mapply neighbors $16))))) ((lam ((lam (x72 $0 $1 $2)) (next $12 $13))) (sub $0 $17))) -1)) $153) (getItem (__listComp__ ((lam ((lam ((lam (ifElse (issubset_M $1 $35) ((lam ((lam ((lam ((lam ((lam ((lam (x36 $7 $25 $6 $5 $3 $1 $160 $39 $38 $20 $22 $8 $29 $28 $27 $2 $0)) (add $0 1))) (sub (sub $0 $6) (outbox $6)))) (add $0 1))) (fill $0 $3 $5))) (fill $163 7 $3))) (fill $0 $1 $3)) ((lam (x36 $2 $20 $1 $160 $162 $164 $155 $34 $33 $15 $17 $3 $24 $23 $22 $163 $0)) (add $0 1)))) (choice $67))) (backdrop $1))) (shift $0 (__tuple__ $31 $30))) (__tuple__ $20 $19) (__list__ (shape $153))) 0))))))))))) (ifElse (elem (__str__ $145) dir) $145 None) (ifElse (elem (__str__ $144) dir) $144 None) (ifElse (elem (__str__ $143) dir) $143 None))) (next $1 $2)))) __list__ (iter (range $1)))) (min (max 2 $0) (sub (mul $9 $8) 1)))) (choice (__tuple__ $1 (sub (mul $8 $7) $1))))) (unifint $59 $58 (__tuple__ 0 (floordiv (mul $7 $6) 2))))) (remove $2 $137))) (__set__ $1))) (choice (totuple $135)))) (asindices (canvas -1 (__tuple__ $3 $2)))) (__tuple__ $12 $11) (__list__ (choice $0))) 0))) (totuple (sfilter $142 (lam (andOp (lt (getItem $0 0) (sub $52 $3)) (lt (getItem $0 1) (sub $51 $2)))))))) (randint 2 7))) (randint 2 7))) (__dict__ (__tuple__ (__str__ input) $135) (__tuple__ (__str__ output) $137)))))))))))))))))))))))))))))))))))))))) (ifElse (elem (__str__ $98) dir) $98 None) (ifElse (elem (__str__ $77) dir) $77 None) (ifElse (elem (__str__ $99) dir) $99 None) (ifElse (elem (__str__ $100) dir) $100 None) (ifElse (elem (__str__ $102) dir) $102 None) (ifElse (elem (__str__ $104) dir) $104 None) (ifElse (elem (__str__ $95) dir) $95 None) (ifElse (elem (__str__ $62) dir) $62 None) (ifElse (elem (__str__ $63) dir) $63 None) (ifElse (elem (__str__ $82) dir) $82 None) (ifElse (elem (__str__ $80) dir) $80 None) (ifElse (elem (__str__ $97) dir) $97 None) (ifElse (elem (__str__ $72) dir) $72 None) (ifElse (elem (__str__ $73) dir) $73 None) (ifElse (elem (__str__ $74) dir) $74 None) (ifElse (elem (__str__ $103) dir) $103 None) (ifElse (elem (__str__ $106) dir) $106 None))) 0)) 0)) (mul 4 $2))) (asindices $96))) (unifint $11 $10 (__tuple__ 1 (floordiv (mul $8 $7) 20))))) (canvas $5 (__tuple__ $7 $6)))) (canvas $4 (__tuple__ $6 $5)))) (sample $2 $1))) (unifint $7 $6 (__tuple__ 1 8)))) (remove $1 $4))) (choice $3))) (unifint $4 $3 (__tuple__ 10 30)))) (unifint $3 $2 (__tuple__ 10 30)))) (remove 7 (interval 0 10 1)))))) (lam ((lam (x91 $0)) (lam (x90 (lam (x92 $1 (__star__ $0))))))))",
-        "((lam (lam (lam ((lam ((lam ((lam ((lam ((lam (getItem (__listComp__ ((lam ((lam ((lam ((lam ((lam (lam ((lam ((lam (lam (lam ((lam (x19 $3 $2 $1)) (x1 (lam (lam (lam (lam (ifElse (isNot $2 $10) ((lam ((lam ((lam (x20 $0 $1 $2)) (next $12 $13))) (fill $0 fgc (connect (__tuple__ 0 $1) (__tuple__ (sub $20 1) $1))))) $50) ((lam (lam ((lam ((lam (lam (lam ((lam (x33 $3 $2 $1)) (x1 (lam (lam (lam (lam (ifElse (isNot $2 $10) ((lam ((lam ((lam (x34 $0 $1 $2)) (next $12 $13))) (fill $0 5 (__set__ (__tuple__ 0 $1))))) $75) ((lam (lam ((lam ((lam (lam (lam ((lam (x47 $3 $2 $1)) (x1 (lam (lam (lam (lam (ifElse (isNot $2 $10) ((lam ((lam ((lam (x48 $0 $1 $2)) (next $12 $13))) (fill $0 5 (__set__ (__tuple__ (sub $42 1) $1))))) $100) (__dict__ (__tuple__ (__str__ input) $34) (__tuple__ (__str__ output) $98)))))))))))) (ifElse (elem (__str__ $92) dir) $92 None) (ifElse (elem (__str__ $91) dir) $91 None) (ifElse (elem (__str__ $90) dir) $90 None))) (next $1 $2)))) __list__ (iter (range (add $27 3) $29 4))))))))))))) (ifElse (elem (__str__ $67) dir) $67 None) (ifElse (elem (__str__ $80) dir) $80 None) (ifElse (elem (__str__ $79) dir) $79 None))) (next $1 $2)))) __list__ (iter (range (add $16 1) $18 4))))))))))))) (ifElse (elem (__str__ $42) dir) $42 None) (ifElse (elem (__str__ $69) dir) $69 None) (ifElse (elem (__str__ $68) dir) $68 None))) (next $1 $2)))) __list__ (iter (range $5 $7 2)))) (canvas bgc (__tuple__ $7 $6)))) (fill $2 fgc (__set__ $1)))) (__tuple__ (sub $5 1) $2))) (canvas bgc (__tuple__ $4 $3))) (__tuple__ bgc fgc) (__list__ (sample $4 2))) 0)) (sub $2 $1))) (unifint $5 $4 (__tuple__ 1 (sub $1 1))))) (unifint $4 $3 (__tuple__ 3 30)))) (unifint $3 $2 (__tuple__ 3 30)))) (remove 5 (interval 0 10 1)))))) (lam ((lam (x56 $0)) (lam (x55 (lam (x57 $1 (__star__ $0))))))))",
-        "(lam (lam ((lam ((lam ((lam (getItem (__listComp__ ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (__dict__ (__tuple__ (__str__ input) $0) (__tuple__ (__str__ output) $22))) (fill $0 d (__set__ $5)))) (fill $67 c (__set__ $5)))) (fill $66 b (__set__ $5)))) (fill $65 a (__set__ $5)))) (fill $22 sqc (backdrop (__set__ (__tuple__ $24 $23) (__tuple__ (add $24 1) (add $23 1))))))) (getItem $8 $4))) (getItem $8 $4))) (getItem $8 $4))) (getItem $8 $4))) (unifint $24 $23 (__tuple__ 0 (sub (len $4) 1))))) (unifint $23 $22 (__tuple__ 0 (sub (len $4) 1))))) (unifint $22 $21 (__tuple__ 0 (sub (len $4) 1))))) (unifint $21 $20 (__tuple__ 0 (sub (len $4) 1))))) (order $0 (lam (manhattan (__set__ $0) (__set__ (__tuple__ (add $16 1) (add $15 1)))))))) (order $0 (lam (manhattan (__set__ $0) (__set__ (__tuple__ (add $15 1) $14))))))) (order $0 (lam (manhattan (__set__ $0) (__set__ (__tuple__ $14 (add $13 1)))))))) (order $0 (lam (manhattan (__set__ $0) (__set__ (__tuple__ $13 $12))))))) (sfilter $4 (lam (andOp (gt (getItem $0 0) (add $12 1)) (gt (getItem $0 1) (add $11 1))))))) (sfilter $3 (lam (andOp (gt (getItem $0 0) (add $11 1)) (lt (getItem $0 1) $10)))))) (sfilter $2 (lam (andOp (lt (getItem $0 0) $10) (gt (getItem $0 1) (add $9 1))))))) (sfilter $1 (lam (andOp (lt (getItem $0 0) $9) (lt (getItem $0 1) $8)))))) (totuple (asindices $5)))) (fill $0 d (__set__ (__tuple__ (add $6 1) (add $5 1)))))) (fill $23 c (__set__ (__tuple__ (add $5 1) $4))))) (fill $22 b (__set__ (__tuple__ $4 (add $3 1)))))) (fill $1 a (__set__ (__tuple__ $3 $2))))) (canvas bgc (__tuple__ $4 $3)))) (randint 1 (sub $2 3)))) (randint 1 (sub $2 3))) (__tuple__ bgc sqc a b c d) (__list__ (sample $2 6))) 0)) (unifint $4 $3 (__tuple__ 4 30)))) (unifint $3 $2 (__tuple__ 4 30)))) (remove 5 (interval 0 10 1)))))",
-        "((lam (lam (lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (getItem (__listComp__ ((lam ((lam ((lam ((lam (lam ((lam ((lam (lam (lam (lam (lam (lam (lam (lam ((lam (x25 $8 $7 $6 $5 $4 $3 $2 $1)) (x1 (lam (lam (lam (lam (lam (lam (lam (lam (lam (ifElse (isNot $7 $20) ((lam ((lam (lam ((lam ((lam (lam (lam (lam (lam (lam (lam (lam ((lam (x47 $8 $7 $6 $5 $4 $3 $2 $1)) (x1 (lam (lam (lam (lam (lam (lam (lam (lam (lam (ifElse (isNot $7 $20) ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (x48 $0 $8 $2 $1 $3 $6 $5 $7)) (next $28 $29))) (fill $0 $5 (__set__ $1)))) (choice (totuple $5)))) (fill $0 $2 $4))) (fill $125 bgc $3))) (add $1 5))) (randint 1 4))) (shift $45 (__tuple__ (mul $23 (add $53 1)) (mul $1 (add $52 1)))))) $122) ((lam (x26 $0 $22 $120 $121 $119 $116 $117 $115)) (next $42 $43)))))))))))))))))))))) (ifElse (elem (__str__ $104) dir) $104 None) (ifElse (elem (__str__ $96) dir) $96 None) (ifElse (elem (__str__ $102) dir) $102 None) (ifElse (elem (__str__ $103) dir) $103 None) (ifElse (elem (__str__ $101) dir) $101 None) (ifElse (elem (__str__ $98) dir) $98 None) (ifElse (elem (__str__ $99) dir) $99 None) (ifElse (elem (__str__ $97) dir) $97 None))) (next $1 $2)))) __list__ (iter (range $28)))) $101) (__dict__ (__tuple__ (__str__ input) $98) (__tuple__ (__str__ output) $96)))))))))))))))))))))) (ifElse (elem (__str__ $83) dir) $83 None) (ifElse (elem (__str__ $52) dir) $52 None) (ifElse (elem (__str__ $80) dir) $80 None) (ifElse (elem (__str__ $81) dir) $81 None) (ifElse (elem (__str__ $79) dir) $79 None) (ifElse (elem (__str__ $76) dir) $76 None) (ifElse (elem (__str__ $77) dir) $77 None) (ifElse (elem (__str__ $75) dir) $75 None))) (next $1 $2)))) __list__ (iter (range $7)))) (asindices (canvas bgc (__tuple__ $8 $7))))) (canvas linc (__tuple__ $3 $2)))) (canvas linc (__tuple__ $2 $1))) (__tuple__ linc bgc) (__list__ (sample $6 2))) 0)) (sub (mul (add $4 1) $2) 1))) (sub (mul (add $4 1) $2) 1))) (unifint $6 $5 (__tuple__ (ifElse (gt $1 1) 1 2) (floordiv 31 (add $2 1)))))) (unifint $5 $4 (__tuple__ 1 (floordiv 31 (add $2 1)))))) (unifint $4 $3 (__tuple__ 2 5)))) (unifint $3 $2 (__tuple__ 2 5)))) (__tuple__ 0 5))))) (lam ((lam (x68 $0)) (lam (x67 (lam (x69 $1 (__star__ $0))))))))",
-        "((lam (lam (lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (lam ((lam ((lam (lam (lam (lam (lam (lam (lam ((lam (x27 $7 $6 $5 $4 $3 $2 $1)) (x1 (lam (lam (lam (lam (lam (lam (lam (lam (ifElse (isNot $6 $18) ((lam ((lam ((lam (getItem (__listComp__ (ifElse (eq $7 (floordiv $31 2)) ((lam ((lam (x28 $0 $10 $9 $3 $2 $1 $4)) (next $22 $23))) (fill $0 $2 (__set__ $3))) ((lam (x28 $0 $9 $8 $2 $1 $78 $3)) (next $21 $22))) (__tuple__ $8 $7) (__list__ $2)) 0)) (fill $0 $1 (__set__ $2)))) (choice $23))) $77) (__dict__ (__tuple__ (__str__ input) $73) (__tuple__ (__str__ output) $74)))))))))))))))))))) (ifElse (elem (__str__ $61) dir) $61 None) (ifElse (elem (__str__ $50) dir) $50 None) (ifElse (elem (__str__ $51) dir) $51 None) (ifElse (elem (__str__ $57) dir) $57 None) (ifElse (elem (__str__ $58) dir) $58 None) (ifElse (elem (__str__ $59) dir) $59 None) (ifElse (elem (__str__ $56) dir) $56 None))) (next $1 $2)))) __list__ (iter $1))) (sample $1 $4))) (totuple (asindices $53)))) (sample $0 $1))) (unifint $11 $10 (__tuple__ 1 9)))) (unifint $10 $9 (__tuple__ 1 (sub (floordiv (mul $7 $5) 2) 1))))) (canvas $3 (__tuple__ $6 $4)))) (canvas $2 (__tuple__ $5 $3)))) (remove $1 $5))) (choice $4))) (add (mul 2 $1) 1))) (unifint $4 $3 (__tuple__ 1 14)))) (unifint $3 $2 (__tuple__ 2 30)))) (interval 0 10 1))))) (lam ((lam (x43 $0)) (lam (x42 (lam (x44 $1 (__star__ $0))))))))",
-        "((lam (lam (lam ((lam ((lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam ((lam (x35 $30 $29 $28 $27 $26 $25 $24 $23 $22 $21 $20 $19 $18 $17 $16 $15 $14 $13 $12 $11 $10 $9 $8 $7 $6 $5 $4 $3 $2 $1)) (x1 (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (ifElse True ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (lam ((lam ((lam (lam (lam ((lam (x83 $3 $2 $1)) (x1 (lam (lam (lam (lam (ifElse (isNot $2 $10) ((lam ((lam (getItem (__list__ (add_M $13 $0) ((lam (x84 $0 $1 $2)) (next $12 $13))) -1)) (choice (totuple (bitAnd (sub $15 $13) (mapply neighbors $13)))))) $178) ((lam ((lam ((lam ((lam ((lam ((lam ((lam (lam ((lam ((lam (lam (lam ((lam (x103 $3 $2 $1)) (x1 (lam (lam (lam (lam (ifElse (isNot $2 $10) ((lam ((lam (getItem (__list__ (add_M $17 $0) ((lam (x104 $0 $1 $2)) (next $12 $13))) -1)) (choice (totuple (bitAnd (sub $32 $17) (mapply neighbors $17)))))) $215) (ifElse (choice (__tuple__ True False)) (getItem (__listComp__ (getItem (__listComp__ ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (lam (lam (lam (lam (lam (lam ((lam (x130 $7 $6 $5 $4 $3 $2 $1)) (x1 (lam (lam (lam (lam (lam (lam (lam (lam (ifElse (andOp (lt $1 2) (lte $0 $20)) (ifElse (eq (len $4) 0) (ifElse (eq $1 2) (__dict__ (__tuple__ (__str__ input) $6) (__tuple__ (__str__ output) $5)) (x36 $25 $24 $23 $92 $58 $27 $89 $6 $5 $65 $241 $4 $3 $20 $42 $39 $41 $60 $59 $61 $63 $62 $2 $56 $44 $43 $57 $1 $0 $64)) ((lam ((lam (ifElse (issubset_M $0 $6) ((lam ((lam ((lam ((lam ((lam (x131 $4 $3 $1 $6 $5 $2 $0)) (add $0 1))) (sub (sub $0 $4) (mapply neighbors $4)))) (add $0 1))) (fill $0 1 $2))) (fill $0 $92 $1)) ((lam (x131 $276 $277 $279 $2 $1 $278 $0)) (add $0 1)))) (shift $45 $1))) (choice (totuple $277)))) (ifElse (eq $275 2) (__dict__ (__tuple__ (__str__ input) $273) (__tuple__ (__str__ output) $274)) (x36 $25 $24 $23 $92 $58 $27 $89 $273 $274 $65 $241 $276 $271 $20 $42 $39 $41 $60 $59 $61 $63 $62 $272 $56 $44 $43 $57 $275 $278 $64)))))))))))))))))))) (ifElse (elem (__str__ $258) dir) $258 None) (ifElse (elem (__str__ $259) dir) $259 None) (ifElse (elem (__str__ $261) dir) $261 None) (ifElse (elem (__str__ $256) dir) $256 None) (ifElse (elem (__str__ $257) dir) $257 None) (ifElse (elem (__str__ $260) dir) $260 None) (ifElse (elem (__str__ $263) dir) $263 None))) (sfilter $260 (lam (andOp (lte (getItem $0 0) (sub $50 (height $28))) (lte (getItem $0 1) (sub $49 (width $28)))))))) (sub (sub $259 $6) (mapply neighbors $6)))) 0)) 0)) 10)) (fill $6 2 $2))) (fill $5 $67 $1))) (shift $21 $1))) (choice (totuple $1)))) (sfilter $251 (lam (andOp (lte (getItem $0 0) (sub $41 (height $20))) (lte (getItem $0 1) (sub $40 (width $20)))))))) (asindices $1))) (canvas $65 (__tuple__ $38 $37))) (__tuple__ $64 $61) (__list__ (sample $100 2))) 0) (__tuple__ $16 $15) (__list__ (__tuple__ $15 $16))) 0) (getItem (__listComp__ ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (lam (lam (lam (lam (lam (lam ((lam (x168 $7 $6 $5 $4 $3 $2 $1)) (x1 (lam (lam (lam (lam (lam (lam (lam (lam (ifElse (andOp (lt $1 2) (lte $0 $20)) (ifElse (eq (len $4) 0) (ifElse (eq $1 2) (__dict__ (__tuple__ (__str__ input) $6) (__tuple__ (__str__ output) $5)) (x36 $25 $24 $23 $92 $58 $27 $89 $6 $5 $65 $280 $4 $3 $20 $42 $39 $41 $60 $59 $61 $63 $62 $2 $56 $44 $43 $57 $1 $0 $64)) ((lam ((lam (ifElse (issubset_M $0 $6) ((lam ((lam ((lam ((lam ((lam (x169 $4 $3 $1 $6 $5 $2 $0)) (add $0 1))) (sub (sub $0 $4) (mapply neighbors $4)))) (add $0 1))) (fill $0 1 $2))) (fill $0 $92 $1)) ((lam (x169 $314 $315 $317 $2 $1 $316 $0)) (add $0 1)))) (shift $45 $1))) (choice (totuple $315)))) (ifElse (eq $313 2) (__dict__ (__tuple__ (__str__ input) $311) (__tuple__ (__str__ output) $312)) (x36 $25 $24 $23 $92 $58 $27 $89 $311 $312 $65 $280 $314 $309 $20 $42 $39 $41 $60 $59 $61 $63 $62 $310 $56 $44 $43 $57 $313 $316 $64)))))))))))))))))))) (ifElse (elem (__str__ $296) dir) $296 None) (ifElse (elem (__str__ $297) dir) $297 None) (ifElse (elem (__str__ $299) dir) $299 None) (ifElse (elem (__str__ $294) dir) $294 None) (ifElse (elem (__str__ $295) dir) $295 None) (ifElse (elem (__str__ $298) dir) $298 None) (ifElse (elem (__str__ $301) dir) $301 None))) (sfilter $298 (lam (andOp (lte (getItem $0 0) (sub $50 (height $28))) (lte (getItem $0 1) (sub $49 (width $28)))))))) (sub (sub $297 $6) (mapply neighbors $6)))) 0)) 0)) 10)) (fill $6 2 $2))) (fill $5 $67 $1))) (shift $21 $1))) (choice (totuple $1)))) (sfilter $289 (lam (andOp (lte (getItem $0 0) (sub $41 (height $20))) (lte (getItem $0 1) (sub $40 (width $20)))))))) (asindices $1))) (canvas $65 (__tuple__ $38 $37))) (__tuple__ $64 $61) (__list__ (sample $100 2))) 0)))))))))))) (ifElse (elem (__str__ $207) dir) $207 None) (ifElse (elem (__str__ $283) dir) $283 None) (ifElse (elem (__str__ $205) dir) $205 None))) (next $1 $2)))) __list__ (iter (range $1)))) (min (max 1 $0) $3))) (sub $2 $1))) (unifint $89 $88 (__tuple__ 1 $1)))) (sub (mul $21 $20) (len $2)))) (set (normalize $13)))) (normalize $12)))))))))))) (ifElse (elem (__str__ $170) dir) $170 None) (ifElse (elem (__str__ $266) dir) $266 None) (ifElse (elem (__str__ $188) dir) $188 None))) (next $1 $2)))) __list__ (iter (range $4)))) (__set__ $1))) (choice (totuple $1)))) (asindices (canvas -1 (__tuple__ $5 $4))))) (min (max 2 $1) (sub (mul $4 $3) 2)))) (choice (__tuple__ $1 (sub (mul $3 $2) $1))))) (unifint $69 $68 (__tuple__ 0 (floordiv (mul $2 $1) 2))))) (unifint $68 $67 (__tuple__ 2 (sub (floordiv $2 3) 1))))) (unifint $67 $66 (__tuple__ 2 (sub (floordiv $2 3) 1))))) (unifint $66 $65 (__tuple__ 10 30)))) (unifint $65 $64 (__tuple__ 10 30))) (__dict__ (__tuple__ (__str__ input) $245) (__tuple__ (__str__ output) $246)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))) (ifElse (elem (__str__ $156) dir) $156 None) (ifElse (elem (__str__ $157) dir) $157 None) (ifElse (elem (__str__ $158) dir) $158 None) (ifElse (elem (__str__ $45) dir) $45 None) (ifElse (elem (__str__ $79) dir) $79 None) (ifElse (elem (__str__ $154) dir) $154 None) (ifElse (elem (__str__ $48) dir) $48 None) (ifElse (elem (__str__ $184) dir) $184 None) (ifElse (elem (__str__ $185) dir) $185 None) (ifElse (elem (__str__ $72) dir) $72 None) (ifElse (elem (__str__ $191) dir) $191 None) (ifElse (elem (__str__ $187) dir) $187 None) (ifElse (elem (__str__ $182) dir) $182 None) (ifElse (elem (__str__ $161) dir) $161 None) (ifElse (elem (__str__ $98) dir) $98 None) (ifElse (elem (__str__ $101) dir) $101 None) (ifElse (elem (__str__ $99) dir) $99 None) (ifElse (elem (__str__ $77) dir) $77 None) (ifElse (elem (__str__ $78) dir) $78 None) (ifElse (elem (__str__ $76) dir) $76 None) (ifElse (elem (__str__ $74) dir) $74 None) (ifElse (elem (__str__ $75) dir) $75 None) (ifElse (elem (__str__ $183) dir) $183 None) (ifElse (elem (__str__ $81) dir) $81 None) (ifElse (elem (__str__ $96) dir) $96 None) (ifElse (elem (__str__ $97) dir) $97 None) (ifElse (elem (__str__ $80) dir) $80 None) (ifElse (elem (__str__ $186) dir) $186 None) (ifElse (elem (__str__ $189) dir) $189 None) (ifElse (elem (__str__ $73) dir) $73 None))) (difference (interval 0 10 1) (__tuple__ 1 2)))))) (lam ((lam (x188 $0)) (lam (x187 (lam (x189 $1 (__star__ $0))))))))",
-        "(lam (lam ((lam ((lam ((lam (getItem (__listComp__ ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (__dict__ (__tuple__ (__str__ input) $1) (__tuple__ (__str__ output) $0))) (x23 $0))) (x23 $0))) (choice (__tuple__ identity rot90 rot180 rot270)))) (fill $47 4 (shoot (add (__tuple__ -1 -1) (ulcorner $8)) (__tuple__ -1 -1))))) (fill $46 4 (shoot (add (__tuple__ -1 1) (urcorner $7)) (__tuple__ -1 1))))) (fill $45 4 $1))) (mapply (rbind shoot (__tuple__ -1 0)) $5))) (fill $43 sqc $7))) (fill $11 4 (backdrop $6)))) (fill $40 bgc $2))) (fill $9 sqc $4))) (connect (__tuple__ $5 (add (add $4 2) $1)) (__tuple__ $5 (sub (sub (add $4 $6) 3) $1))))) (randint 0 $1))) (floordiv (sub $4 4) 2))) (box (frozenset (__set__ (__tuple__ $2 $1) (__tuple__ (sub (add $2 $4) 1) (sub (add $1 $3) 1))))))) (randint 0 (sub $5 $2)))) (unifint $8 $7 (__tuple__ 0 (sub $5 $2))))) (unifint $7 $6 (__tuple__ 5 (sub $3 1))))) (randint 3 $3))) (canvas bgc (__tuple__ $2 $1))) (__tuple__ bgc sqc) (__list__ (sample $2 2))) 0)) (unifint $4 $3 (__tuple__ 6 30)))) (unifint $3 $2 (__tuple__ 6 30)))) (remove 4 (interval 0 10 1)))))",
-        "((lam (lam (lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (lam ((lam ((lam (lam (lam (lam (lam ((lam (x35 $5 $4 $3 $2 $1)) (x1 (lam (lam (lam (lam (lam (lam (ifElse (isNot $4 $14) ((lam (getItem (__listComp__ (ifElse (elem $4 $17) ((lam ((lam (x36 $0 $6 $5 $1 $2)) (next $16 $17))) (fill $0 $28 (connect $1 (__tuple__ $5 $33)))) (ifElse (elem $3 $16) ((lam ((lam (x36 $0 $6 $5 $1 $2)) (next $16 $17))) (fill $0 $28 (connect $1 (__tuple__ $34 $4)))) ((lam (x36 $0 $5 $4 $88 $1)) (next $15 $16)))) (__tuple__ $4 $3) (__list__ $0)) 0)) $89) ((lam (__dict__ (__tuple__ (__str__ input) $19) (__tuple__ (__str__ output) $0))) (fill $0 $29 $26)))))))))))))))) (ifElse (elem (__str__ $77) dir) $77 None) (ifElse (elem (__str__ $68) dir) $68 None) (ifElse (elem (__str__ $69) dir) $69 None) (ifElse (elem (__str__ $78) dir) $78 None) (ifElse (elem (__str__ $72) dir) $72 None))) (next $1 $2)))) __list__ (iter $5))) (interval $16 (add $16 $18) 1))) (interval $16 (add $16 $18) 1))) (tuple (__genExpr__ e e $1)))) (fill $0 $8 $1))) (sample $3 $1))) (unifint $19 $18 (__tuple__ 0 $1)))) (max 1 (floordiv (len $1) 4)))) (totuple (sub (asindices $42) (backdrop (outbox $3)))))) (fill $41 $5 $2))) (canvas $6 (__tuple__ $12 $11)))) (backdrop (frozenset (__set__ (__tuple__ $7 $6) (__tuple__ (sub (add $7 $9) 1) (sub (add $6 $8) 1))))))) (choice $1))) (remove $1 $0))) (choice $27))) (remove $1 $8))) (choice $7))) (randint 0 (sub $4 $2)))) (randint 0 (sub $4 $2)))) (unifint $6 $5 (__tuple__ 2 (floordiv $2 2))))) (unifint $5 $4 (__tuple__ 2 (floordiv $2 2))))) (unifint $4 $3 (__tuple__ 10 30)))) (unifint $3 $2 (__tuple__ 10 30)))) (interval 0 10 1))))) (lam ((lam (x50 $0)) (lam (x49 (lam (x51 $1 (__star__ $0))))))))"
-    ],
-    "rewritten": [
-        "((lam (lam (lam ((lam ((lam ((lam ((lam (getItem (__listComp__ ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (lam (lam (lam (lam (lam (lam (lam ((lam (x24 $8 $7 $6 $5 $4 $3 $2 $1)) (x1 (lam (lam (lam (lam (lam (lam (lam (lam (lam (ifElse (andOp (lt $1 $26) (lt $0 $20)) ((lam ((lam (ifElse (issubset_M $0 (set $5)) ((lam ((lam ((lam ((lam ((lam ((lam ((lam (x25 $7 $6 $5 $3 $2 $8 $1 $0)) (add $0 1))) (add $0 1))) (difference $0 (shift $28 $6)))) (fill $0 1 (dneighbors $3)))) (fill $77 fgc (ineighbors $2)))) (fill $0 fgc (__set__ $1)))) (center $1)) ((lam (x25 $1 $72 $73 $75 $76 $2 $77 $0)) (add $0 1)))) (shift $24 $1))) (choice (totuple $74))) (__dict__ (__tuple__ (__str__ input) $70) (__tuple__ (__str__ output) $72)))))))))))))))))))))) (fn_0 $51) (fn_0 $52) (fn_0 $53) (fn_0 $55) (fn_0 $56) (fn_0 $50) (fn_0 $57) (fn_0 $59))) 0)) 0)) (mul 4 $6))) (backdrop $1))) (box (frozenset (__set__ (__tuple__ 0 0) (__tuple__ 2 2)))))) (asindices $47))) (canvas bgc (__tuple__ $4 $3)))) (canvas bgc (__tuple__ $3 $2))) (__tuple__ bgc fgc) (__list__ (sample $3 2))) 0)) (unifint $5 $4 (__tuple__ 1 (floordiv (mul $2 $1) 9))))) (unifint $4 $3 (__tuple__ 6 30)))) (unifint $3 $2 (__tuple__ 6 30)))) (remove 1 (interval 0 10 1)))))) (lam ((lam (x45 $0)) (lam (x44 (lam (x46 $1 (__star__ $0))))))))",
-        "((lam (lam (lam ((lam ((lam ((lam (getItem (__listComp__ ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (lam ((lam ((lam (lam (lam (lam (lam (lam (lam (lam (lam ((lam (x28 $9 $8 $7 $6 $5 $4 $3 $2 $1)) (x1 (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (ifElse (isNot $8 $22) ((lam ((lam ((lam ((lam ((lam ((lam (ifElse (choice (__tuple__ True False)) (getItem (__listComp__ ((lam ((lam ((lam (x29 $0 $5 $8 $7 $1 $6 $3 $2 $4)) (next $30 $31))) (paint $0 $2))) (paint $0 $4)) (__tuple__ $3 $0) (__list__ (__tuple__ $0 $3))) 0) ((lam ((lam ((lam (x29 $0 $5 $8 $7 $1 $6 $3 $2 $4)) (next $30 $31))) (paint $0 $2))) (paint $0 $4)))) (getItemUpTo $3 $1))) (randint 1 $3))) (paint $0 $1))) (__listComp__ (__tuple__ (choice $32) (__tuple__ $2 jj)) jj (range $1)))) (unifint $38 $37 (__tuple__ 1 (sub $34 1))))) $89) ((lam ((lam (__dict__ (__tuple__ (__str__ input) $1) (__tuple__ (__str__ output) $0))) (vmirror $0))) (hconcat (hconcat (vmirror $88) (canvas barc (__tuple__ $34 1))) $87)))))))))))))))))))))))) (fn_0 $69) (fn_0 $71) (fn_0 $58) (fn_0 $59) (fn_0 $68) (fn_0 $60) (fn_0 $63) (fn_0 $67) (fn_0 $62))) (next $1 $2)))) __list__ (iter $4))) (canvas bgc (__tuple__ $10 $9)))) (canvas bgc (__tuple__ $9 $8)))) (canvas bgc (__tuple__ $8 $7)))) (sample $1 $2))) (interval 0 $6 1))) (unifint $8 $7 (__tuple__ 1 $5)))) (sample $2 $1))) (unifint $6 $5 (__tuple__ 1 8)))) (remove barc (remove bgc $3))) (__tuple__ bgc barc) (__list__ (sample $2 2))) 0)) (unifint $4 $3 (__tuple__ 3 14)))) (unifint $3 $2 (__tuple__ 4 30)))) (interval 0 10 1))))) (lam ((lam (x54 $0)) (lam (x53 (lam (x55 $1 (__star__ $0))))))))",
-        "((lam (lam (lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam ((lam (x35 $17 $16 $15 $14 $13 $12 $11 $10 $9 $8 $7 $6 $5 $4 $3 $2 $1)) (x1 (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (ifElse (andOp (lt $1 $40) (lte $0 $38)) (ifElse (eq (len $11) 0) (__dict__ (__tuple__ (__str__ input) $13) (__tuple__ (__str__ output) $12)) ((lam ((lam ((lam (ifElse (eq (len $0) 0) ((lam (x36 $20 $19 $18 $17 $16 $15 $14 $13 $12 $11 $10 $9 $3 $2 $1 $5 $0)) (add $0 1)) (getItem (__listComp__ ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (lam ((lam ((lam (lam (lam ((lam (x71 $3 $2 $1)) (x1 (lam (lam (lam (lam (ifElse (isNot $2 $10) ((lam (getItem (__list__ (add_M $16 (choice (totuple (bitAnd $2 (mapply neighbors $16))))) ((lam ((lam (x72 $0 $1 $2)) (next $12 $13))) (sub $0 $17))) -1)) $153) (getItem (__listComp__ ((lam ((lam ((lam (ifElse (issubset_M $1 $35) ((lam ((lam ((lam ((lam ((lam ((lam (x36 $7 $25 $6 $5 $3 $1 $160 $39 $38 $20 $22 $8 $29 $28 $27 $2 $0)) (add $0 1))) (sub (sub $0 $6) (outbox $6)))) (add $0 1))) (fill $0 $3 $5))) (fill $163 7 $3))) (fill $0 $1 $3)) ((lam (x36 $2 $20 $1 $160 $162 $164 $155 $34 $33 $15 $17 $3 $24 $23 $22 $163 $0)) (add $0 1)))) (choice $67))) (backdrop $1))) (shift $0 (__tuple__ $31 $30))) (__tuple__ $20 $19) (__list__ (shape $153))) 0))))))))))) (fn_0 $145) (fn_0 $144) (fn_0 $143))) (next $1 $2)))) __list__ (iter (range $1)))) (min (max 2 $0) (sub (mul $9 $8) 1)))) (choice (__tuple__ $1 (sub (mul $8 $7) $1))))) (unifint $59 $58 (__tuple__ 0 (floordiv (mul $7 $6) 2))))) (remove $2 $137))) (__set__ $1))) (choice (totuple $135)))) (asindices (canvas -1 (__tuple__ $3 $2)))) (__tuple__ $12 $11) (__list__ (choice $0))) 0))) (totuple (sfilter $142 (lam (andOp (lt (getItem $0 0) (sub $52 $3)) (lt (getItem $0 1) (sub $51 $2)))))))) (randint 2 7))) (randint 2 7))) (__dict__ (__tuple__ (__str__ input) $135) (__tuple__ (__str__ output) $137)))))))))))))))))))))))))))))))))))))))) (fn_0 $98) (fn_0 $77) (fn_0 $99) (fn_0 $100) (fn_0 $102) (fn_0 $104) (fn_0 $95) (fn_0 $62) (fn_0 $63) (fn_0 $82) (fn_0 $80) (fn_0 $97) (fn_0 $72) (fn_0 $73) (fn_0 $74) (fn_0 $103) (fn_0 $106))) 0)) 0)) (mul 4 $2))) (asindices $96))) (unifint $11 $10 (__tuple__ 1 (floordiv (mul $8 $7) 20))))) (canvas $5 (__tuple__ $7 $6)))) (canvas $4 (__tuple__ $6 $5)))) (sample $2 $1))) (unifint $7 $6 (__tuple__ 1 8)))) (remove $1 $4))) (choice $3))) (unifint $4 $3 (__tuple__ 10 30)))) (unifint $3 $2 (__tuple__ 10 30)))) (remove 7 (interval 0 10 1)))))) (lam ((lam (x91 $0)) (lam (x90 (lam (x92 $1 (__star__ $0))))))))",
-        "((lam (lam (lam ((lam ((lam ((lam ((lam ((lam (getItem (__listComp__ ((lam ((lam ((lam ((lam ((lam (lam ((lam ((lam (lam (lam ((lam (x19 $3 $2 $1)) (x1 (lam (lam (lam (lam (ifElse (isNot $2 $10) ((lam ((lam ((lam (x20 $0 $1 $2)) (next $12 $13))) (fill $0 fgc (connect (__tuple__ 0 $1) (__tuple__ (sub $20 1) $1))))) $50) ((lam (lam ((lam ((lam (lam (lam ((lam (x33 $3 $2 $1)) (x1 (lam (lam (lam (lam (ifElse (isNot $2 $10) ((lam ((lam ((lam (x34 $0 $1 $2)) (next $12 $13))) (fill $0 5 (__set__ (__tuple__ 0 $1))))) $75) ((lam (lam ((lam ((lam (lam (lam ((lam (x47 $3 $2 $1)) (x1 (lam (lam (lam (lam (ifElse (isNot $2 $10) ((lam ((lam ((lam (x48 $0 $1 $2)) (next $12 $13))) (fill $0 5 (__set__ (__tuple__ (sub $42 1) $1))))) $100) (__dict__ (__tuple__ (__str__ input) $34) (__tuple__ (__str__ output) $98)))))))))))) (fn_0 $92) (fn_0 $91) (fn_0 $90))) (next $1 $2)))) __list__ (iter (range (add $27 3) $29 4))))))))))))) (fn_0 $67) (fn_0 $80) (fn_0 $79))) (next $1 $2)))) __list__ (iter (range (add $16 1) $18 4))))))))))))) (fn_0 $42) (fn_0 $69) (fn_0 $68))) (next $1 $2)))) __list__ (iter (range $5 $7 2)))) (canvas bgc (__tuple__ $7 $6)))) (fill $2 fgc (__set__ $1)))) (__tuple__ (sub $5 1) $2))) (canvas bgc (__tuple__ $4 $3))) (__tuple__ bgc fgc) (__list__ (sample $4 2))) 0)) (sub $2 $1))) (unifint $5 $4 (__tuple__ 1 (sub $1 1))))) (unifint $4 $3 (__tuple__ 3 30)))) (unifint $3 $2 (__tuple__ 3 30)))) (remove 5 (interval 0 10 1)))))) (lam ((lam (x56 $0)) (lam (x55 (lam (x57 $1 (__star__ $0))))))))",
-        "(lam (lam ((lam ((lam ((lam (getItem (__listComp__ ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (__dict__ (__tuple__ (__str__ input) $0) (__tuple__ (__str__ output) $22))) (fill $0 d (__set__ $5)))) (fill $67 c (__set__ $5)))) (fill $66 b (__set__ $5)))) (fill $65 a (__set__ $5)))) (fill $22 sqc (backdrop (__set__ (__tuple__ $24 $23) (__tuple__ (add $24 1) (add $23 1))))))) (getItem $8 $4))) (getItem $8 $4))) (getItem $8 $4))) (getItem $8 $4))) (unifint $24 $23 (__tuple__ 0 (sub (len $4) 1))))) (unifint $23 $22 (__tuple__ 0 (sub (len $4) 1))))) (unifint $22 $21 (__tuple__ 0 (sub (len $4) 1))))) (unifint $21 $20 (__tuple__ 0 (sub (len $4) 1))))) (order $0 (lam (manhattan (__set__ $0) (__set__ (__tuple__ (add $16 1) (add $15 1)))))))) (order $0 (lam (manhattan (__set__ $0) (__set__ (__tuple__ (add $15 1) $14))))))) (order $0 (lam (manhattan (__set__ $0) (__set__ (__tuple__ $14 (add $13 1)))))))) (order $0 (lam (manhattan (__set__ $0) (__set__ (__tuple__ $13 $12))))))) (sfilter $4 (lam (andOp (gt (getItem $0 0) (add $12 1)) (gt (getItem $0 1) (add $11 1))))))) (sfilter $3 (lam (andOp (gt (getItem $0 0) (add $11 1)) (lt (getItem $0 1) $10)))))) (sfilter $2 (lam (andOp (lt (getItem $0 0) $10) (gt (getItem $0 1) (add $9 1))))))) (sfilter $1 (lam (andOp (lt (getItem $0 0) $9) (lt (getItem $0 1) $8)))))) (totuple (asindices $5)))) (fill $0 d (__set__ (__tuple__ (add $6 1) (add $5 1)))))) (fill $23 c (__set__ (__tuple__ (add $5 1) $4))))) (fill $22 b (__set__ (__tuple__ $4 (add $3 1)))))) (fill $1 a (__set__ (__tuple__ $3 $2))))) (canvas bgc (__tuple__ $4 $3)))) (randint 1 (sub $2 3)))) (randint 1 (sub $2 3))) (__tuple__ bgc sqc a b c d) (__list__ (sample $2 6))) 0)) (unifint $4 $3 (__tuple__ 4 30)))) (unifint $3 $2 (__tuple__ 4 30)))) (remove 5 (interval 0 10 1)))))",
-        "((lam (lam (lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (getItem (__listComp__ ((lam ((lam ((lam ((lam (lam ((lam ((lam (lam (lam (lam (lam (lam (lam (lam ((lam (x25 $8 $7 $6 $5 $4 $3 $2 $1)) (x1 (lam (lam (lam (lam (lam (lam (lam (lam (lam (ifElse (isNot $7 $20) ((lam ((lam (lam ((lam ((lam (lam (lam (lam (lam (lam (lam (lam ((lam (x47 $8 $7 $6 $5 $4 $3 $2 $1)) (x1 (lam (lam (lam (lam (lam (lam (lam (lam (lam (ifElse (isNot $7 $20) ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (x48 $0 $8 $2 $1 $3 $6 $5 $7)) (next $28 $29))) (fill $0 $5 (__set__ $1)))) (choice (totuple $5)))) (fill $0 $2 $4))) (fill $125 bgc $3))) (add $1 5))) (randint 1 4))) (shift $45 (__tuple__ (mul $23 (add $53 1)) (mul $1 (add $52 1)))))) $122) ((lam (x26 $0 $22 $120 $121 $119 $116 $117 $115)) (next $42 $43)))))))))))))))))))))) (fn_0 $104) (fn_0 $96) (fn_0 $102) (fn_0 $103) (fn_0 $101) (fn_0 $98) (fn_0 $99) (fn_0 $97))) (next $1 $2)))) __list__ (iter (range $28)))) $101) (__dict__ (__tuple__ (__str__ input) $98) (__tuple__ (__str__ output) $96)))))))))))))))))))))) (fn_0 $83) (fn_0 $52) (fn_0 $80) (fn_0 $81) (fn_0 $79) (fn_0 $76) (fn_0 $77) (fn_0 $75))) (next $1 $2)))) __list__ (iter (range $7)))) (asindices (canvas bgc (__tuple__ $8 $7))))) (canvas linc (__tuple__ $3 $2)))) (canvas linc (__tuple__ $2 $1))) (__tuple__ linc bgc) (__list__ (sample $6 2))) 0)) (sub (mul (add $4 1) $2) 1))) (sub (mul (add $4 1) $2) 1))) (unifint $6 $5 (__tuple__ (ifElse (gt $1 1) 1 2) (floordiv 31 (add $2 1)))))) (unifint $5 $4 (__tuple__ 1 (floordiv 31 (add $2 1)))))) (unifint $4 $3 (__tuple__ 2 5)))) (unifint $3 $2 (__tuple__ 2 5)))) (__tuple__ 0 5))))) (lam ((lam (x68 $0)) (lam (x67 (lam (x69 $1 (__star__ $0))))))))",
-        "((lam (lam (lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (lam ((lam ((lam (lam (lam (lam (lam (lam (lam ((lam (x27 $7 $6 $5 $4 $3 $2 $1)) (x1 (lam (lam (lam (lam (lam (lam (lam (lam (ifElse (isNot $6 $18) ((lam ((lam ((lam (getItem (__listComp__ (ifElse (eq $7 (floordiv $31 2)) ((lam ((lam (x28 $0 $10 $9 $3 $2 $1 $4)) (next $22 $23))) (fill $0 $2 (__set__ $3))) ((lam (x28 $0 $9 $8 $2 $1 $78 $3)) (next $21 $22))) (__tuple__ $8 $7) (__list__ $2)) 0)) (fill $0 $1 (__set__ $2)))) (choice $23))) $77) (__dict__ (__tuple__ (__str__ input) $73) (__tuple__ (__str__ output) $74)))))))))))))))))))) (fn_0 $61) (fn_0 $50) (fn_0 $51) (fn_0 $57) (fn_0 $58) (fn_0 $59) (fn_0 $56))) (next $1 $2)))) __list__ (iter $1))) (sample $1 $4))) (totuple (asindices $53)))) (sample $0 $1))) (unifint $11 $10 (__tuple__ 1 9)))) (unifint $10 $9 (__tuple__ 1 (sub (floordiv (mul $7 $5) 2) 1))))) (canvas $3 (__tuple__ $6 $4)))) (canvas $2 (__tuple__ $5 $3)))) (remove $1 $5))) (choice $4))) (add (mul 2 $1) 1))) (unifint $4 $3 (__tuple__ 1 14)))) (unifint $3 $2 (__tuple__ 2 30)))) (interval 0 10 1))))) (lam ((lam (x43 $0)) (lam (x42 (lam (x44 $1 (__star__ $0))))))))",
-        "((lam (lam (lam ((lam ((lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam ((lam (x35 $30 $29 $28 $27 $26 $25 $24 $23 $22 $21 $20 $19 $18 $17 $16 $15 $14 $13 $12 $11 $10 $9 $8 $7 $6 $5 $4 $3 $2 $1)) (x1 (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (ifElse True ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (lam ((lam ((lam (lam (lam ((lam (x83 $3 $2 $1)) (x1 (lam (lam (lam (lam (ifElse (isNot $2 $10) ((lam ((lam (getItem (__list__ (add_M $13 $0) ((lam (x84 $0 $1 $2)) (next $12 $13))) -1)) (choice (totuple (bitAnd (sub $15 $13) (mapply neighbors $13)))))) $178) ((lam ((lam ((lam ((lam ((lam ((lam ((lam (lam ((lam ((lam (lam (lam ((lam (x103 $3 $2 $1)) (x1 (lam (lam (lam (lam (ifElse (isNot $2 $10) ((lam ((lam (getItem (__list__ (add_M $17 $0) ((lam (x104 $0 $1 $2)) (next $12 $13))) -1)) (choice (totuple (bitAnd (sub $32 $17) (mapply neighbors $17)))))) $215) (ifElse (choice (__tuple__ True False)) (getItem (__listComp__ (getItem (__listComp__ ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (lam (lam (lam (lam (lam (lam ((lam (x130 $7 $6 $5 $4 $3 $2 $1)) (x1 (lam (lam (lam (lam (lam (lam (lam (lam (ifElse (andOp (lt $1 2) (lte $0 $20)) (ifElse (eq (len $4) 0) (ifElse (eq $1 2) (__dict__ (__tuple__ (__str__ input) $6) (__tuple__ (__str__ output) $5)) (x36 $25 $24 $23 $92 $58 $27 $89 $6 $5 $65 $241 $4 $3 $20 $42 $39 $41 $60 $59 $61 $63 $62 $2 $56 $44 $43 $57 $1 $0 $64)) ((lam ((lam (ifElse (issubset_M $0 $6) ((lam ((lam ((lam ((lam ((lam (x131 $4 $3 $1 $6 $5 $2 $0)) (add $0 1))) (sub (sub $0 $4) (mapply neighbors $4)))) (add $0 1))) (fill $0 1 $2))) (fill $0 $92 $1)) ((lam (x131 $276 $277 $279 $2 $1 $278 $0)) (add $0 1)))) (shift $45 $1))) (choice (totuple $277)))) (ifElse (eq $275 2) (__dict__ (__tuple__ (__str__ input) $273) (__tuple__ (__str__ output) $274)) (x36 $25 $24 $23 $92 $58 $27 $89 $273 $274 $65 $241 $276 $271 $20 $42 $39 $41 $60 $59 $61 $63 $62 $272 $56 $44 $43 $57 $275 $278 $64)))))))))))))))))))) (fn_0 $258) (fn_0 $259) (fn_0 $261) (fn_0 $256) (fn_0 $257) (fn_0 $260) (fn_0 $263))) (sfilter $260 (lam (andOp (lte (getItem $0 0) (sub $50 (height $28))) (lte (getItem $0 1) (sub $49 (width $28)))))))) (sub (sub $259 $6) (mapply neighbors $6)))) 0)) 0)) 10)) (fill $6 2 $2))) (fill $5 $67 $1))) (shift $21 $1))) (choice (totuple $1)))) (sfilter $251 (lam (andOp (lte (getItem $0 0) (sub $41 (height $20))) (lte (getItem $0 1) (sub $40 (width $20)))))))) (asindices $1))) (canvas $65 (__tuple__ $38 $37))) (__tuple__ $64 $61) (__list__ (sample $100 2))) 0) (__tuple__ $16 $15) (__list__ (__tuple__ $15 $16))) 0) (getItem (__listComp__ ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (lam (lam (lam (lam (lam (lam ((lam (x168 $7 $6 $5 $4 $3 $2 $1)) (x1 (lam (lam (lam (lam (lam (lam (lam (lam (ifElse (andOp (lt $1 2) (lte $0 $20)) (ifElse (eq (len $4) 0) (ifElse (eq $1 2) (__dict__ (__tuple__ (__str__ input) $6) (__tuple__ (__str__ output) $5)) (x36 $25 $24 $23 $92 $58 $27 $89 $6 $5 $65 $280 $4 $3 $20 $42 $39 $41 $60 $59 $61 $63 $62 $2 $56 $44 $43 $57 $1 $0 $64)) ((lam ((lam (ifElse (issubset_M $0 $6) ((lam ((lam ((lam ((lam ((lam (x169 $4 $3 $1 $6 $5 $2 $0)) (add $0 1))) (sub (sub $0 $4) (mapply neighbors $4)))) (add $0 1))) (fill $0 1 $2))) (fill $0 $92 $1)) ((lam (x169 $314 $315 $317 $2 $1 $316 $0)) (add $0 1)))) (shift $45 $1))) (choice (totuple $315)))) (ifElse (eq $313 2) (__dict__ (__tuple__ (__str__ input) $311) (__tuple__ (__str__ output) $312)) (x36 $25 $24 $23 $92 $58 $27 $89 $311 $312 $65 $280 $314 $309 $20 $42 $39 $41 $60 $59 $61 $63 $62 $310 $56 $44 $43 $57 $313 $316 $64)))))))))))))))))))) (fn_0 $296) (fn_0 $297) (fn_0 $299) (fn_0 $294) (fn_0 $295) (fn_0 $298) (fn_0 $301))) (sfilter $298 (lam (andOp (lte (getItem $0 0) (sub $50 (height $28))) (lte (getItem $0 1) (sub $49 (width $28)))))))) (sub (sub $297 $6) (mapply neighbors $6)))) 0)) 0)) 10)) (fill $6 2 $2))) (fill $5 $67 $1))) (shift $21 $1))) (choice (totuple $1)))) (sfilter $289 (lam (andOp (lte (getItem $0 0) (sub $41 (height $20))) (lte (getItem $0 1) (sub $40 (width $20)))))))) (asindices $1))) (canvas $65 (__tuple__ $38 $37))) (__tuple__ $64 $61) (__list__ (sample $100 2))) 0)))))))))))) (fn_0 $207) (fn_0 $283) (fn_0 $205))) (next $1 $2)))) __list__ (iter (range $1)))) (min (max 1 $0) $3))) (sub $2 $1))) (unifint $89 $88 (__tuple__ 1 $1)))) (sub (mul $21 $20) (len $2)))) (set (normalize $13)))) (normalize $12)))))))))))) (fn_0 $170) (fn_0 $266) (fn_0 $188))) (next $1 $2)))) __list__ (iter (range $4)))) (__set__ $1))) (choice (totuple $1)))) (asindices (canvas -1 (__tuple__ $5 $4))))) (min (max 2 $1) (sub (mul $4 $3) 2)))) (choice (__tuple__ $1 (sub (mul $3 $2) $1))))) (unifint $69 $68 (__tuple__ 0 (floordiv (mul $2 $1) 2))))) (unifint $68 $67 (__tuple__ 2 (sub (floordiv $2 3) 1))))) (unifint $67 $66 (__tuple__ 2 (sub (floordiv $2 3) 1))))) (unifint $66 $65 (__tuple__ 10 30)))) (unifint $65 $64 (__tuple__ 10 30))) (__dict__ (__tuple__ (__str__ input) $245) (__tuple__ (__str__ output) $246)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))) (fn_0 $156) (fn_0 $157) (fn_0 $158) (fn_0 $45) (fn_0 $79) (fn_0 $154) (fn_0 $48) (fn_0 $184) (fn_0 $185) (fn_0 $72) (fn_0 $191) (fn_0 $187) (fn_0 $182) (fn_0 $161) (fn_0 $98) (fn_0 $101) (fn_0 $99) (fn_0 $77) (fn_0 $78) (fn_0 $76) (fn_0 $74) (fn_0 $75) (fn_0 $183) (fn_0 $81) (fn_0 $96) (fn_0 $97) (fn_0 $80) (fn_0 $186) (fn_0 $189) (fn_0 $73))) (difference (interval 0 10 1) (__tuple__ 1 2)))))) (lam ((lam (x188 $0)) (lam (x187 (lam (x189 $1 (__star__ $0))))))))",
-        "(lam (lam ((lam ((lam ((lam (getItem (__listComp__ ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (__dict__ (__tuple__ (__str__ input) $1) (__tuple__ (__str__ output) $0))) (x23 $0))) (x23 $0))) (choice (__tuple__ identity rot90 rot180 rot270)))) (fill $47 4 (shoot (add (__tuple__ -1 -1) (ulcorner $8)) (__tuple__ -1 -1))))) (fill $46 4 (shoot (add (__tuple__ -1 1) (urcorner $7)) (__tuple__ -1 1))))) (fill $45 4 $1))) (mapply (rbind shoot (__tuple__ -1 0)) $5))) (fill $43 sqc $7))) (fill $11 4 (backdrop $6)))) (fill $40 bgc $2))) (fill $9 sqc $4))) (connect (__tuple__ $5 (add (add $4 2) $1)) (__tuple__ $5 (sub (sub (add $4 $6) 3) $1))))) (randint 0 $1))) (floordiv (sub $4 4) 2))) (box (frozenset (__set__ (__tuple__ $2 $1) (__tuple__ (sub (add $2 $4) 1) (sub (add $1 $3) 1))))))) (randint 0 (sub $5 $2)))) (unifint $8 $7 (__tuple__ 0 (sub $5 $2))))) (unifint $7 $6 (__tuple__ 5 (sub $3 1))))) (randint 3 $3))) (canvas bgc (__tuple__ $2 $1))) (__tuple__ bgc sqc) (__list__ (sample $2 2))) 0)) (unifint $4 $3 (__tuple__ 6 30)))) (unifint $3 $2 (__tuple__ 6 30)))) (remove 4 (interval 0 10 1)))))",
-        "((lam (lam (lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (lam ((lam ((lam (lam (lam (lam (lam ((lam (x35 $5 $4 $3 $2 $1)) (x1 (lam (lam (lam (lam (lam (lam (ifElse (isNot $4 $14) ((lam (getItem (__listComp__ (ifElse (elem $4 $17) ((lam ((lam (x36 $0 $6 $5 $1 $2)) (next $16 $17))) (fill $0 $28 (connect $1 (__tuple__ $5 $33)))) (ifElse (elem $3 $16) ((lam ((lam (x36 $0 $6 $5 $1 $2)) (next $16 $17))) (fill $0 $28 (connect $1 (__tuple__ $34 $4)))) ((lam (x36 $0 $5 $4 $88 $1)) (next $15 $16)))) (__tuple__ $4 $3) (__list__ $0)) 0)) $89) ((lam (__dict__ (__tuple__ (__str__ input) $19) (__tuple__ (__str__ output) $0))) (fill $0 $29 $26)))))))))))))))) (fn_0 $77) (fn_0 $68) (fn_0 $69) (fn_0 $78) (fn_0 $72))) (next $1 $2)))) __list__ (iter $5))) (interval $16 (add $16 $18) 1))) (interval $16 (add $16 $18) 1))) (tuple (__genExpr__ e e $1)))) (fill $0 $8 $1))) (sample $3 $1))) (unifint $19 $18 (__tuple__ 0 $1)))) (max 1 (floordiv (len $1) 4)))) (totuple (sub (asindices $42) (backdrop (outbox $3)))))) (fill $41 $5 $2))) (canvas $6 (__tuple__ $12 $11)))) (backdrop (frozenset (__set__ (__tuple__ $7 $6) (__tuple__ (sub (add $7 $9) 1) (sub (add $6 $8) 1))))))) (choice $1))) (remove $1 $0))) (choice $27))) (remove $1 $8))) (choice $7))) (randint 0 (sub $4 $2)))) (randint 0 (sub $4 $2)))) (unifint $6 $5 (__tuple__ 2 (floordiv $2 2))))) (unifint $5 $4 (__tuple__ 2 (floordiv $2 2))))) (unifint $4 $3 (__tuple__ 10 30)))) (unifint $3 $2 (__tuple__ 10 30)))) (interval 0 10 1))))) (lam ((lam (x50 $0)) (lam (x49 (lam (x51 $1 (__star__ $0))))))))"
-    ],
+    "original": "((lam (lam (lam ((lam ((lam ((lam ((lam (getItem (__listComp__ ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (lam (lam (lam (lam (fn_0 (lam (lam (lam (lam (lam (lam (lam (lam (ifElse (andOp (lt $1 $22) (lt $0 $16)) ((lam ((lam (ifElse (issubset_M $0 (set $5)) ((lam ((lam ((lam ((lam ((lam ((lam ((lam (x25 $7 $6 $5 $3 $2 $8 $1 $0)) (fn_0 $0))) (fn_0 $0))) (difference $0 (shift $24 $6)))) (fill $0 1 (dneighbors $3)))) (fill $73 fgc (ineighbors $2)))) (fill $0 fgc (__set__ $1)))) (center $1)) ((lam (x25 $1 $68 $69 $71 $72 $2 $73 $0)) (fn_0 $0)))) (shift $20 $1))) (choice (totuple $70))) (fn_0 $68 $66)))))))))) (x24 $4 $3 $2 $1 $0))))))) (fn_0 $51) (fn_0 $52) (fn_0 $53) (fn_0 $55) (fn_0 $56) (fn_0 $50) (fn_0 $57) (fn_0 $59))) 0)) 0)) (mul 4 $6))) (backdrop $1))) (box (frozenset (__set__ (__tuple__ 0 0) (__tuple__ 2 2)))))) (asindices $47))) (canvas bgc (__tuple__ $4 $3)))) (canvas bgc (__tuple__ $3 $2))) (__tuple__ bgc fgc) (__list__ (sample $3 2))) 0)) (unifint $5 $4 (__tuple__ 1 (floordiv (mul $2 $1) 9))))) (unifint $4 $3 (__tuple__ 6 30)))) (unifint $3 $2 (__tuple__ 6 30)))) (remove 1 (interval 0 10 1)))))) (lam ((lam (x45 $0)) (lam (x44 (lam (x46 $1 (__star__ $0))))))))",
+    "rewritten": "((lam (lam (lam ((lam ((lam ((lam ((lam (getItem (__listComp__ ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (lam (lam (lam (lam (fn_0 (lam (lam (lam (lam (lam (lam (lam (lam (ifElse (andOp (lt $1 $22) (lt $0 $16)) ((lam ((lam (ifElse (issubset_M $0 (set $5)) ((lam ((lam ((lam ((lam ((lam ((lam ((lam (x25 $7 $6 $5 $3 $2 $8 $1 $0)) (fn_0 $0))) (fn_0 $0))) (difference $0 (shift $24 $6)))) (fill $0 1 (dneighbors $3)))) (fill $73 fgc (ineighbors $2)))) (fill $0 fgc (__set__ $1)))) (center $1)) ((lam (x25 $1 $68 $69 $71 $72 $2 $73 $0)) (fn_0 $0)))) (shift $20 $1))) (choice (totuple $70))) (fn_0 $68 $66)))))))))) (x24 $4 $3 $2 $1 $0))))))) (fn_0 $51) (fn_0 $52) (fn_0 $53) (fn_0 $55) (fn_0 $56) (fn_0 $50) (fn_0 $57) (fn_0 $59))) 0)) 0)) (mul 4 $6))) (backdrop $1))) (box (frozenset (__set__ (__tuple__ 0 0) (__tuple__ 2 2)))))) (asindices $47))) (fn_0 $3 $4))) (fn_0 $2 $3)) (__tuple__ bgc fgc) (__list__ (sample $3 2))) 0)) (unifint $5 $4 (__tuple__ 1 (floordiv (mul $2 $1) 9))))) (unifint $4 $3 (__tuple__ 6 30)))) (unifint $3 $2 (__tuple__ 6 30)))) (remove 1 (interval 0 10 1)))))) (lam ((lam (x45 $0)) (lam (x44 (lam (x46 $1 (__star__ $0))))))))",
     "rewritten_dreamcoder": null,
     "abstractions": [
         {
-            "body": "(ifElse (elem (__str__ #0) dir) #0 None)",
-            "dreamcoder": "#(lambda (ifElse (elem (__str__ $0) dir) $0 None))",
-            "arity": 1,
+            "body": "(canvas bgc (__tuple__ #1 #0))",
+            "dreamcoder": "#(lambda (lambda (canvas bgc (__tuple__ $0 $1))))",
+            "arity": 2,
             "name": "fn_0",
-            "utility": 62114,
-            "final_cost": 291043,
-            "compression_ratio": 1.2151572104465662,
-            "cumulative_compression_ratio": 1.2151572104465662,
-            "num_uses": 124,
+            "utility": 1312,
+            "final_cost": 117618,
+            "compression_ratio": 1.0137393936302266,
+            "cumulative_compression_ratio": 1.0137393936302266,
+            "num_uses": 8,
             "rewritten": null,
             "rewritten_dreamcoder": null,
-            "uses": [
-                {
-                    "fn_0 $100": "(ifElse (elem (__str__ $100) dir) $100 None)"
-                },
-                {
-                    "fn_0 $101": "(ifElse (elem (__str__ $101) dir) $101 None)"
-                },
-                {
-                    "fn_0 $102": "(ifElse (elem (__str__ $102) dir) $102 None)"
-                },
-                {
-                    "fn_0 $103": "(ifElse (elem (__str__ $103) dir) $103 None)"
-                },
-                {
-                    "fn_0 $104": "(ifElse (elem (__str__ $104) dir) $104 None)"
-                },
-                {
-                    "fn_0 $106": "(ifElse (elem (__str__ $106) dir) $106 None)"
-                },
-                {
-                    "fn_0 $143": "(ifElse (elem (__str__ $143) dir) $143 None)"
-                },
-                {
-                    "fn_0 $144": "(ifElse (elem (__str__ $144) dir) $144 None)"
-                },
-                {
-                    "fn_0 $145": "(ifElse (elem (__str__ $145) dir) $145 None)"
-                },
-                {
-                    "fn_0 $154": "(ifElse (elem (__str__ $154) dir) $154 None)"
-                },
-                {
-                    "fn_0 $156": "(ifElse (elem (__str__ $156) dir) $156 None)"
-                },
-                {
-                    "fn_0 $157": "(ifElse (elem (__str__ $157) dir) $157 None)"
-                },
-                {
-                    "fn_0 $158": "(ifElse (elem (__str__ $158) dir) $158 None)"
-                },
-                {
-                    "fn_0 $161": "(ifElse (elem (__str__ $161) dir) $161 None)"
-                },
-                {
-                    "fn_0 $170": "(ifElse (elem (__str__ $170) dir) $170 None)"
-                },
-                {
-                    "fn_0 $182": "(ifElse (elem (__str__ $182) dir) $182 None)"
-                },
-                {
-                    "fn_0 $183": "(ifElse (elem (__str__ $183) dir) $183 None)"
-                },
-                {
-                    "fn_0 $184": "(ifElse (elem (__str__ $184) dir) $184 None)"
-                },
-                {
-                    "fn_0 $185": "(ifElse (elem (__str__ $185) dir) $185 None)"
-                },
-                {
-                    "fn_0 $186": "(ifElse (elem (__str__ $186) dir) $186 None)"
-                },
-                {
-                    "fn_0 $187": "(ifElse (elem (__str__ $187) dir) $187 None)"
-                },
-                {
-                    "fn_0 $188": "(ifElse (elem (__str__ $188) dir) $188 None)"
-                },
-                {
-                    "fn_0 $189": "(ifElse (elem (__str__ $189) dir) $189 None)"
-                },
-                {
-                    "fn_0 $191": "(ifElse (elem (__str__ $191) dir) $191 None)"
-                },
-                {
-                    "fn_0 $205": "(ifElse (elem (__str__ $205) dir) $205 None)"
-                },
-                {
-                    "fn_0 $207": "(ifElse (elem (__str__ $207) dir) $207 None)"
-                },
-                {
-                    "fn_0 $256": "(ifElse (elem (__str__ $256) dir) $256 None)"
-                },
-                {
-                    "fn_0 $257": "(ifElse (elem (__str__ $257) dir) $257 None)"
-                },
-                {
-                    "fn_0 $258": "(ifElse (elem (__str__ $258) dir) $258 None)"
-                },
-                {
-                    "fn_0 $259": "(ifElse (elem (__str__ $259) dir) $259 None)"
-                },
-                {
-                    "fn_0 $260": "(ifElse (elem (__str__ $260) dir) $260 None)"
-                },
-                {
-                    "fn_0 $261": "(ifElse (elem (__str__ $261) dir) $261 None)"
-                },
-                {
-                    "fn_0 $263": "(ifElse (elem (__str__ $263) dir) $263 None)"
-                },
-                {
-                    "fn_0 $266": "(ifElse (elem (__str__ $266) dir) $266 None)"
-                },
-                {
-                    "fn_0 $283": "(ifElse (elem (__str__ $283) dir) $283 None)"
-                },
-                {
-                    "fn_0 $294": "(ifElse (elem (__str__ $294) dir) $294 None)"
-                },
-                {
-                    "fn_0 $295": "(ifElse (elem (__str__ $295) dir) $295 None)"
-                },
-                {
-                    "fn_0 $296": "(ifElse (elem (__str__ $296) dir) $296 None)"
-                },
-                {
-                    "fn_0 $297": "(ifElse (elem (__str__ $297) dir) $297 None)"
-                },
-                {
-                    "fn_0 $298": "(ifElse (elem (__str__ $298) dir) $298 None)"
-                },
-                {
-                    "fn_0 $299": "(ifElse (elem (__str__ $299) dir) $299 None)"
-                },
-                {
-                    "fn_0 $301": "(ifElse (elem (__str__ $301) dir) $301 None)"
-                },
-                {
-                    "fn_0 $42": "(ifElse (elem (__str__ $42) dir) $42 None)"
-                },
-                {
-                    "fn_0 $45": "(ifElse (elem (__str__ $45) dir) $45 None)"
-                },
-                {
-                    "fn_0 $48": "(ifElse (elem (__str__ $48) dir) $48 None)"
-                },
-                {
-                    "fn_0 $50": "(ifElse (elem (__str__ $50) dir) $50 None)"
-                },
-                {
-                    "fn_0 $51": "(ifElse (elem (__str__ $51) dir) $51 None)"
-                },
-                {
-                    "fn_0 $52": "(ifElse (elem (__str__ $52) dir) $52 None)"
-                },
-                {
-                    "fn_0 $53": "(ifElse (elem (__str__ $53) dir) $53 None)"
-                },
-                {
-                    "fn_0 $55": "(ifElse (elem (__str__ $55) dir) $55 None)"
-                },
-                {
-                    "fn_0 $56": "(ifElse (elem (__str__ $56) dir) $56 None)"
-                },
-                {
-                    "fn_0 $57": "(ifElse (elem (__str__ $57) dir) $57 None)"
-                },
-                {
-                    "fn_0 $58": "(ifElse (elem (__str__ $58) dir) $58 None)"
-                },
-                {
-                    "fn_0 $59": "(ifElse (elem (__str__ $59) dir) $59 None)"
-                },
-                {
-                    "fn_0 $60": "(ifElse (elem (__str__ $60) dir) $60 None)"
-                },
-                {
-                    "fn_0 $61": "(ifElse (elem (__str__ $61) dir) $61 None)"
-                },
-                {
-                    "fn_0 $62": "(ifElse (elem (__str__ $62) dir) $62 None)"
-                },
-                {
-                    "fn_0 $63": "(ifElse (elem (__str__ $63) dir) $63 None)"
-                },
-                {
-                    "fn_0 $67": "(ifElse (elem (__str__ $67) dir) $67 None)"
-                },
-                {
-                    "fn_0 $68": "(ifElse (elem (__str__ $68) dir) $68 None)"
-                },
-                {
-                    "fn_0 $69": "(ifElse (elem (__str__ $69) dir) $69 None)"
-                },
-                {
-                    "fn_0 $71": "(ifElse (elem (__str__ $71) dir) $71 None)"
-                },
-                {
-                    "fn_0 $72": "(ifElse (elem (__str__ $72) dir) $72 None)"
-                },
-                {
-                    "fn_0 $73": "(ifElse (elem (__str__ $73) dir) $73 None)"
-                },
-                {
-                    "fn_0 $74": "(ifElse (elem (__str__ $74) dir) $74 None)"
-                },
-                {
-                    "fn_0 $75": "(ifElse (elem (__str__ $75) dir) $75 None)"
-                },
-                {
-                    "fn_0 $76": "(ifElse (elem (__str__ $76) dir) $76 None)"
-                },
-                {
-                    "fn_0 $77": "(ifElse (elem (__str__ $77) dir) $77 None)"
-                },
-                {
-                    "fn_0 $78": "(ifElse (elem (__str__ $78) dir) $78 None)"
-                },
-                {
-                    "fn_0 $79": "(ifElse (elem (__str__ $79) dir) $79 None)"
-                },
-                {
-                    "fn_0 $80": "(ifElse (elem (__str__ $80) dir) $80 None)"
-                },
-                {
-                    "fn_0 $81": "(ifElse (elem (__str__ $81) dir) $81 None)"
-                },
-                {
-                    "fn_0 $82": "(ifElse (elem (__str__ $82) dir) $82 None)"
-                },
-                {
-                    "fn_0 $83": "(ifElse (elem (__str__ $83) dir) $83 None)"
-                },
-                {
-                    "fn_0 $90": "(ifElse (elem (__str__ $90) dir) $90 None)"
-                },
-                {
-                    "fn_0 $91": "(ifElse (elem (__str__ $91) dir) $91 None)"
-                },
-                {
-                    "fn_0 $92": "(ifElse (elem (__str__ $92) dir) $92 None)"
-                },
-                {
-                    "fn_0 $95": "(ifElse (elem (__str__ $95) dir) $95 None)"
-                },
-                {
-                    "fn_0 $96": "(ifElse (elem (__str__ $96) dir) $96 None)"
-                },
-                {
-                    "fn_0 $97": "(ifElse (elem (__str__ $97) dir) $97 None)"
-                },
-                {
-                    "fn_0 $98": "(ifElse (elem (__str__ $98) dir) $98 None)"
-                },
-                {
-                    "fn_0 $99": "(ifElse (elem (__str__ $99) dir) $99 None)"
-                }
-            ],
+            "uses": {
+                "fn_0 $9 $10": "(canvas bgc (__tuple__ $10 $9))"
+            },
             "dc_comparison_millis": null
         }
     ]

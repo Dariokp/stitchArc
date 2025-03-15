@@ -1,0 +1,83 @@
+{
+    "cmd": "/home/dlindberg/.conda/envs/arcProjectEnv/bin/python run_stitch.py",
+    "args": {
+        "iterations": 1,
+        "abstraction_prefix": "fn_",
+        "previous_abstractions": 34,
+        "shuffle": false,
+        "truncate": null,
+        "no_opt": false,
+        "silent": true,
+        "verbose_rewrite": false,
+        "step": {
+            "max_arity": 4,
+            "threads": 18,
+            "no_stats": false,
+            "batch": 1,
+            "dynamic_batch": false,
+            "eta_long": false,
+            "no_curried_metavars": false,
+            "no_curried_bodies": false,
+            "inv_candidates": 1,
+            "hole_choice": "DepthFirst",
+            "cost": {
+                "cost_lam": 1,
+                "cost_app": 1,
+                "cost_var": 100,
+                "cost_ivar": 100,
+                "cost_prim_default": 100
+            },
+            "no_mismatch_check": false,
+            "follow": null,
+            "follow_prune": false,
+            "verbose_worklist": false,
+            "verbose_best": false,
+            "print_stats": 0,
+            "show_rewritten": false,
+            "rewritten_dreamcoder": false,
+            "rewritten_intermediates": false,
+            "inv_arg_cap": false,
+            "allow_single_task": false,
+            "no_opt_single_use": false,
+            "no_opt_upper_bound": false,
+            "no_opt_force_multiuse": false,
+            "no_opt_useless_abstract": false,
+            "no_opt_arity_zero": false,
+            "no_other_util": false,
+            "structure_penalty": 1.0,
+            "rewrite_check": false,
+            "utility_by_rewrite": false,
+            "dreamcoder_comparison": false,
+            "quiet": true,
+            "fused_lambda_tags": {
+                "tags": null
+            }
+        }
+    },
+    "original_cost": 5085223,
+    "final_cost": 5068699,
+    "compression_ratio": 1.003260008140156,
+    "num_abstractions": 1,
+    "original": "(lam (lam ((lam ((lam ((lam ((lam ((lam (fn_26 $4 c2 c1 ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (fn_18 $65 $66 $0)) (fill $65 8 (shift $1 $5)))) (backdrop (frozenset (__set__ (__tuple__ (fn_12 $18) (fn_12 (max $16 $14))) (__tuple__ (fn_6 $21) (fn_6 (min $15 $13)))))))) (paint $63 $2))) (fn_13 $24 $25 bgc))) (shift $0 $1))) (__tuple__ $2 $1))) (randint 0 (sub $21 $19)))) (randint 0 (sub $21 $19)))) (asobject $1))) (fill $0 c2 $3))) (fill $45 c1 $3))) (fn_13 $14 $15 bgc))) (backdrop (frozenset (__set__ (__tuple__ $10 $3) (__tuple__ (fn_6 $14) $2)))))) (backdrop (frozenset (__set__ (__tuple__ 0 $4) (__tuple__ $6 $3)))))) (randint (fn_12 $4) (fn_6 $11)))) (randint 0 (fn_6 $3)))) (randint (fn_12 $2) (fn_6 $9)))) (randint 0 (fn_6 $1)))) (randint 1 (sub $7 2)))) (getItem $2 $1))) (fn_4 (fn_6 (len $1)) 0 $10 $11))) (getItemWithStep (getItemUpTo $0 (fn_6 $2)) 0 -1 -1))) (getItem $21 $1))) (fn_4 (fn_6 $3) 2 $7 $8))) (interval 0 $2 1)))) (fn_4 $2 3 $5 $6))) (fn_4 $2 3 $4 $5))) (fn_16 3 $3 $4))) (fn_16 3 $2 $3))) (remove 8 fn_7))))",
+    "rewritten": "(lam (lam ((lam ((lam ((lam ((lam ((lam (fn_26 $4 c2 c1 ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (fn_18 $65 $66 $0)) (fill $65 8 (shift $1 $5)))) (backdrop (frozenset (__set__ (__tuple__ (fn_12 $18) (fn_12 (max $16 $14))) (__tuple__ (fn_6 $21) (fn_6 (min $15 $13)))))))) (paint $63 $2))) (fn_13 $24 $25 bgc))) (shift $0 $1))) (__tuple__ $2 $1))) (randint 0 (sub $21 $19)))) (randint 0 (sub $21 $19)))) (asobject $1))) (fill $0 c2 $3))) (fill $45 c1 $3))) (fn_13 $14 $15 bgc))) (backdrop (frozenset (__set__ (__tuple__ $10 $3) (__tuple__ (fn_6 $14) $2)))))) (backdrop (frozenset (__set__ (__tuple__ 0 $4) (__tuple__ $6 $3)))))) (randint (fn_12 $4) (fn_6 $11)))) (randint 0 (fn_6 $3)))) (randint (fn_12 $2) (fn_6 $9)))) (randint 0 (fn_6 $1)))) (randint 1 (sub $7 2)))) (getItem $2 $1))) (fn_4 (fn_6 (len $1)) 0 $10 $11))) (getItemWithStep (getItemUpTo $0 (fn_6 $2)) 0 -1 -1))) (getItem $21 $1))) (fn_4 (fn_6 $3) 2 $7 $8))) (interval 0 $2 1)))) (fn_4 $2 3 $5 $6))) (fn_4 $2 3 $4 $5))) (fn_16 3 $3 $4))) (fn_16 3 $2 $3))) (remove 8 fn_7))))",
+    "rewritten_dreamcoder": null,
+    "abstractions": [
+        {
+            "body": "(lam (lam (lam (lam (lam (lam (fn_11 (#1 $5 $4 $3 $2 $1 $0) #0)))))))",
+            "dreamcoder": "#(lambda (lambda (lambda (lambda (lambda (lambda (lambda (lambda (fn_11 ($6 $5 $4 $3 $2 $1 $0) $7)))))))))",
+            "arity": 2,
+            "name": "fn_34",
+            "utility": 15810,
+            "final_cost": 5068699,
+            "compression_ratio": 1.003260008140156,
+            "cumulative_compression_ratio": 1.003260008140156,
+            "num_uses": 27,
+            "rewritten": null,
+            "rewritten_dreamcoder": null,
+            "uses": {
+                "fn_34 (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (ifElse True ((lam ((lam (fn_5 (sample $25 2) $16 $18 ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (fn_2 (range $2) $0 $114 (fn_0 $141 $117 (fn_0 $155 $148 (fn_0 $147 $121 (lam (fn_29 (x65 $0) (lam (lam (lam (lam (lam (lam (lam (lam (fn_20 $9 $6 ((lam (fn_22 $3 ((lam (x66 $0 $7 $6 $5 $4 $1 $2)) (next $10 $11)) ((lam ((lam ((lam ((lam (fn_5 (sample $20 2) $133 $132 ((lam ((lam ((lam ((lam (x66 $0 $3 $2 $1 $4 $8 $7)) (next $17 $18))) (fill $0 $42 (fn_21 $1 $6 $2 $6)))) (randint $0 (fn_6 $25)))) (randint 0 $0)))) (remove (fn_6 $3) $0))) (remove (fn_12 $2) $130))) (remove $1 $129))) (choice $128)))) $131) (fn_2 (range $11) $0 $153 (fn_0 $151 $156 (fn_0 $165 $158 (fn_0 $157 $160 (lam (fn_29 (x94 $0) (lam (lam (lam (lam (lam (lam (lam (lam (fn_20 $9 $6 ((lam (fn_22 $3 ((lam (x95 $0 $7 $6 $5 $4 $1 $2)) (next $10 $11)) ((lam ((lam ((lam ((lam (fn_5 (sample $29 2) $172 $171 ((lam ((lam ((lam ((lam (x95 $0 $3 $2 $1 $4 $8 $7)) (next $17 $18))) (fill $0 $52 (fn_21 $6 $1 $6 $2)))) (randint $0 (fn_6 $36)))) (randint 0 $0)))) (remove (fn_6 $3) $0))) (remove (fn_12 $2) $169))) (remove $1 $168))) (choice $167)))) $170) ((lam ((lam ((lam (ifElse (gt (len $0) 0) ((lam ((lam ((lam ((lam (fn_1 $0 $2)) (replace $0 $53 3))) (fill $1 2 $3))) (fill $0 $49 $1))) (sub (mapply neighbors $1) $1)) (x25 $169 $170 $49 $1 $47 $177 $32 $27 $139 $28 $168 $136 $165 $30 $24 $23 $2 $0 $31))) (toindices (mfilter $1 (compose flip (rbind bordering $177)))))) (colorfilter $1 $48))) (objects $175 T F F))))))))))))))))))))))))))))))))) (sub $7 $1))) (randint (floordiv $6 3) (mul (floordiv $6 3) 2)))) (interval 1 (fn_6 $6) 1))) (interval 1 (fn_6 $6) 1))) (interval 0 $5 1))) (interval 0 $3 1))) (fn_13 $2 $3 $20))) (fn_4 (min $2 $1) 4 $27 $28)))) (fn_16 5 $26 $27))) (fn_16 5 $25 $26)) ((lam ((lam ((lam ((lam (fn_1 $0 $2)) (replace $0 $20 3))) (fill $1 2 $145))) (fill $0 $16 $1))) (sub (mapply neighbors $143) $143))))))))))))))))))))))) (x24 $1 $0)": "(lam (lam (lam (lam (lam (lam (fn_11 (x24 $7 $6 $5 $4 $3 $2 $1 $0) (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (ifElse True ((lam ((lam (fn_5 (sample $31 2) $16 $18 ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (fn_2 (range $2) $0 $120 (fn_0 $147 $123 (fn_0 $161 $154 (fn_0 $153 $127 (lam (fn_29 (x65 $0) (lam (lam (lam (lam (lam (lam (lam (lam (fn_20 $9 $6 ((lam (fn_22 $3 ((lam (x66 $0 $7 $6 $5 $4 $1 $2)) (next $10 $11)) ((lam ((lam ((lam ((lam (fn_5 (sample $20 2) $139 $138 ((lam ((lam ((lam ((lam (x66 $0 $3 $2 $1 $4 $8 $7)) (next $17 $18))) (fill $0 $42 (fn_21 $1 $6 $2 $6)))) (randint $0 (fn_6 $25)))) (randint 0 $0)))) (remove (fn_6 $3) $0))) (remove (fn_12 $2) $136))) (remove $1 $135))) (choice $134)))) $137) (fn_2 (range $11) $0 $159 (fn_0 $157 $162 (fn_0 $171 $164 (fn_0 $163 $166 (lam (fn_29 (x94 $0) (lam (lam (lam (lam (lam (lam (lam (lam (fn_20 $9 $6 ((lam (fn_22 $3 ((lam (x95 $0 $7 $6 $5 $4 $1 $2)) (next $10 $11)) ((lam ((lam ((lam ((lam (fn_5 (sample $29 2) $178 $177 ((lam ((lam ((lam ((lam (x95 $0 $3 $2 $1 $4 $8 $7)) (next $17 $18))) (fill $0 $52 (fn_21 $6 $1 $6 $2)))) (randint $0 (fn_6 $36)))) (randint 0 $0)))) (remove (fn_6 $3) $0))) (remove (fn_12 $2) $175))) (remove $1 $174))) (choice $173)))) $176) ((lam ((lam ((lam (ifElse (gt (len $0) 0) ((lam ((lam ((lam ((lam (fn_1 $0 $2)) (replace $0 $53 3))) (fill $1 2 $3))) (fill $0 $49 $1))) (sub (mapply neighbors $1) $1)) (x25 $175 $176 $49 $1 $47 $183 $32 $27 $145 $28 $174 $142 $171 $30 $24 $23 $2 $0 $31))) (toindices (mfilter $1 (compose flip (rbind bordering $183)))))) (colorfilter $1 $48))) (objects $181 T F F))))))))))))))))))))))))))))))))) (sub $7 $1))) (randint (floordiv $6 3) (mul (floordiv $6 3) 2)))) (interval 1 (fn_6 $6) 1))) (interval 1 (fn_6 $6) 1))) (interval 0 $5 1))) (interval 0 $3 1))) (fn_13 $2 $3 $20))) (fn_4 (min $2 $1) 4 $33 $34)))) (fn_16 5 $32 $33))) (fn_16 5 $31 $32)) ((lam ((lam ((lam ((lam (fn_1 $0 $2)) (replace $0 $20 3))) (fill $1 2 $151))) (fill $0 $16 $1))) (sub (mapply neighbors $149) $149))))))))))))))))))))))))))))))"
+            },
+            "dc_comparison_millis": null
+        }
+    ]
+}

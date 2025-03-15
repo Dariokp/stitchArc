@@ -1,0 +1,83 @@
+{
+    "cmd": "/home/dlindberg/.conda/envs/arcProjectEnv/bin/python run_stitch.py",
+    "args": {
+        "iterations": 1,
+        "abstraction_prefix": "fn_",
+        "previous_abstractions": 38,
+        "shuffle": false,
+        "truncate": null,
+        "no_opt": false,
+        "silent": true,
+        "verbose_rewrite": false,
+        "step": {
+            "max_arity": 4,
+            "threads": 18,
+            "no_stats": false,
+            "batch": 1,
+            "dynamic_batch": false,
+            "eta_long": false,
+            "no_curried_metavars": false,
+            "no_curried_bodies": false,
+            "inv_candidates": 1,
+            "hole_choice": "DepthFirst",
+            "cost": {
+                "cost_lam": 1,
+                "cost_app": 1,
+                "cost_var": 100,
+                "cost_ivar": 100,
+                "cost_prim_default": 100
+            },
+            "no_mismatch_check": false,
+            "follow": null,
+            "follow_prune": false,
+            "verbose_worklist": false,
+            "verbose_best": false,
+            "print_stats": 0,
+            "show_rewritten": false,
+            "rewritten_dreamcoder": false,
+            "rewritten_intermediates": false,
+            "inv_arg_cap": false,
+            "allow_single_task": false,
+            "no_opt_single_use": false,
+            "no_opt_upper_bound": false,
+            "no_opt_force_multiuse": false,
+            "no_opt_useless_abstract": false,
+            "no_opt_arity_zero": false,
+            "no_other_util": false,
+            "structure_penalty": 1.0,
+            "rewrite_check": false,
+            "utility_by_rewrite": false,
+            "dreamcoder_comparison": false,
+            "quiet": true,
+            "fused_lambda_tags": {
+                "tags": null
+            }
+        }
+    },
+    "original_cost": 5021307,
+    "final_cost": 5006313,
+    "compression_ratio": 1.002995018489655,
+    "num_abstractions": 1,
+    "original": "(lam (lam ((lam ((lam ((lam ((lam ((lam (fn_26 $4 c2 c1 ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (fn_18 $65 $66 $0)) (fill $65 8 (shift $1 $5)))) (backdrop (frozenset (__set__ (__tuple__ (fn_12 $18) (fn_12 (max $16 $14))) (__tuple__ (fn_6 $21) (fn_6 (min $15 $13)))))))) (paint $63 $2))) (fn_13 $24 $25 bgc))) (shift $0 $1))) (__tuple__ $2 $1))) (fn_37 $19 $21))) (fn_37 $19 $21))) (asobject $1))) (fill $0 c2 $3))) (fill $45 c1 $3))) (fn_13 $14 $15 bgc))) (backdrop (frozenset (__set__ (__tuple__ $10 $3) (__tuple__ (fn_6 $14) $2)))))) (backdrop (frozenset (__set__ (__tuple__ 0 $4) (__tuple__ $6 $3)))))) (randint (fn_12 $4) (fn_6 $11)))) (randint 0 (fn_6 $3)))) (randint (fn_12 $2) (fn_6 $9)))) (randint 0 (fn_6 $1)))) (randint 1 (sub $7 2)))) (getItem $2 $1))) (fn_4 (fn_6 (len $1)) 0 $10 $11))) (getItemWithStep (getItemUpTo $0 (fn_6 $2)) 0 -1 -1))) (getItem $21 $1))) (fn_4 (fn_6 $3) 2 $7 $8))) (interval 0 $2 1)))) (fn_4 $2 3 $5 $6))) (fn_4 $2 3 $4 $5))) (fn_16 3 $3 $4))) (fn_16 3 $2 $3))) (remove 8 fn_7))))",
+    "rewritten": "(lam (lam ((lam ((lam ((lam ((lam ((lam (fn_26 $4 c2 c1 ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (fn_18 $65 $66 $0)) (fill $65 8 (shift $1 $5)))) (backdrop (frozenset (__set__ (__tuple__ (fn_12 $18) (fn_12 (max $16 $14))) (__tuple__ (fn_6 $21) (fn_6 (min $15 $13)))))))) (paint $63 $2))) (fn_13 $24 $25 bgc))) (shift $0 $1))) (__tuple__ $2 $1))) (fn_37 $19 $21))) (fn_37 $19 $21))) (asobject $1))) (fill $0 c2 $3))) (fill $45 c1 $3))) (fn_13 $14 $15 bgc))) (backdrop (frozenset (__set__ (__tuple__ $10 $3) (__tuple__ (fn_6 $14) $2)))))) (backdrop (frozenset (__set__ (__tuple__ 0 $4) (__tuple__ $6 $3)))))) (randint (fn_12 $4) (fn_6 $11)))) (randint 0 (fn_6 $3)))) (randint (fn_12 $2) (fn_6 $9)))) (randint 0 (fn_6 $1)))) (randint 1 (sub $7 2)))) (getItem $2 $1))) (fn_4 (fn_6 (len $1)) 0 $10 $11))) (getItemWithStep (getItemUpTo $0 (fn_6 $2)) 0 -1 -1))) (getItem $21 $1))) (fn_4 (fn_6 $3) 2 $7 $8))) (interval 0 $2 1)))) (fn_4 $2 3 $5 $6))) (fn_4 $2 3 $4 $5))) (fn_16 3 $3 $4))) (fn_16 3 $2 $3))) (remove 8 fn_7))))",
+    "rewritten_dreamcoder": null,
+    "abstractions": [
+        {
+            "body": "(fn_0 #3 #2 (lam (lam ((lam (#1 $2 $1)) (x1 #0)))))",
+            "dreamcoder": "#(lambda (lambda (lambda (lambda (fn_0 $0 $1 (lambda (lambda ((lambda ($5 $2 $1)) (x1 $5)))))))))",
+            "arity": 4,
+            "name": "fn_38",
+            "utility": 14584,
+            "final_cost": 5006313,
+            "compression_ratio": 1.002995018489655,
+            "cumulative_compression_ratio": 1.002995018489655,
+            "num_uses": 50,
+            "rewritten": null,
+            "rewritten_dreamcoder": null,
+            "uses": {
+                "fn_38 (lam (lam (lam (fn_20 $3 $1 ((lam (fn_15 ((lam (x62 $0 $1)) (next $4 $5)) $6 neighbors $5)) $110) ((lam ((lam ((lam (fn_22 $0 ((lam (fn_1 $0 $24)) (dmirror (__tuple__ (tuple $0)))) ((lam ((lam (fn_23 (lam (lam (lam (ifElse (andOp None (lt $1 $39)) ((lam ((lam ((lam (x77 $2 $0 $1)) (fn_12 $0))) (issubset_M (shift $10 $1) $30))) (fn_33 $29)) (ifElse $134 ((lam ((lam (getItem (__list__ (append_M $124 $0) ((lam ((lam ((lam (x34 $0 $3 $1 $2 $22 $138 $21 $4 $18 $11 $13 $20 $140 $139)) (next $40 $41))) (fill $0 $2 $3))) (sub (sub $0 $2) (mapply neighbors $2)))) -1)) (choice $46))) (shift $9 $134)) ((lam (x34 $0 $138 $140 $139 $18 $134 $17 $137 $14 $7 $9 $16 $136 $135)) (next $36 $37))))))) x76 $130 $132 (fn_27 $131))) 0)) (fn_33 $1)))) (fn_10 (sub $40 (width $2)) lte (sub $41 (height $2)) $132))) False)) (normalize $0)))))) x61 $106 $105": "(fn_0 $105 $106 (lam (lam ((lam (x61 $2 $1)) (x1 (lam (lam (lam (fn_20 $5 $1 ((lam (fn_15 ((lam (x62 $0 $1)) (next $6 $7)) $8 neighbors $7)) $112) ((lam ((lam ((lam (fn_22 $0 ((lam (fn_1 $0 $26)) (dmirror (__tuple__ (tuple $0)))) ((lam ((lam (fn_23 (lam (lam (lam (ifElse (andOp None (lt $1 $41)) ((lam ((lam ((lam (x77 $2 $0 $1)) (fn_12 $0))) (issubset_M (shift $10 $1) $32))) (fn_33 $31)) (ifElse $136 ((lam ((lam (getItem (__list__ (append_M $126 $0) ((lam ((lam ((lam (x34 $0 $3 $1 $2 $24 $140 $23 $4 $20 $11 $13 $22 $142 $141)) (next $42 $43))) (fill $0 $2 $3))) (sub (sub $0 $2) (mapply neighbors $2)))) -1)) (choice $48))) (shift $9 $136)) ((lam (x34 $0 $140 $142 $141 $20 $136 $19 $139 $16 $7 $9 $18 $138 $137)) (next $38 $39))))))) x76 $132 $134 (fn_27 $133))) 0)) (fn_33 $1)))) (fn_10 (sub $42 (width $2)) lte (sub $43 (height $2)) $134))) False)) (normalize $0)))))))))))"
+            },
+            "dc_comparison_millis": null
+        }
+    ]
+}

@@ -18,6 +18,10 @@ from src.LOTlib3.StitchBindings.python_to_stitch import python_to_stitch
 
 # Read generator files from src/reArc/generator_functions, flatten and transform them into the suitable format for LOTlib3, then transform them into Stitch functions and save them in src/stitchArc/stitch_functions
 
+"""
+for i in range(0,10):
+    i+10
+    """
 
 def process_and_save_file(input_file, output_dir, filename):
     """

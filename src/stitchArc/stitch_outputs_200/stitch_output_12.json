@@ -1,0 +1,83 @@
+{
+    "cmd": "/home/dlindberg/.conda/envs/arcProjectEnv/bin/python run_stitch.py",
+    "args": {
+        "iterations": 1,
+        "abstraction_prefix": "fn_",
+        "previous_abstractions": 11,
+        "shuffle": false,
+        "truncate": null,
+        "no_opt": false,
+        "silent": true,
+        "verbose_rewrite": false,
+        "step": {
+            "max_arity": 4,
+            "threads": 18,
+            "no_stats": false,
+            "batch": 1,
+            "dynamic_batch": false,
+            "eta_long": false,
+            "no_curried_metavars": false,
+            "no_curried_bodies": false,
+            "inv_candidates": 1,
+            "hole_choice": "DepthFirst",
+            "cost": {
+                "cost_lam": 1,
+                "cost_app": 1,
+                "cost_var": 100,
+                "cost_ivar": 100,
+                "cost_prim_default": 100
+            },
+            "no_mismatch_check": false,
+            "follow": null,
+            "follow_prune": false,
+            "verbose_worklist": false,
+            "verbose_best": false,
+            "print_stats": 0,
+            "show_rewritten": false,
+            "rewritten_dreamcoder": false,
+            "rewritten_intermediates": false,
+            "inv_arg_cap": false,
+            "allow_single_task": false,
+            "no_opt_single_use": false,
+            "no_opt_upper_bound": false,
+            "no_opt_force_multiuse": false,
+            "no_opt_useless_abstract": false,
+            "no_opt_arity_zero": false,
+            "no_other_util": false,
+            "structure_penalty": 1.0,
+            "rewrite_check": false,
+            "utility_by_rewrite": false,
+            "dreamcoder_comparison": false,
+            "quiet": true,
+            "fused_lambda_tags": {
+                "tags": null
+            }
+        }
+    },
+    "original_cost": 5752248,
+    "final_cost": 5704410,
+    "compression_ratio": 1.0083861433522485,
+    "num_abstractions": 1,
+    "original": "(lam (lam ((lam ((lam ((lam ((lam ((lam (getItem (__listComp__ ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (ifElse (choice (__tuple__ True False)) ((lam ((lam (fn_1 $0 $1)) (dmirror $0))) (dmirror $0)) (fn_1 $66 $65))) (fill $65 8 (shift $1 $5)))) (backdrop (frozenset (__set__ (__tuple__ (add $18 1) (add (max $16 $14) 1)) (__tuple__ (fn_6 $21) (fn_6 (min $15 $13)))))))) (paint $63 $2))) (canvas bgc (__tuple__ $25 $24)))) (shift $0 $1))) (__tuple__ $2 $1))) (randint 0 (sub $21 $19)))) (randint 0 (sub $21 $19)))) (asobject $1))) (fill $0 c2 $3))) (fill $45 c1 $3))) (canvas bgc (__tuple__ $15 $14)))) (backdrop (frozenset (__set__ (__tuple__ $10 $3) (__tuple__ (fn_6 $14) $2)))))) (backdrop (frozenset (__set__ (__tuple__ 0 $4) (__tuple__ $6 $3)))))) (randint (add $4 1) (fn_6 $11)))) (randint 0 (fn_6 $3)))) (randint (add $2 1) (fn_6 $9)))) (randint 0 (fn_6 $1)))) (randint 1 (sub $7 2)))) (getItem $2 $1))) (fn_4 (fn_6 (len $1)) 0 $10 $11))) (getItemWithStep (getItemUpTo $0 (fn_6 $2)) 0 -1 -1))) (getItem $21 $1))) (fn_4 (fn_6 $3) 2 $7 $8))) (interval 0 $2 1)) (__tuple__ bgc c1 c2) (__list__ (sample $4 3))) 0)) (fn_4 $2 3 $5 $6))) (fn_4 $2 3 $4 $5))) (fn_4 30 3 $3 $4))) (fn_4 30 3 $2 $3))) (remove 8 fn_7))))",
+    "rewritten": "(lam (lam ((lam ((lam ((lam ((lam ((lam (getItem (__listComp__ ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam ((lam (ifElse (choice (__tuple__ True False)) ((lam ((lam (fn_1 $0 $1)) (dmirror $0))) (dmirror $0)) (fn_1 $66 $65))) (fill $65 8 (shift $1 $5)))) (backdrop (frozenset (__set__ (__tuple__ (add $18 1) (add (max $16 $14) 1)) (__tuple__ (fn_6 $21) (fn_6 (min $15 $13)))))))) (paint $63 $2))) (canvas bgc (__tuple__ $25 $24)))) (shift $0 $1))) (__tuple__ $2 $1))) (randint 0 (sub $21 $19)))) (randint 0 (sub $21 $19)))) (asobject $1))) (fill $0 c2 $3))) (fill $45 c1 $3))) (canvas bgc (__tuple__ $15 $14)))) (backdrop (frozenset (__set__ (__tuple__ $10 $3) (__tuple__ (fn_6 $14) $2)))))) (backdrop (frozenset (__set__ (__tuple__ 0 $4) (__tuple__ $6 $3)))))) (randint (add $4 1) (fn_6 $11)))) (randint 0 (fn_6 $3)))) (randint (add $2 1) (fn_6 $9)))) (randint 0 (fn_6 $1)))) (randint 1 (sub $7 2)))) (getItem $2 $1))) (fn_4 (fn_6 (len $1)) 0 $10 $11))) (getItemWithStep (getItemUpTo $0 (fn_6 $2)) 0 -1 -1))) (getItem $21 $1))) (fn_4 (fn_6 $3) 2 $7 $8))) (interval 0 $2 1)) (__tuple__ bgc c1 c2) (__list__ (sample $4 3))) 0)) (fn_4 $2 3 $5 $6))) (fn_4 $2 3 $4 $5))) (fn_4 30 3 $3 $4))) (fn_4 30 3 $2 $3))) (remove 8 fn_7))))",
+    "rewritten_dreamcoder": null,
+    "abstractions": [
+        {
+            "body": "(lam (lam (lam (lam (lam (lam (lam (fn_3 #1 (#0 $6 $5 $4 $3 $2 $1 $0)))))))))",
+            "dreamcoder": "#(lambda (lambda (lambda (lambda (lambda (lambda (lambda (lambda (lambda (fn_3 $7 ($8 $6 $5 $4 $3 $2 $1 $0)))))))))))",
+            "arity": 2,
+            "name": "fn_11",
+            "utility": 47022,
+            "final_cost": 5704410,
+            "compression_ratio": 1.0083861433522485,
+            "cumulative_compression_ratio": 1.0083861433522485,
+            "num_uses": 67,
+            "rewritten": null,
+            "rewritten_dreamcoder": null,
+            "uses": {
+                "fn_11 x26 (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (ifElse (andOp (lt $0 $14) (lt $1 $18)) ((lam ((lam ((lam ((lam (ifElse (eq (len $0) 0) (x27 $14 $0 $12 $11 $10 $9 $8 $2 $1 $5 $3) ((lam (fn_5 $0 $9 $10 ((lam (ifElse (issubset_M $0 $13) ((lam ((lam ((lam (x27 $3 $5 $0 $1 $4 $14 $13 $7 $6 $2 $8)) (fill $0 2 $3))) (sub (sub $0 $2) (mapply dneighbors $2)))) (add $0 1)) (x27 $0 $2 $80 $79 $1 $11 $10 $4 $3 $78 $5))) (backdrop (frozenset (__set__ (__tuple__ $11 $10) (__tuple__ (fn_6 (add $11 $4)) (fn_6 (add $10 $3))))))))) (choice (totuple $1))))) (fn_10 (sub $24 $1) lte (sub $25 $2) $77))) (randint 1 (add (floordiv $23 2) 1)))) (randint 1 (add (floordiv $23 2) 1)))) (add $0 1)) ((lam ((lam ((lam ((lam ((lam ((lam ((lam (fn_0 $121 $117 (fn_0 $116 $110 (fn_0 $109 $119 (fn_0 $122 $123 (fn_0 $118 $120 (lam (lam (lam (lam (lam (lam (lam (fn_3 (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (ifElse (andOp (lt $0 $22) (lt $1 $25)) ((lam ((lam ((lam ((lam (ifElse (eq (len $0) 0) (x68 $14 $0 $12 $11 $10 $9 $8 $2 $1 $5 $3) ((lam (fn_5 $0 $9 $10 ((lam (ifElse (issubset_M $0 $13) ((lam ((lam ((lam (x68 $3 $5 $0 $1 $4 $14 $13 $7 $6 $2 $8)) (fill $0 (choice $30) $3))) (sub (sub $0 $2) (mapply dneighbors $2)))) (add $0 1)) (x68 $0 $2 $148 $147 $1 $11 $10 $4 $3 $146 $5))) (backdrop (frozenset (__set__ (__tuple__ $11 $10) (__tuple__ (fn_6 (add $11 $4)) (fn_6 (add $10 $3))))))))) (choice (totuple $1))))) (fn_10 (sub $51 $1) lte (sub $52 $2) $145))) (randint 1 (add (floordiv $50 2) 1)))) (randint 1 (add (floordiv $50 2) 1)))) (add $0 1)) ((lam (fn_2 (range $28) $0 $158 (fn_0 $159 $160 (lam (lam (lam ((lam (x97 $3 $2 $1)) (x1 (lam (lam (lam (lam (ifElse (isNot $2 $7) ((lam ((lam ((lam (x98 $0 $1 $2)) (next $9 $10))) (fill $0 1 (__set__ (getItem $60 (add $1 1)))))) $168) (fn_1 $166 $151)))))))))))))) (canvas $47 (__tuple__ 3 3)))))))))))))))) (x67 $6 $5 $4 $3 $2 $1 $0))))))))))))) (ifElse (elem (__str__ $115) dir) $115 None))) (add $114 1))) (remove $25 $29))) (mul 5 $3))) 0)) 0)) (fn_4 (mul $20 2) 0 $26 $27))) $114))))))))))))))": "(lam (lam (lam (lam (lam (lam (lam (fn_3 (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (ifElse (andOp (lt $0 $21) (lt $1 $25)) ((lam ((lam ((lam ((lam (ifElse (eq (len $0) 0) (x27 $14 $0 $12 $11 $10 $9 $8 $2 $1 $5 $3) ((lam (fn_5 $0 $9 $10 ((lam (ifElse (issubset_M $0 $13) ((lam ((lam ((lam (x27 $3 $5 $0 $1 $4 $14 $13 $7 $6 $2 $8)) (fill $0 2 $3))) (sub (sub $0 $2) (mapply dneighbors $2)))) (add $0 1)) (x27 $0 $2 $87 $86 $1 $11 $10 $4 $3 $85 $5))) (backdrop (frozenset (__set__ (__tuple__ $11 $10) (__tuple__ (fn_6 (add $11 $4)) (fn_6 (add $10 $3))))))))) (choice (totuple $1))))) (fn_10 (sub $31 $1) lte (sub $32 $2) $84))) (randint 1 (add (floordiv $30 2) 1)))) (randint 1 (add (floordiv $30 2) 1)))) (add $0 1)) ((lam ((lam ((lam ((lam ((lam ((lam ((lam (fn_0 $128 $124 (fn_0 $123 $117 (fn_0 $116 $126 (fn_0 $129 $130 (fn_0 $125 $127 (lam (lam (lam (lam (lam (lam (lam (fn_3 (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (lam (ifElse (andOp (lt $0 $22) (lt $1 $25)) ((lam ((lam ((lam ((lam (ifElse (eq (len $0) 0) (x68 $14 $0 $12 $11 $10 $9 $8 $2 $1 $5 $3) ((lam (fn_5 $0 $9 $10 ((lam (ifElse (issubset_M $0 $13) ((lam ((lam ((lam (x68 $3 $5 $0 $1 $4 $14 $13 $7 $6 $2 $8)) (fill $0 (choice $30) $3))) (sub (sub $0 $2) (mapply dneighbors $2)))) (add $0 1)) (x68 $0 $2 $155 $154 $1 $11 $10 $4 $3 $153 $5))) (backdrop (frozenset (__set__ (__tuple__ $11 $10) (__tuple__ (fn_6 (add $11 $4)) (fn_6 (add $10 $3))))))))) (choice (totuple $1))))) (fn_10 (sub $58 $1) lte (sub $59 $2) $152))) (randint 1 (add (floordiv $57 2) 1)))) (randint 1 (add (floordiv $57 2) 1)))) (add $0 1)) ((lam (fn_2 (range $28) $0 $165 (fn_0 $166 $167 (lam (lam (lam ((lam (x97 $3 $2 $1)) (x1 (lam (lam (lam (lam (ifElse (isNot $2 $7) ((lam ((lam ((lam (x98 $0 $1 $2)) (next $9 $10))) (fill $0 1 (__set__ (getItem $67 (add $1 1)))))) $175) (fn_1 $173 $158)))))))))))))) (canvas $54 (__tuple__ 3 3)))))))))))))))) (x67 $6 $5 $4 $3 $2 $1 $0))))))))))))) (ifElse (elem (__str__ $122) dir) $122 None))) (add $121 1))) (remove $32 $36))) (mul 5 $3))) 0)) 0)) (fn_4 (mul $27 2) 0 $33 $34))) $121)))))))))))))) (x26 $6 $5 $4 $3 $2 $1 $0)))))))))"
+            },
+            "dc_comparison_millis": null
+        }
+    ]
+}
