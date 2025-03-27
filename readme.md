@@ -1,5 +1,7 @@
 # Python to Stitch Translator for ARC Challenge
 
+![Python to Stitch Translation](python-to-stitch.png)
+
 This repository contains code to translate Python functions into Stitch code, specifically applied to the ARC-AGI challenge.
 
 ## Overview
