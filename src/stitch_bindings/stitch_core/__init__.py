@@ -1,5 +1,5 @@
 # import the contents of the Rust library into the Python extension
-from .stitch_core import compress_backend,rewrite_backend
+from stitch_core import compress_backend,rewrite_backend
 from typing import Dict, List, Any, Tuple, Union
 import json
 

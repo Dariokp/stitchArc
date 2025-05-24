@@ -6,6 +6,8 @@ This mainly involves combining re-arc, flatliner, LOTlib3, and stitch_bindings t
 # General imports
 import os
 import sys
+from collections import defaultdict
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))) # add src to path
 from tqdm import tqdm
 
@@ -38,18 +40,40 @@ def process_and_save_file(input_file, output_dir, filename):
     test.set_ast(input_file)
     lambda_f = test.unparse()
     lambda_transformed_f = transform_lambda(lambda_f)
+    print(f"abstraction:{lambda_transformed_f}")
+
 
     try:
         # Use LOTlib3 to transform the result into a Stitch function
-        stitch_f = python_to_stitch(lambda_transformed_f)
-    except Exception as e:
-        print(f"\tError transforming to Stitch | {filename} : {e}")        
 
-    # Save the result
-    output_path = os.path.join(output_dir, filename)
-    with open(output_path, 'w') as f:
-        f.write(stitch_f)
-    
+        stitch_f = python_to_stitch(lambda_transformed_f)
+        print('succes')
+        # Save the result
+        output_path = os.path.join(output_dir, filename)
+        with open(output_path, 'w') as f:
+            f.write(stitch_f)
+    except Exception as e:
+        print('fout')
+        msg = str(e)
+
+        # Check for the specific pattern
+        if msg.startswith("Unhandled node type:"):
+            node_type = msg.split("Unhandled node type:")[-1].strip()
+            if error_counter.get(node_type):
+                error_counter[node_type] += 1
+            else:
+                error_counter[node_type] = 1
+        print(e)
+        print(f"\tError transforming to Stitch | {filename} : {e}")
+
+
+    error_number = 0
+    print("\nUnhandled Node Types Summary:")
+    for node_type, count in error_counter.items():
+        print(f"  • {node_type}: {count}")
+        error_number += count
+
+    print(f'total errors: {error_number}')
 
 # def load_processed_files(directory, pattern="*.lambda"):
 #     """
@@ -70,7 +94,7 @@ def process_and_save_file(input_file, output_dir, filename):
 
 if __name__ == "__main__":
     # Input and output directories
-    input_dir = os.path.join("..", "reArc", "generator_functions")
+    input_dir = os.path.join("..", "reArc", "test_functions/comp")
     output_dir = os.path.join(".", "stitch_functions")
     # Create output directory if it doesn't exist
     os.makedirs(output_dir, exist_ok=True)
@@ -92,6 +116,7 @@ if __name__ == "__main__":
         "generate_22eb0ac0.py",
         "generate_e73095fd.py",
     ]
+    error_counter = {}
     
     # Process all files in the input directory
     for file_path in tqdm(os.listdir(input_dir), desc="Transforming generator files to lambda expressions"):

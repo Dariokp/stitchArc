@@ -1,17 +1,14 @@
-from LOTlib3.Grammar import Grammar
-from LOTlib3.Samplers.MetropolisHastings import MetropolisHastingsSampler
-from LOTlib3.Hypotheses.LOTHypothesis import LOTHypothesis
-from LOTlib3.DataAndObjects import FunctionData
-from LOTlib3.Eval import primitive, register_primitive
+
+from ..Samplers.MetropolisHastings import MetropolisHastingsSampler
+
+from ..Eval                        import primitive, register_primitive
 
 from collections import Counter
 from stitch_core import compress
-from math import log, exp
-import re
 from copy import deepcopy
 
-from LOTlib3.StitchBindings.python_to_stitch import python_to_stitch, parse_function_calls
-from LOTlib3.StitchBindings.stitch_to_python import stitch_to_python, abstraction_to_python
+from python_to_stitch import python_to_stitch, parse_function_calls
+from stitch_to_python import stitch_to_python, abstraction_to_python
 
 
 def process_name(name):

@@ -317,12 +317,13 @@ class TaggerTransformer(ast.NodeTransformer):
     
     def visit_Subscript(self, node):
         # First process any nested nodes within value and slice
-        node = self.generic_visit(node)
-        
+        node.value = self.visit(node.value)
+        node.slice = self.visit(node.slice)
+
         # Handle different slice types
         if isinstance(node.slice, ast.Slice):
             slice_node = node.slice
-            
+
             # Case 1: x[:upper] -> getItemUpTo(x)(upper)
             if slice_node.lower is None and slice_node.upper is not None and slice_node.step is None:
                 return ast.Call(
@@ -334,7 +335,7 @@ class TaggerTransformer(ast.NodeTransformer):
                     args=[slice_node.upper],
                     keywords=[]
                 )
-            
+
             # Case 2: x[lower:upper] -> getItemFromTo(x)(lower)(upper)
             elif slice_node.lower is not None and slice_node.upper is not None and slice_node.step is None:
                 return ast.Call(
@@ -350,7 +351,7 @@ class TaggerTransformer(ast.NodeTransformer):
                     args=[slice_node.upper],
                     keywords=[]
                 )
-            
+
             # Case 3: x[lower:] -> getItemFrom(x)(lower)
             elif slice_node.lower is not None and slice_node.upper is None and slice_node.step is None:
                 return ast.Call(
@@ -362,14 +363,14 @@ class TaggerTransformer(ast.NodeTransformer):
                     args=[slice_node.lower],
                     keywords=[]
                 )
-            
+
             # Case 4: x[::step] -> getItemWithStep(x)(0)(-1)(step)
             elif slice_node.step is not None:
                 # Default lower bound is 0 if not specified
                 lower = slice_node.lower if slice_node.lower is not None else ast.Constant(value=0)
                 # Default upper bound is -1 (representing end) if not specified
                 upper = slice_node.upper if slice_node.upper is not None else ast.Constant(value=-1)
-                
+
                 return ast.Call(
                     func=ast.Call(
                         func=ast.Call(
@@ -387,7 +388,7 @@ class TaggerTransformer(ast.NodeTransformer):
                     args=[slice_node.step],
                     keywords=[]
                 )
-            
+
             # Case 5: x[:] -> getFullCopy(x)
             elif slice_node.lower is None and slice_node.upper is None and slice_node.step is None:
                 return ast.Call(
@@ -395,7 +396,7 @@ class TaggerTransformer(ast.NodeTransformer):
                     args=[node.value],
                     keywords=[]
                 )
-        
+
         # Default case: x[i] -> getItem(x)(i)
         return ast.Call(
                 func=ast.Call(
@@ -621,6 +622,30 @@ class NestedStructureTransformer(ast.NodeTransformer):
         # If not a recognized operation, process children
         return self.generic_visit(node)
 
+class StripSubscriptTransformer(ast.NodeTransformer):
+    """
+    Catches any Subscript that slipped through and
+    turns x[i] into getItem(x)(i), so no raw brackets remain.
+    """
+    print('d')
+    def visit_Subscript(self, node):
+        # 1) Recurse into children to make sure they’re already transformed
+        node.value = self.visit(node.value)
+        node.slice = self.visit(node.slice)
+
+        # 2) Emit the curried-call form:
+        return ast.copy_location(
+            ast.Call(
+                func=ast.Call(
+                    func=ast.Name(id="getItem", ctx=ast.Load()),
+                    args=[node.value],
+                    keywords=[]
+                ),
+                args=[node.slice],
+                keywords=[]
+            ),
+            node
+        )
 
 
 def transform_lambda_string(s):
@@ -677,7 +702,7 @@ def transform_lambda(expr_str):
     Applies the transformations to the input lambda expression.
     """
     # Parse the expression. We use mode='eval' because the input is a single expression.
-    tree = ast.parse(expr_str, mode='eval')         
+    tree = ast.parse(expr_str, mode='eval')
                                                     # ------------ Examples ------------
     tree = OperatorTransformer().visit(tree)        # 13+2                  -> add(13, 2)
     tree = BoolOpTransformer().visit(tree)          # x and y               -> andOp(x, y)
@@ -691,7 +716,11 @@ def transform_lambda(expr_str):
     tree = NestedStructureTransformer().visit(tree) # TODO: still misses elements e.g. strings nested in a tuple nested in a dictionary
                                                     # dict(__list__(__tuple__('input')(x19)) ... )
 
-    tree = CurryTransformer().visit(tree)           # __genExpr__(z, x, y)  -> __genExpr__(z)(x)(y) 
+    tree = CurryTransformer().visit(tree)           # __genExpr__(z, x, y)  -> __genExpr__(z)(x)(y)
+
+
+    tree = StripSubscriptTransformer().visit(tree)
+
     ast.fix_missing_locations(tree)
     
     # Convert the AST back into code

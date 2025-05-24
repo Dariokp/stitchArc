@@ -13,7 +13,7 @@ import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))) # add src to path
 
 from src.stitch_bindings.stitch_core import compress
-# from stitch_core import compress
+from stitch_core import compress
 
 def process_json(data):
     """ Remove some unnecessary elements of the json file """
@@ -62,7 +62,7 @@ if __name__ == "__main__":
 
     # Determines how many abstractions Stitch will construct
     n_iterations = 5
-    latest_programs = stitch_functions[:5]
+    latest_programs = stitch_functions
     print("Compressing...")
     for i in range(n_iterations):
         # Run the Stitch algorithm on all functions
